@@ -1,8 +1,24 @@
 [versions]
-kotlinPlugin = "2.1.21"
+shadow = "8.3.3"
+jvm = "2.0.21"
+paper = "1.21.4-R0.1-SNAPSHOT"
+minecraft = "1.21.4"
+yarnMappings = "1.21.4+build.1"
+fabricLoader = "0.16.14"
+fabricApi = "0.127.1+1.21.4"
+fabricKotlin = "1.13.3+kotlin.2.1.21"
+fabricLoom = "1.10.1"
 
 [libraries]
+stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "jvm" }
+paper = { group = "io.papermc.paper", name = "paper-api", version.ref = "paper" }
+mojang-minecraft = { group = "com.mojang", name = "minecraft", version.ref = "minecraft" }
+fabric-yarn = { group = "net.fabricmc", name = "yarn", version.ref = "yarnMappings" }
+fabric-loader = { group = "net.fabricmc", name = "fabric-loader", version.ref = "fabricLoader" }
+fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.ref = "fabricApi" }
+fabric-language-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "fabricKotlin" }
 
 [plugins]
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinPlugin" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+fabric-loom = { id = "fabric-loom", version.ref = "fabricLoom" }
 maven-publish = { id = "maven-publish" }

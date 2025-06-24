@@ -1,17 +1,24 @@
 plugins {
-}
-
-group = "gg.norisk"
-version = "0.1.0"
-
-repositories {
-    //add repos as needed
+    kotlin("jvm")
+    id("java-library")
 }
 
 dependencies {
-    //add dependencies as needed
+    implementation(libs.stdlib)
 }
 
 kotlin {
     jvmToolchain(21)
+}
+
+java {
+    withSourcesJar()
+}
+
+tasks.jar {
+    manifest {
+        attributes(
+            "Main-Class" to "gg.norisk.core.ServerApi"
+        )
+    }
 }

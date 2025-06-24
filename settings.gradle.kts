@@ -1,5 +1,5 @@
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
 rootProject.name = "noriskclient-server-api"
-
-include(":core")
-
-//TODO: Für Maven Central alles hinzufügen
+include("core")
