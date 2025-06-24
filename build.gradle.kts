@@ -26,6 +26,7 @@ subprojects {
     apply<ShadowPlugin>()
 
     repositories {
+        maven("https://repo.papermc.io/repository/maven-public/")
         mavenCentral()
     }
 
@@ -42,9 +43,14 @@ subprojects {
             archiveClassifier.set("")
             destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
             manifest {
-                attributes("Main-Class" to "gg.norisk.core.ServerApi")
+                attributes("Main-Class" to "gg.norisk.core.NRCServerApi")
             }
         }
+    }
+
+    tasks.withType<Wrapper> {
+        gradleVersion = "8.12.1"
+        distributionType = Wrapper.DistributionType.ALL
     }
 
     dependencies {

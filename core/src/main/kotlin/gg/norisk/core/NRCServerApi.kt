@@ -1,6 +1,6 @@
 package gg.norisk.core
 
-object ServerApi {
+object NRCServerApi {
     @JvmStatic
     fun main(args: Array<String>) {
         println("Hello, NoRisk Core!")

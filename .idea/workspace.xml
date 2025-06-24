@@ -45,31 +45,20 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
+                <item name="core" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="shadow" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -88,24 +77,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "S42yt"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;S42yt&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/NoRiskClient/noriskclient-server-api.git",
-    "accountId": "2e4c785d-9fbb-4777-829d-b67d0b5ff156"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NoRiskClient/noriskclient-server-api.git&quot;,
+    &quot;accountId&quot;: &quot;2e4c785d-9fbb-4777-829d-b67d0b5ff156&quot;
   }
-}]]></component>
+}</component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="b3AUXYUb" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2yxEpB0zVHdtoGtRBDrjTUVAnnY" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -116,6 +105,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [build].executor": "Run",
     "Gradle.core [build].executor": "Run",
     "Gradle.core [knows].executor": "Run",
     "Gradle.core [shadowJar].executor": "Run",
@@ -124,8 +114,10 @@
     "Gradle.noriskclient-server-api [shadowJar].executor": "Run",
     "Gradle.paper [build].executor": "Run",
     "JAR Application.core-0.1.0-all.jar.executor": "Run",
+    "JAR Application.core-0.1.0-sources.jar.executor": "Run",
     "JAR Application.core-0.1.0.jar.executor": "Run",
     "JAR Application.noriskclient-server-api-0.1.0.jar.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
@@ -144,7 +136,7 @@
   }
 }]]></component>
   <component name="RunManager" selected="JAR Application.noriskclient-server-api-0.1.0.jar">
-    <configuration name="core [knows]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="/Users/musa/Desktop/norisk/noriskclient-server-api/core [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$/core" />
@@ -155,7 +147,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="knows" />
+            <option value="build" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -210,8 +202,8 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="core-0.1.0-all.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/core/build/libs/core-0.1.0-all.jar" />
+    <configuration name="core-0.1.0-sources.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/core/build/libs/core-0.1.0-sources.jar" />
       <method v="2" />
     </configuration>
     <configuration name="noriskclient-server-api-0.1.0.jar" type="JarApplication" temporary="true">
@@ -221,10 +213,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.noriskclient-server-api-0.1.0.jar" />
+        <item itemvalue="Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [build]" />
+        <item itemvalue="JAR Application.core-0.1.0-sources.jar" />
         <item itemvalue="Gradle.noriskclient-server-api [build]" />
         <item itemvalue="Gradle.noriskclient-server-api [shadowJar]" />
-        <item itemvalue="Gradle.core [knows]" />
-        <item itemvalue="JAR Application.core-0.1.0-all.jar" />
       </list>
     </recent_temporary>
   </component>
@@ -244,6 +236,7 @@
       <option name="presentableId" value="Default" />
       <updated>1750768004596</updated>
       <workItem from="1750768005929" duration="5089000" />
+      <workItem from="1750773510137" duration="3708000" />
     </task>
     <task id="LOCAL-00001" summary="add back needed dependency">
       <option name="closed" value="true" />

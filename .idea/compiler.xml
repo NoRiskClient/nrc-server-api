@@ -5,7 +5,6 @@
       <module name="fabric" target="21" />
       <module name="fabric.main" target="21" />
       <module name="fabric.test" target="21" />
-      <module name="paper" target="21" />
       <module name="paper.main" target="21" />
       <module name="paper.test" target="21" />
     </bytecodeTargetLevel>

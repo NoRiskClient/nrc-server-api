@@ -3,22 +3,16 @@ plugins {
     id("java-library")
 }
 
-dependencies {
-    implementation(libs.stdlib)
-}
-
-kotlin {
-    jvmToolchain(21)
-}
-
-java {
-    withSourcesJar()
+tasks.processResources {
+    filesMatching("paper-plugin.yml") {
+        expand("version" to project.version)
+    }
 }
 
 tasks.jar {
     manifest {
         attributes(
-            "Main-Class" to "gg.norisk.core.ServerApi"
+            "Main-Class" to "gg.norisk.core.NRCServerApi"
         )
     }
 }
