@@ -33,24 +33,25 @@ subprojects {
         jvmToolchain(21)
     }
 
-    if (project.name == "core") return@subprojects
-
     tasks {
         jar { enabled = false }
         build { dependsOn(shadowJar) }
         shadowJar {
             archiveBaseName.set(rootProject.name)
             archiveVersion.set(project.version.toString())
-            archiveClassifier.set(project.name)
+            archiveClassifier.set("")
             destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
-            relocate("kotlin", "gg.norisk.libs.kotlin")
-            minimize()
+            manifest {
+                attributes("Main-Class" to "gg.norisk.core.ServerApi")
+            }
         }
     }
 
     dependencies {
-        implementation(project(":core"))
         implementation(stdlib)
+        if (project.name != "core") {
+            implementation(project(":core"))
+        }
     }
 }
 
