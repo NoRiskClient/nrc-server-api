@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/fabric" />
             <option value="$PROJECT_DIR$/paper" />
+            <option value="$PROJECT_DIR$/spigot" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="true" />

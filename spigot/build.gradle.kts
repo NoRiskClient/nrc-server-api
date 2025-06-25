@@ -4,27 +4,24 @@ plugins {
 }
 
 dependencies {
-    implementation(libs.paper)
+    implementation(libs.spigot)
     implementation(project(":core"))
 }
 
 tasks {
     processResources {
-        filesMatching("paper-plugin.yml") {
+        filesMatching("plugin.yml") {
             expand("version" to project.version)
         }
     }
-}
-
-tasks {
     jar {
         enabled = true
-        archiveBaseName.set("${rootProject.name}-paper")
+        archiveBaseName.set("${rootProject.name}-spigot")
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
         manifest {
-            attributes("Main-Class" to "gg.norisk.paper.Paper")
+            attributes("Main-Class" to "gg.norisk.spigot.Spigot")
         }
     }
 }

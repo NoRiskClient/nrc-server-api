@@ -8,6 +8,7 @@ fabricApi = "0.109.1+1.21.4"
 fabricKotlin = "1.13.3+kotlin.2.1.21"
 fabricLoom = "1.10.1"
 kotlinPlugin = "2.1.21"
+spigot = "1.21.4-R0.1-SNAPSHOT"
 
 [libraries]
 stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "jvm" }
@@ -17,6 +18,7 @@ fabric-yarn = { group = "net.fabricmc", name = "yarn", version.ref = "yarnMappin
 fabric-loader = { group = "net.fabricmc", name = "fabric-loader", version.ref = "fabricLoader" }
 fabric-api = { group = "net.fabricmc.fabric-api", name = "fabric-api", version.ref = "fabricApi" }
 fabric-language-kotlin = { group = "net.fabricmc", name = "fabric-language-kotlin", version.ref = "fabricKotlin" }
+spigot = { group = "org.spigotmc", name = "spigot-api", version.ref = "spigot" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinPlugin" }
