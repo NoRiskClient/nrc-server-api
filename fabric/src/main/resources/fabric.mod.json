@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "noriskclientserverapi",
+  "version": "0.1.0",
+  "name": "NoRiskClientServerAPI",
+  "description": "API to interact with the NoRisk Client.",
+  "authors": ["S42"],
+  "contact": {},
+  "license": "",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "gg.norisk.fabric.Fabric"
+    ],
+    "client": [
+      "gg.norisk.fabric.client.FabricClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "fabric": "*",
+    "minecraft": "1.21.4"
+  }
+}

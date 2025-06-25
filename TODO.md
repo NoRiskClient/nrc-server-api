@@ -19,7 +19,7 @@ Platforms we should support:
 
      * [ ]  Fabric (very high priority, since we use it ourselves)
        [ ]  Paper (low priority; high if we release the api to the public)
-       [ ]Velocity (very low priority?)
+       [ ]  Velocity (very low priority?)
        [ ]  Bungeecord (very very low priority!)
 
 

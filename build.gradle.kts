@@ -1,16 +1,15 @@
-import com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaLibraryPlugin
 
 plugins {
     kotlin("jvm") version libs.versions.kotlinPlugin.get()
-    alias(libs.plugins.shadow)
     id("java")
     id("org.gradle.wrapper")
 }
 
-group = "gg.norisk"
-version = "0.1.0"
+allprojects {
+    group = "gg.norisk"
+}
 
 repositories {
     mavenCentral()
@@ -23,7 +22,6 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply<JavaPlugin>()
     apply<JavaLibraryPlugin>()
-    apply<ShadowPlugin>()
 
     repositories {
         maven("https://repo.papermc.io/repository/maven-public/")
@@ -35,9 +33,8 @@ subprojects {
     }
 
     tasks {
-        jar { enabled = false }
-        build { dependsOn(shadowJar) }
-        shadowJar {
+        jar {
+            enabled = true
             archiveBaseName.set(rootProject.name)
             archiveVersion.set(project.version.toString())
             archiveClassifier.set("")
@@ -60,5 +57,3 @@ subprojects {
         }
     }
 }
-
-tasks.jar { enabled = false }

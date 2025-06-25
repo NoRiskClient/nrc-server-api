@@ -9,17 +9,14 @@ dependencies {
 }
 
 tasks {
-    jar { enabled = false }
-    build { dependsOn(shadowJar) }
-    shadowJar {
+    jar {
+        enabled = true
         archiveBaseName.set("${rootProject.name}-paper")
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
         manifest {
-            attributes(
-                "Main-Class" to "gg.norisk.paper.NRCServerApiPlugin"
-            )
+            attributes("Main-Class" to "gg.norisk.paper.Paper")
         }
     }
 }

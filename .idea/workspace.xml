@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7357da86-28f3-40ac-867c-eab50d8c71de" name="Changes" comment="" />
+    <list default="true" id="7357da86-28f3-40ac-867c-eab50d8c71de" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/gg/norisk/fabric/Fabric.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/gg/norisk/fabric/client/FabricClient.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/Core.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/Core.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/src/main/resources/paper-plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/resources/paper-plugin.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +59,9 @@
         <task path="$PROJECT_DIR$/core">
           <activation />
         </task>
+        <task path="$PROJECT_DIR$/fabric">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -45,18 +72,18 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
+                <item name="fabric" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
+                <item name="fabric" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
+                <item name="fabric" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -111,7 +138,11 @@
     "Gradle.core [shadowJar].executor": "Run",
     "Gradle.noriskclient-server-api [buildDependents].executor": "Run",
     "Gradle.noriskclient-server-api [build].executor": "Run",
+    "Gradle.noriskclient-server-api [clean].executor": "Run",
+    "Gradle.noriskclient-server-api [runClient].executor": "Run",
     "Gradle.noriskclient-server-api [shadowJar].executor": "Run",
+    "Gradle.noriskclient-server-api:fabric [build].executor": "Run",
+    "Gradle.noriskclient-server-api:fabric [clean].executor": "Run",
     "Gradle.paper [build].executor": "Run",
     "JAR Application.core-0.1.0-all.jar.executor": "Run",
     "JAR Application.core-0.1.0-sources.jar.executor": "Run",
@@ -122,8 +153,10 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
+    "last_opened_file_path": "/Users/musa/Desktop/norisk/noriskclient-server-api",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -135,11 +168,38 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JAR Application.noriskclient-server-api-0.1.0.jar">
-    <configuration name="/Users/musa/Desktop/norisk/noriskclient-server-api/core [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.noriskclient-server-api:fabric [build]">
+    <configuration name="noriskclient-server-api [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/core" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="noriskclient-server-api:fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -158,10 +218,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="noriskclient-server-api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="noriskclient-server-api:fabric [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -169,7 +229,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="build" />
+            <option value="clean" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -180,10 +240,10 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="noriskclient-server-api [shadowJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="noriskclient-server-api:fabric [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/fabric" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" />
         <option name="taskDescriptions">
@@ -191,7 +251,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="shadowJar" />
+            <option value="runClient" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -200,10 +260,6 @@
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <configuration name="core-0.1.0-sources.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/core/build/libs/core-0.1.0-sources.jar" />
       <method v="2" />
     </configuration>
     <configuration name="noriskclient-server-api-0.1.0.jar" type="JarApplication" temporary="true">
@@ -212,11 +268,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.noriskclient-server-api:fabric [build]" />
+        <item itemvalue="Gradle.noriskclient-server-api:fabric [runClient]" />
+        <item itemvalue="Gradle.noriskclient-server-api:fabric [clean]" />
         <item itemvalue="JAR Application.noriskclient-server-api-0.1.0.jar" />
-        <item itemvalue="Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [build]" />
-        <item itemvalue="JAR Application.core-0.1.0-sources.jar" />
-        <item itemvalue="Gradle.noriskclient-server-api [build]" />
-        <item itemvalue="Gradle.noriskclient-server-api [shadowJar]" />
+        <item itemvalue="Gradle.noriskclient-server-api [runClient]" />
       </list>
     </recent_temporary>
   </component>
@@ -237,6 +293,8 @@
       <updated>1750768004596</updated>
       <workItem from="1750768005929" duration="5089000" />
       <workItem from="1750773510137" duration="3708000" />
+      <workItem from="1750800056876" duration="528000" />
+      <workItem from="1750847440166" duration="3438000" />
     </task>
     <task id="LOCAL-00001" summary="add back needed dependency">
       <option name="closed" value="true" />
