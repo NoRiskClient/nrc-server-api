@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/ChannelApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/internal/NRCHandshakePayload.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NoRiskServerApi.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/gg/norisk/fabric/server/FabricServer.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/api/NrcChannelRegister.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.test.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/gg/norisk/fabric/Fabric.kt" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/kotlin/gg/norisk/fabric/Fabric.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/kotlin/gg/norisk/fabric/client/FabricClient.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/resources/fabric.mod.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/paper/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/api/NoRiskApi.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
