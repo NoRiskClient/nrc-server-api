@@ -1,3 +1,7 @@
+dependencies {
+    implementation(libs.gson)
+}
+
 plugins {
     kotlin("jvm")
     id("java-library")

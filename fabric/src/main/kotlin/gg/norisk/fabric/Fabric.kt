@@ -1,9 +1,9 @@
 package gg.norisk.fabric
 
-import net.fabricmc.api.ModInitializer
+import net.fabricmc.api.DedicatedServerModInitializer
 
-class Fabric : ModInitializer {
-    override fun onInitialize() {
+class Fabric : DedicatedServerModInitializer {
+    override fun onInitializeServer() {
         println("Initialized NoRiskClient-Server-API Fabric Module")
     }
 }

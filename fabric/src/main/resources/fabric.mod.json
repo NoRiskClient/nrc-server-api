@@ -7,13 +7,10 @@
   "authors": ["S42"],
   "contact": {},
   "license": "",
-  "environment": "*",
+  "environment": "server",
   "entrypoints": {
-    "main": [
+    "server": [
       "gg.norisk.fabric.Fabric"
-    ],
-    "client": [
-      "gg.norisk.fabric.client.FabricClient"
     ]
   },
   "depends": {

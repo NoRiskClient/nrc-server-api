@@ -1,30 +1,28 @@
 plugins {
     kotlin("jvm")
     id("java-library")
+    alias(libs.plugins.shadow)
 }
 
 dependencies {
-    implementation(libs.paper)
+    implementation(libs.spigot)
     implementation(project(":core"))
+    implementation(libs.stdlib)
 }
 
 tasks {
     processResources {
-        filesMatching("paper-plugin.yml") {
+        filesMatching("plugin.yml") {
             expand("version" to project.version)
         }
     }
-}
-
-tasks {
-    jar {
-        enabled = true
+    jar { enabled = false }
+    shadowJar {
+        dependsOn(jar)
         archiveBaseName.set("${rootProject.name}-paper")
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
-        manifest {
-            attributes("Main-Class" to "gg.norisk.paper.Paper")
-        }
     }
+    build { dependsOn(shadowJar) }
 }
