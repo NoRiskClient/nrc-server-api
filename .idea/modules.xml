@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.main.iml" filepath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.test.iml" filepath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.test.iml" />
     </modules>
   </component>
 </project>

@@ -9,6 +9,7 @@ plugins {
 
 allprojects {
     group = "gg.norisk"
+    version = "0.1.0"
 }
 
 repositories {
@@ -25,6 +26,7 @@ subprojects {
 
     repositories {
         maven("https://repo.papermc.io/repository/maven-public/")
+        maven(uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots"))
         mavenCentral()
     }
 

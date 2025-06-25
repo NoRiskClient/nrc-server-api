@@ -4,6 +4,6 @@ import net.fabricmc.api.ModInitializer
 
 class Fabric : ModInitializer {
     override fun onInitialize() {
-        println("NoRiskClientServerAPI Fabric Mod wurde geladen!")
+        println("Initialized NoRiskClient-Server-API Fabric Module")
     }
 }
