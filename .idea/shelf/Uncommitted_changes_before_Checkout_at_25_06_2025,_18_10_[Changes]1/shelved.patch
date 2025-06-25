@@ -1,0 +1,118 @@
+Index: fabric/src/main/resources/fabric.mod.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"schemaVersion\": 1,\n  \"id\": \"noriskclientserverapi\",\n  \"version\": \"0.1.0\",\n  \"name\": \"NoRiskClientServerAPI\",\n  \"description\": \"API to interact with the NoRisk Client.\",\n  \"authors\": [\"S42\"],\n  \"contact\": {},\n  \"license\": \"\",\n  \"environment\": \"*\",\n  \"entrypoints\": {\n    \"main\": [\n      \"gg.norisk.fabric.Fabric\"\n    ],\n    \"client\": [\n      \"gg.norisk.fabric.client.FabricClient\"\n    ]\n  },\n  \"depends\": {\n    \"fabricloader\": \">=0.14.0\",\n    \"fabric\": \"*\",\n    \"minecraft\": \"1.21.4\"\n  }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/fabric/src/main/resources/fabric.mod.json b/fabric/src/main/resources/fabric.mod.json
+--- a/fabric/src/main/resources/fabric.mod.json	(revision c996f2d82c9756082ac7c75dc220dc69f3b72861)
++++ b/fabric/src/main/resources/fabric.mod.json	(date 1750858478609)
+@@ -19,6 +19,6 @@
+   "depends": {
+     "fabricloader": ">=0.14.0",
+     "fabric": "*",
+-    "minecraft": "1.21.4"
++    "minecraft": "1.21.5"
+   }
+ }
+\ No newline at end of file
+Index: paper/src/main/resources/paper-plugin.yml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>name: NoRiskClientServerAPI\nversion: \"${version}\"\nmain: gg.norisk.paper.Paper\nauthors: [ S42 ]\ndescription: API to interact with the NoRisk Client.\napi-version: '1.21.4'
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/paper/src/main/resources/paper-plugin.yml b/paper/src/main/resources/paper-plugin.yml
+--- a/paper/src/main/resources/paper-plugin.yml	(revision c996f2d82c9756082ac7c75dc220dc69f3b72861)
++++ b/paper/src/main/resources/paper-plugin.yml	(date 1750858519763)
+@@ -3,4 +3,4 @@
+ main: gg.norisk.paper.Paper
+ authors: [ S42 ]
+ description: API to interact with the NoRisk Client.
+-api-version: '1.21.4'
+\ No newline at end of file
++api-version: '1.21.5'
+\ No newline at end of file
+Index: .idea/modules/fabric/noriskclient-server-api.fabric.main.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module version=\"4\">\n  <component name=\"FacetManager\">\n    <facet type=\"minecraft\" name=\"Minecraft\">\n      <configuration>\n        <autoDetectTypes>\n          <platformType>FABRIC</platformType>\n          <platformType>MIXIN</platformType>\n          <platformType>MCP</platformType>\n        </autoDetectTypes>\n        <projectReimportVersion>1</projectReimportVersion>\n      </configuration>\n    </facet>\n  </component>\n  <component name=\"McpModuleSettings\">\n    <option name=\"minecraftVersion\" value=\"1.21.4\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules/fabric/noriskclient-server-api.fabric.main.iml b/.idea/modules/fabric/noriskclient-server-api.fabric.main.iml
+--- a/.idea/modules/fabric/noriskclient-server-api.fabric.main.iml	(revision c996f2d82c9756082ac7c75dc220dc69f3b72861)
++++ b/.idea/modules/fabric/noriskclient-server-api.fabric.main.iml	(date 1750859054767)
+@@ -13,6 +13,6 @@
+     </facet>
+   </component>
+   <component name="McpModuleSettings">
+-    <option name="minecraftVersion" value="1.21.4" />
++    <option name="minecraftVersion" value="1.21.5" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/modules/fabric/noriskclient-server-api.fabric.test.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module version=\"4\">\n  <component name=\"FacetManager\">\n    <facet type=\"minecraft\" name=\"Minecraft\">\n      <configuration>\n        <autoDetectTypes>\n          <platformType>FABRIC</platformType>\n          <platformType>MIXIN</platformType>\n          <platformType>MCP</platformType>\n        </autoDetectTypes>\n        <projectReimportVersion>1</projectReimportVersion>\n      </configuration>\n    </facet>\n  </component>\n  <component name=\"McpModuleSettings\">\n    <option name=\"minecraftVersion\" value=\"1.21.4\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml b/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml
+--- a/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml	(revision c996f2d82c9756082ac7c75dc220dc69f3b72861)
++++ b/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml	(date 1750859054764)
+@@ -13,6 +13,6 @@
+     </facet>
+   </component>
+   <component name="McpModuleSettings">
+-    <option name="minecraftVersion" value="1.21.4" />
++    <option name="minecraftVersion" value="1.21.5" />
+   </component>
+ </module>
+\ No newline at end of file
+Index: .idea/kotlinc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"KotlinJpsPluginSettings\">\n    <option name=\"version\" value=\"2.1.21\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/kotlinc.xml b/.idea/kotlinc.xml
+--- a/.idea/kotlinc.xml	(revision c996f2d82c9756082ac7c75dc220dc69f3b72861)
++++ b/.idea/kotlinc.xml	(date 1750859054782)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="KotlinJpsPluginSettings">
+-    <option name="version" value="2.1.21" />
++    <option name="version" value="2.2.0" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"CompilerConfiguration\">\n    <bytecodeTargetLevel>\n      <module name=\"fabric\" target=\"21\" />\n      <module name=\"fabric.main\" target=\"21\" />\n      <module name=\"fabric.test\" target=\"21\" />\n      <module name=\"paper.main\" target=\"21\" />\n      <module name=\"paper.test\" target=\"21\" />\n    </bytecodeTargetLevel>\n  </component>\n  <component name=\"JavacSettings\">\n    <option name=\"ADDITIONAL_OPTIONS_OVERRIDE\">\n      <module name=\"noriskclient-server-api.fabric\" options=\"-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_4.1.21.4+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.4/net.fabricmc.yarn.1_21_4.1.21.4+build.1/mappings.tiny\" />\n      <module name=\"noriskclient-server-api.fabric.main\" options=\"-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_4.1.21.4+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.4/net.fabricmc.yarn.1_21_4.1.21.4+build.1/mappings.tiny\" />\n      <module name=\"noriskclient-server-api.fabric.test\" options=\"-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/test/test-fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_4.1.21.4+build.1.test.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.4/net.fabricmc.yarn.1_21_4.1.21.4+build.1/mappings.tiny\" />\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+--- a/.idea/compiler.xml	(revision c996f2d82c9756082ac7c75dc220dc69f3b72861)
++++ b/.idea/compiler.xml	(date 1750858509258)
+@@ -11,9 +11,9 @@
+   </component>
+   <component name="JavacSettings">
+     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+-      <module name="noriskclient-server-api.fabric" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_4.1.21.4+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.4/net.fabricmc.yarn.1_21_4.1.21.4+build.1/mappings.tiny" />
+-      <module name="noriskclient-server-api.fabric.main" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_4.1.21.4+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.4/net.fabricmc.yarn.1_21_4.1.21.4+build.1/mappings.tiny" />
+-      <module name="noriskclient-server-api.fabric.test" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/test/test-fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_4.1.21.4+build.1.test.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.4/net.fabricmc.yarn.1_21_4.1.21.4+build.1/mappings.tiny" />
++      <module name="noriskclient-server-api.fabric" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
++      <module name="noriskclient-server-api.fabric.main" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
++      <module name="noriskclient-server-api.fabric.test" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/test/test-fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.test.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
+     </option>
+   </component>
+ </project>
+\ No newline at end of file

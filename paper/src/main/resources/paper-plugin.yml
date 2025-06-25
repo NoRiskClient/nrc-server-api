@@ -3,4 +3,4 @@ version: "0.1.0"
 main: gg.norisk.paper.Paper
 authors: [ S42 ]
 description: API to interact with the NoRisk Client.
-api-version: '1.21.4'
+api-version: '1.21.5'
