@@ -7,7 +7,7 @@ enum class ToastType {
     PROGRESS_BAR_TOAST
 }
 
-abstract class AbstractToastPayload(
+public abstract class AbstractToastPayload(
     val toastType: ToastType,
     val playerHead: Boolean,
     val playerUUID: UUID? = null,
