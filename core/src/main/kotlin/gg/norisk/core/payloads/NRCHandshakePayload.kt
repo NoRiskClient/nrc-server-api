@@ -1,3 +1,3 @@
-package gg.norisk.core.channel.internal
+package gg.norisk.core.payloads
 
 data class NRCHandshakePayload(val type: String = "handshake")

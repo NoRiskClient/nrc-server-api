@@ -1,5 +1,5 @@
 import com.google.gson.Gson
-import gg.norisk.core.channel.internal.NRCHandshakePayload
+import gg.norisk.core.payloads.NRCHandshakePayload
 import java.util.*
 
 const val NRC_CHANNEL = "norisk:main"

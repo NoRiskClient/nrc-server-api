@@ -5,6 +5,7 @@ plugins {
     kotlin("jvm") version libs.versions.kotlinPlugin.get()
     id("java")
     id("org.gradle.wrapper")
+    id("maven-publish")
 }
 
 allprojects {
