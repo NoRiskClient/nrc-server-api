@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/internal/NRCHandshakeManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/ChannelApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/ChannelApi.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,7 +278,7 @@
       <workItem from="1750935546174" duration="13000" />
       <workItem from="1750941205339" duration="23000" />
       <workItem from="1750941254284" duration="2687000" />
-      <workItem from="1750944121213" duration="355000" />
+      <workItem from="1750944121213" duration="1321000" />
     </task>
     <servers />
   </component>
