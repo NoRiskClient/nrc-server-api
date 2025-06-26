@@ -1,5 +1,4 @@
 import com.google.gson.Gson
-import gg.norisk.core.payloads.NRCHandshakePayload
 import java.util.*
 
 const val NRC_CHANNEL = "norisk:main"
@@ -58,3 +57,5 @@ object ChannelApi {
         nrcPlayers.remove(player)
     }
 }
+
+data class NRCHandshakePayload(val type: String = "handshake")
