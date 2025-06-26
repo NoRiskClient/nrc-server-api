@@ -13,11 +13,12 @@ object Core {
 
     fun createToastPayload(
         toastType: ToastType,
+        header: String,
+        content: String,
         playerHead: Boolean,
         playerUUID: UUID? = null,
         success: Boolean? = null,
-        color: String? = null
     ): AbstractToastPayload {
-        return object : AbstractToastPayload(toastType, playerHead, playerUUID, success, color) {}
+        return object : AbstractToastPayload(toastType, header, content, playerHead, playerUUID, success) {}
     }
 }

@@ -9,10 +9,11 @@ enum class ToastType {
 
 abstract class AbstractToastPayload(
     val toastType: ToastType,
+    val header: String,
+    val content : String,
     val playerHead: Boolean,
     val playerUUID: UUID? = null,
     val success: Boolean? = null,
-    val color: String? = null
 ) : AbstractPayload() {
     override val id: String = "toast"
     override val version: Int = 1

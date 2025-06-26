@@ -9,11 +9,12 @@ object NoRiskServerApi {
     @JvmStatic
     fun createToastPayload(
         toastType: ToastType,
+        header: String,
+        content: String,
         playerHead: Boolean,
         playerUUID: UUID? = null,
         success: Boolean? = null,
-        color: String? = null
     ): AbstractToastPayload {
-        return Core.createToastPayload(toastType, playerHead, playerUUID, success, color)
+        return Core.createToastPayload(toastType, header, content, playerHead, playerUUID, success)
     }
 }
