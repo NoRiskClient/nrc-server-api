@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/internal/NRCHandshakePayload.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/internal/NRCHandshakeManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/ChannelApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/ChannelApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractToastPayload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractToastPayload.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,19 +46,20 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="core" type="2d1252cf:ModuleNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -134,7 +134,7 @@
       <recent name="gg.norisk.core.payloads" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.noriskclient-server-api [publishToMavenLocal]">
+  <component name="RunManager" selected="Gradle.noriskclient-server-api:paper [build]">
     <configuration name="noriskclient-server-api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -247,10 +247,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.noriskclient-server-api:paper [build]" />
+        <item itemvalue="Gradle.noriskclient-server-api [clean]" />
         <item itemvalue="Gradle.noriskclient-server-api [publishToMavenLocal]" />
         <item itemvalue="Gradle.noriskclient-server-api [publish]" />
-        <item itemvalue="Gradle.noriskclient-server-api [clean]" />
-        <item itemvalue="Gradle.noriskclient-server-api:paper [build]" />
         <item itemvalue="Gradle.noriskclient-server-api [build]" />
       </list>
     </recent_temporary>
@@ -273,6 +273,14 @@
       <workItem from="1750884714338" duration="5046000" />
       <workItem from="1750899537850" duration="2322000" />
       <workItem from="1750901944367" duration="232000" />
+      <workItem from="1750902191417" duration="48000" />
+      <workItem from="1750902454841" duration="135000" />
+      <workItem from="1750928027348" duration="2064000" />
+      <workItem from="1750931544224" duration="3612000" />
+      <workItem from="1750935546174" duration="13000" />
+      <workItem from="1750941205339" duration="23000" />
+      <workItem from="1750941254284" duration="2687000" />
+      <workItem from="1750944121213" duration="355000" />
     </task>
     <servers />
   </component>
