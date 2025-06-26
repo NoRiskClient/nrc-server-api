@@ -7,10 +7,13 @@ enum class ToastType {
     PROGRESS_BAR_TOAST
 }
 
-public abstract class AbstractToastPayload(
+abstract class AbstractToastPayload(
     val toastType: ToastType,
     val playerHead: Boolean,
     val playerUUID: UUID? = null,
     val success: Boolean? = null,
     val color: String? = null
-)
+) : AbstractPayload() {
+    override val id: String = "toast"
+    override val version: Int = 1
+}
