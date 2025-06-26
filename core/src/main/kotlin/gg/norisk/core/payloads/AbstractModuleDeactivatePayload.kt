@@ -18,7 +18,5 @@ enum class Modules {
 
 abstract class AbstractModuleDeactivatePayload(
     val module: Modules,
-) : AbstractPayload() {
-    override val id: String = "module_deactivate"
-    override val version: Int = 2
+) : AbstractPayload("module_deactivate") {
 }

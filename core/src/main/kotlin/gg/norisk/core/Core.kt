@@ -1,6 +1,8 @@
 package gg.norisk.core
 
+import gg.norisk.core.payloads.AbstractModuleDeactivatePayload
 import gg.norisk.core.payloads.AbstractToastPayload
+import gg.norisk.core.payloads.Modules
 import gg.norisk.core.payloads.ToastType
 import java.util.UUID
 
@@ -20,5 +22,11 @@ object Core {
         success: Boolean? = null,
     ): AbstractToastPayload {
         return object : AbstractToastPayload(toastType, header, content, playerHead, playerUUID, success) {}
+    }
+
+    fun createModuleDeactivatePayload(
+        module: Modules
+    ): AbstractModuleDeactivatePayload {
+        return object : AbstractModuleDeactivatePayload(module) {}
     }
 }

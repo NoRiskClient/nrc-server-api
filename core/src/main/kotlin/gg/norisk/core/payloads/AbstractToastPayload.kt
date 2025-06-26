@@ -14,7 +14,5 @@ abstract class AbstractToastPayload(
     val playerHead: Boolean,
     val playerUUID: UUID? = null,
     val success: Boolean? = null,
-) : AbstractPayload() {
-    override val id: String = "toast"
-    override val version: Int = 1
+) : AbstractPayload("toast") {
 }
