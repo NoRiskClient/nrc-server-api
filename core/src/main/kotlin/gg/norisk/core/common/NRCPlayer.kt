@@ -1,12 +1,11 @@
 package gg.norisk.core.common
 
-import gg.norisk.core.channel.internal.NRCHandshakeManager
+import gg.norisk.core.channel.manager.HandshakeManager
 import java.util.UUID
 
 object NRCPlayer {
-    private val handshakeManager: NRCHandshakeManager
-        get() = ChannelApi::class.java.getDeclaredField("handshakeManager").apply { isAccessible = true }.get(null) as NRCHandshakeManager
-
+    private val handshakeManager: HandshakeManager
+        get() = ChannelApi::class.java.getDeclaredField("handshakeManager").apply { isAccessible = true }.get(null) as HandshakeManager
 
     fun listAll(): Set<UUID> =
         handshakeManager.javaClass.getDeclaredField("nrcPlayers").apply { isAccessible = true }.get(handshakeManager) as Set<UUID>

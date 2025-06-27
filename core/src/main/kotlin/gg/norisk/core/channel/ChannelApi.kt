@@ -1,6 +1,5 @@
 import com.google.gson.Gson
-import gg.norisk.core.channel.internal.NRCHandshakeManager
-import gg.norisk.core.channel.internal.NRCHandshakePayload
+import gg.norisk.core.payloads.HandshakePayload
 import gg.norisk.core.payloads.AbstractPayload
 import java.util.*
 
@@ -16,7 +15,7 @@ object ChannelApi {
     private val gson = Gson()
     private val listeners = mutableMapOf<Class<*>, MutableList<PacketListener<*>>>()
     private val allowedPacketClasses = mapOf(
-        "NRCHandshakePayload" to NRCHandshakePayload::class.java,
+        "NRCHandshakePayload" to HandshakePayload::class.java,
     )
 
     fun <T : Any> registerListener(packetType: Class<T>, listener: Any) {

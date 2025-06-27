@@ -1,7 +1,6 @@
 package gg.norisk.core.payloads
 
 import com.google.gson.Gson
-import gg.norisk.core.channel.internal.NRCHandshakePayload
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -27,7 +26,7 @@ object Payloads {
     }
 
     fun sendHandshake(uuid: UUID, sendToClient: (UUID, ByteArray) -> Unit) {
-        val handshake = NRCHandshakePayload()
+        val handshake = HandshakePayload()
         val data = ChannelApi.send(handshake)
         sendToClient(uuid, data)
     }
@@ -53,7 +52,10 @@ object Payloads {
     fun receive(uuid: UUID, message: ByteArray) {
         var rawString = String(message, Charsets.UTF_8)
         println("[DEBUG] Payloads.receive: uuid=$uuid, message=$rawString")
-        if (rawString.startsWith("r{")) rawString = rawString.substring(1)
+        val jsonStart = rawString.indexOf('{')
+        if (jsonStart != -1) {
+            rawString = rawString.substring(jsonStart)
+        }
         try {
             val wrapper = gson.fromJson(rawString, PacketWrapper::class.java)
             if (wrapper.packetClassName.endsWith("NRCHandshakePayload")) {

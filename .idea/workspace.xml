@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/Payloads.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/manager/HandshakeManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/manager/PayloadManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/HandshakePayload.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/ChannelApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/ChannelApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/PayloadManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/PayloadManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/PayloadSender.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/internal/NRCHandshakeManager.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/channel/internal/NRCHandshakePayload.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NRCPlayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NRCPlayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/PayloadManager.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/Payloads.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/Payload.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,9 +140,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="gg.norisk.core.channel.manager" />
+      <recent name="gg.norisk.core.payloads" />
       <recent name="gg.norisk.core.channel.internal" />
       <recent name="gg.norisk.core.common" />
-      <recent name="gg.norisk.core.payloads" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.noriskclient-server-api:paper [build]">
@@ -291,7 +296,8 @@
       <workItem from="1750948762042" duration="2370000" />
       <workItem from="1750972164512" duration="241000" />
       <workItem from="1750972836276" duration="888000" />
-      <workItem from="1751020226784" duration="4264000" />
+      <workItem from="1751020226784" duration="14279000" />
+      <workItem from="1751037873393" duration="2784000" />
     </task>
     <servers />
   </component>
