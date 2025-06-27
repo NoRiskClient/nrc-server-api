@@ -10,14 +10,14 @@ import java.util.UUID
 object NoRiskServerApi {
     @JvmStatic
     fun createToastPayload(
-        toastType: ToastType,
+        progressBar: Boolean,
         header: String,
         content: String,
         playerHead: Boolean,
         playerUUID: UUID? = null,
-        success: Boolean? = null,
+        toastType: ToastType
     ): AbstractToastPayload {
-        return Core.createToastPayload(toastType, header, content, playerHead, playerUUID, success)
+        return Core.createToastPayload(progressBar, header, content, playerHead, playerUUID, toastType)
     }
 
     @JvmStatic

@@ -4,6 +4,7 @@ import NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
 import gg.norisk.core.payloads.Modules
 import gg.norisk.core.payloads.Payloads
+import gg.norisk.core.payloads.ToastType
 import gg.norisk.paper.api.NrcChannelRegistrar
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -26,6 +27,17 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val player = event.player
         Payloads.sendHandshake(player.uniqueId) { uuid, data ->
+            player.sendPluginMessage(this, NRC_CHANNEL, data)
+        }
+        val toast = NoRiskServerApi.createToastPayload(
+            progressBar = true,
+            header = "Willkommen!",
+            content = "Du bist jetzt verbunden.",
+            playerHead = false,
+            playerUUID = player.uniqueId,
+            toastType = ToastType.INFO
+        )
+        Payloads.send(player.uniqueId, toast) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
     }

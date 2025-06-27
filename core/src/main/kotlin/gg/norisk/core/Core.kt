@@ -14,14 +14,14 @@ object Core {
     }
 
     fun createToastPayload(
-        toastType: ToastType,
+        progressBar: Boolean,
         header: String,
         content: String,
         playerHead: Boolean,
         playerUUID: UUID? = null,
-        success: Boolean? = null,
+        toastType: ToastType
     ): AbstractToastPayload {
-        return object : AbstractToastPayload(toastType, header, content, playerHead, playerUUID, success) {}
+        return object : AbstractToastPayload(progressBar, header, content, playerHead, playerUUID, toastType) {}
     }
 
     fun createModuleDeactivatePayload(
