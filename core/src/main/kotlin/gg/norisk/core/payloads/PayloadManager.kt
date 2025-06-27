@@ -7,6 +7,11 @@ import java.util.concurrent.ConcurrentLinkedQueue
 object PayloadManager {
     private val playerPayloads = ConcurrentHashMap<UUID, ConcurrentLinkedQueue<AbstractPayload>>()
     private val registeredPayloads = ConcurrentHashMap<String, Class<out AbstractPayload>>()
+    private val payloadSendAllowedAt = ConcurrentHashMap<UUID, Long>()
+
+    private const val PAYLOAD_DELAY_MS = 5000L
+
+    private var sendToClientCallback: ((UUID, ByteArray) -> Unit)? = null
 
     fun registerPayloadType(type: String, clazz: Class<out AbstractPayload>) {
         registeredPayloads[type] = clazz
@@ -25,11 +30,20 @@ object PayloadManager {
     }
 
     fun sendToPlayer(uuid: UUID, payload: AbstractPayload, sendToClient: (UUID, ByteArray) -> Unit) {
+        val allowedAt = payloadSendAllowedAt[uuid]
+        if (allowedAt != null && System.currentTimeMillis() < allowedAt) {
+            queuePayload(uuid, payload)
+            return
+        }
         val data = ChannelApi.send(payload)
         sendToClient(uuid, data)
     }
 
     fun sendQueuedPayloads(uuid: UUID, sendToClient: (UUID, ByteArray) -> Unit) {
+        val allowedAt = payloadSendAllowedAt[uuid]
+        if (allowedAt != null && System.currentTimeMillis() < allowedAt) {
+            return
+        }
         val queue = playerPayloads[uuid] ?: return
         while (queue.isNotEmpty()) {
             val payload = queue.poll()
@@ -43,6 +57,24 @@ object PayloadManager {
         }
     }
 
+    fun setSendToClientCallback(callback: (UUID, ByteArray) -> Unit) {
+        sendToClientCallback = callback
+    }
+
     fun onPayloadReceived(sender: UUID, payloadJson: String) {
+        if (payloadJson.contains("\"type\":\"handshake\"")) {
+            payloadSendAllowedAt[sender] = System.currentTimeMillis() + PAYLOAD_DELAY_MS
+            val uuid = sender
+            Thread {
+                Thread.sleep(PAYLOAD_DELAY_MS)
+                payloadSendAllowedAt.remove(uuid)
+                val callback = sendToClientCallback
+                if (callback != null) {
+                    sendQueuedPayloads(uuid, callback)
+                } else {
+                    System.err.println("[PayloadManager] sendToClientCallback is not set!")
+                }
+            }.start()
+        }
     }
 }

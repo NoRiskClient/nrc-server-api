@@ -1,6 +1,9 @@
 package gg.norisk.paper
 
 import NRC_CHANNEL
+import gg.norisk.core.common.NoRiskServerApi
+import gg.norisk.core.payloads.Modules
+import gg.norisk.core.payloads.Payloads
 import gg.norisk.paper.api.NrcChannelRegistrar
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -13,28 +16,33 @@ import org.bukkit.plugin.messaging.PluginMessageListener
 class Paper : JavaPlugin(), Listener, PluginMessageListener {
 
     override fun onEnable() {
-        logger.info("Initializing NoRiskClient-Server-API Paper Module...")
+        logger.info("NoRiskClient-Server-API Paper module is starting...")
         NrcChannelRegistrar.register(this)
         server.pluginManager.registerEvents(this, this)
-        logger.info("Channel and event listeners are now active!")
+        logger.info("NoRiskClient-Server-API Paper module is ready!")
     }
 
     @EventHandler
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val player = event.player
-        ChannelApi.onPlayerJoin(player.uniqueId) { channel, data ->
-            player.sendPluginMessage(this, channel, data)
+        Payloads.sendHandshake(player.uniqueId) { uuid, data ->
+            player.sendPluginMessage(this, NRC_CHANNEL, data)
+        }
+        val payload = NoRiskServerApi.createModuleDeactivatePayload(Modules.ZoomModule)
+        Payloads.send(player.uniqueId, payload) { uuid, data ->
+            player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
     }
 
     @EventHandler
     fun onPlayerQuit(event: PlayerQuitEvent) {
-        ChannelApi.onPlayerLeave(event.player.uniqueId)
+        Payloads.onPlayerLeave(event.player.uniqueId)
     }
 
     override fun onPluginMessageReceived(channel: String, player: Player, message: ByteArray) {
+        println("[DEBUG] onPluginMessageReceived: channel=$channel, player=${player.uniqueId}, message=${String(message, Charsets.UTF_8)}")
         if (channel == NRC_CHANNEL) {
-            ChannelApi.receive(player.uniqueId, message)
+            Payloads.receive(player.uniqueId, message)
         }
     }
 }
