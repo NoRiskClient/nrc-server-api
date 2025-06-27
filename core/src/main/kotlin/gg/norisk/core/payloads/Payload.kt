@@ -11,6 +11,7 @@ object Payloads {
     private val handshakeDone = ConcurrentHashMap<UUID, Boolean>()
     private val queuedPayloads = ConcurrentHashMap<UUID, ConcurrentLinkedQueue<Triple<AbstractPayload, (UUID, ByteArray) -> Unit, Boolean>>>()
     private val gson = Gson()
+    private val waitingForAck = ConcurrentHashMap<UUID, Boolean>()
 
     fun register(type: String, clazz: Class<out AbstractPayload>) {
         payloadTypes[type] = clazz
@@ -32,12 +33,20 @@ object Payloads {
     }
 
     fun send(uuid: UUID, payload: AbstractPayload, sendToClient: (UUID, ByteArray) -> Unit) {
-        if (handshakeDone[uuid] == true) {
+        queuedPayloads.computeIfAbsent(uuid) { ConcurrentLinkedQueue() }
+            .add(Triple(payload, sendToClient, false))
+        trySendNext(uuid)
+    }
+
+    private fun trySendNext(uuid: UUID) {
+        if (handshakeDone[uuid] == true && waitingForAck[uuid] != true) {
+            val queue = queuedPayloads[uuid] ?: return
+            val next = queue.poll() ?: return
+            val (payload, sendToClient, _) = next
             val data = ChannelApi.send(payload)
+            println("[DEBUG] Sending payload of type: ${payload.type} to $uuid (waiting for ack)")
             sendToClient(uuid, data)
-        } else {
-            queuedPayloads.computeIfAbsent(uuid) { ConcurrentLinkedQueue() }
-                .add(Triple(payload, sendToClient, false))
+            waitingForAck[uuid] = true
         }
     }
 
@@ -54,6 +63,12 @@ object Payloads {
                     println("Player $uuid is a NRC client.")
                     onHandshakeReceived(uuid)
                 }
+            } else if (
+                wrapper.packetClassName.endsWith("AckPayload") && wrapper.payloadJson.contains("\"type\":\"ack\"")
+            ) {
+                println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
+                waitingForAck[uuid] = false
+                trySendNext(uuid)
             }
         } catch (e: Exception) {
             println("[DEBUG] Failed to parse incoming payload: ${e.message}")
@@ -62,18 +77,15 @@ object Payloads {
 
     private fun onHandshakeReceived(uuid: UUID) {
         handshakeDone[uuid] = true
-        val queue = queuedPayloads.remove(uuid)
-        if (queue != null) {
-            for ((payload, sendToClient, _) in queue) {
-                val data = ChannelApi.send(payload)
-                println("[DEBUG] Sending queued payload of type: ${payload.type} to $uuid after handshake.")
-                sendToClient(uuid, data)
-            }
-        }
+        waitingForAck[uuid] = false
+        trySendNext(uuid)
     }
 
     fun onPlayerLeave(uuid: UUID) {
         handshakeDone.remove(uuid)
         queuedPayloads.remove(uuid)
+        waitingForAck.remove(uuid)
     }
 }
+
+class AckPayload : AbstractPayload("ack") {}
