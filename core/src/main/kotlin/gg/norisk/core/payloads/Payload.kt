@@ -58,7 +58,7 @@ object Payloads {
         }
         try {
             val wrapper = gson.fromJson(rawString, PacketWrapper::class.java)
-            if (wrapper.packetClassName.endsWith("NRCHandshakePayload")) {
+            if (wrapper.packetClassName.endsWith("HandshakePayload")) {
                 val payloadJson = wrapper.payloadJson
                 if (payloadJson.contains("\"type\":\"handshake\"")) {
                     println("[DEBUG] Handshake payload received for $uuid, queue will be flushed.")

@@ -15,7 +15,7 @@ object ChannelApi {
     private val gson = Gson()
     private val listeners = mutableMapOf<Class<*>, MutableList<PacketListener<*>>>()
     private val allowedPacketClasses = mapOf(
-        "NRCHandshakePayload" to HandshakePayload::class.java,
+        "HandshakePayload" to HandshakePayload::class.java,
     )
 
     fun <T : Any> registerListener(packetType: Class<T>, listener: Any) {

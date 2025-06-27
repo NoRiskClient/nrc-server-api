@@ -28,10 +28,6 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
         Payloads.sendHandshake(player.uniqueId) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
-        val payload = NoRiskServerApi.createModuleDeactivatePayload(Modules.ZoomModule)
-        Payloads.send(player.uniqueId, payload) { uuid, data ->
-            player.sendPluginMessage(this, NRC_CHANNEL, data)
-        }
     }
 
     @EventHandler
