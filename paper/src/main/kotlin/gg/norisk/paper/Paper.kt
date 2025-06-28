@@ -2,7 +2,6 @@ package gg.norisk.paper
 
 import NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
-import gg.norisk.core.payloads.Modules
 import gg.norisk.core.payloads.Payloads
 import gg.norisk.core.payloads.ToastType
 import gg.norisk.paper.api.NrcChannelRegistrar

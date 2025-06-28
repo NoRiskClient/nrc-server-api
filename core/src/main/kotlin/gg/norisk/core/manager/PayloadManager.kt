@@ -1,4 +1,4 @@
-package gg.norisk.core.channel.manager
+package gg.norisk.core.manager
 
 import gg.norisk.core.payloads.AbstractPayload
 import java.util.UUID

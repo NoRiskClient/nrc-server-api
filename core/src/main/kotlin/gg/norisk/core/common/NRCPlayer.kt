@@ -1,6 +1,6 @@
 package gg.norisk.core.common
 
-import gg.norisk.core.channel.manager.HandshakeManager
+import gg.norisk.core.manager.HandshakeManager
 import java.util.UUID
 
 object NRCPlayer {

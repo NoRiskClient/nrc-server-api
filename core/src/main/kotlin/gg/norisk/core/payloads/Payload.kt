@@ -69,7 +69,6 @@ object Payloads {
                 wrapper.packetClassName.endsWith("AckPayload") && wrapper.payloadJson.contains("\"type\":\"ack\"")
             ) {
                 println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
-                waitingForAck[uuid] = false
                 trySendNext(uuid)
             }
         } catch (e: Exception) {
@@ -89,5 +88,3 @@ object Payloads {
         waitingForAck.remove(uuid)
     }
 }
-
-class AckPayload : AbstractPayload("ack") {}

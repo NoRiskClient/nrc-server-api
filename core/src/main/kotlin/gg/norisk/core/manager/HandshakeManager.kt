@@ -1,4 +1,4 @@
-package gg.norisk.core.channel.manager
+package gg.norisk.core.manager
 
 import java.util.Collections
 import java.util.Timer
