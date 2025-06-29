@@ -1,3 +1,3 @@
 package gg.norisk.core.payloads
 
-class AckPayload : AbstractPayload("ack") {}
+class AckPayload : AbstractPayload("ack")

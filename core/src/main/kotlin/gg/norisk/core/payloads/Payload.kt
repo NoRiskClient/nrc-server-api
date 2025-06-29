@@ -50,26 +50,46 @@ object Payloads {
     }
 
     fun receive(uuid: UUID, message: ByteArray) {
-        var rawString = String(message, Charsets.UTF_8)
+        val rawString = String(message, Charsets.UTF_8)
         println("[DEBUG] Payloads.receive: uuid=$uuid, message=$rawString")
         val jsonStart = rawString.indexOf('{')
-        if (jsonStart != -1) {
-            rawString = rawString.substring(jsonStart)
+        if (jsonStart == -1) {
+            println("[DEBUG] No JSON object found in received message: $rawString")
+            return
         }
+        val classNameStart = rawString.indexOf('(')
+        val classNameEnd = rawString.indexOf('{')
+        var packetClassName: String? = null
+        if (classNameStart != -1 && classNameEnd != -1 && classNameEnd > classNameStart + 1) {
+            packetClassName = rawString.substring(classNameStart + 1, classNameEnd).trim()
+        }
+        val payloadJson = rawString.substring(jsonStart)
         try {
-            val wrapper = gson.fromJson(rawString, PacketWrapper::class.java)
-            if (wrapper.packetClassName.endsWith("HandshakePayload")) {
-                val payloadJson = wrapper.payloadJson
-                if (payloadJson.contains("\"type\":\"handshake\"")) {
+            if (payloadJson.trim().startsWith("{\"type\":")) {
+                if (payloadJson == "{\"type\":\"handshake\"}") {
                     println("[DEBUG] Handshake payload received for $uuid, queue will be flushed.")
                     println("Player $uuid is a NRC client.")
                     onHandshakeReceived(uuid)
+                    return
+                } else if (payloadJson == "{\"type\":\"ack\"}") {
+                    println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
+                    trySendNext(uuid)
+                    return
                 }
-            } else if (
-                wrapper.packetClassName.endsWith("AckPayload") && wrapper.payloadJson.contains("\"type\":\"ack\"")
-            ) {
-                println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
-                trySendNext(uuid)
+            }
+            if (!packetClassName.isNullOrBlank()) {
+                if ((packetClassName.endsWith("HandshakePayload") || packetClassName == "gg.norisk.core.payloads.HandshakePayload") && payloadJson == "{\"type\":\"handshake\"}") {
+                    println("[DEBUG] Handshake payload received for $uuid, queue will be flushed.")
+                    println("Player $uuid is a NRC client.")
+                    onHandshakeReceived(uuid)
+                } else if ((packetClassName.endsWith("AckPayload") || packetClassName == "gg.norisk.core.payloads.AckPayload") && payloadJson == "{\"type\":\"ack\"}") {
+                    println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
+                    trySendNext(uuid)
+                } else {
+                    println("[DEBUG] Unknown payload class name: $packetClassName")
+                }
+            } else {
+                println("[DEBUG] Could not extract class name from payload: $rawString")
             }
         } catch (e: Exception) {
             println("[DEBUG] Failed to parse incoming payload: ${e.message}")
