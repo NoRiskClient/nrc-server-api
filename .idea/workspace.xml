@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractToastPayload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractToastPayload.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AckPayload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AckPayload.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/HandshakePayload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/HandshakePayload.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/Payload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/Payload.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,6 +113,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.noriskclient-server-api [build].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.noriskclient-server-api [clean].executor&quot;: &quot;Run&quot;,
     &quot;Gradle.noriskclient-server-api [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
@@ -301,7 +299,8 @@
       <workItem from="1751131109367" duration="2736000" />
       <workItem from="1751138579116" duration="3575000" />
       <workItem from="1751152587122" duration="210000" />
-      <workItem from="1751187125306" duration="2340000" />
+      <workItem from="1751187125306" duration="5480000" />
+      <workItem from="1751197284895" duration="1704000" />
     </task>
     <servers />
   </component>

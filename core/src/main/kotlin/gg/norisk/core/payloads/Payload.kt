@@ -1,9 +1,12 @@
 package gg.norisk.core.payloads
 
+import NRC_CHANNEL
 import com.google.gson.Gson
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
+import kotlin.concurrent.schedule
+import java.util.Timer
 
 object Payloads {
     private val payloadTypes = mutableMapOf<String, Class<out AbstractPayload>>()
@@ -25,10 +28,31 @@ object Payloads {
         register("module_deactivate", AbstractModuleDeactivatePayload::class.java)
     }
 
+    private fun encodeVarInt(value: Int): ByteArray {
+        var v = value
+        val out = mutableListOf<Byte>()
+        while (true) {
+            if ((v and 0x7F.inv()) == 0) {
+                out.add(v.toByte())
+                break
+            } else {
+                out.add(((v and 0x7F) or 0x80).toByte())
+                v = v ushr 7
+            }
+        }
+        return out.toByteArray()
+    }
+
+    private fun wrapWithVarIntLength(data: ByteArray): ByteArray {
+        val lengthPrefix = encodeVarInt(data.size)
+        return lengthPrefix + data
+    }
+
     fun sendHandshake(uuid: UUID, sendToClient: (UUID, ByteArray) -> Unit) {
         val handshake = HandshakePayload()
         val data = ChannelApi.send(handshake)
-        sendToClient(uuid, data)
+        val wrapped = wrapWithVarIntLength(data)
+        sendToClient(uuid, wrapped)
     }
 
     fun send(uuid: UUID, payload: AbstractPayload, sendToClient: (UUID, ByteArray) -> Unit) {
@@ -42,10 +66,25 @@ object Payloads {
             val queue = queuedPayloads[uuid] ?: return
             val next = queue.poll() ?: return
             val (payload, sendToClient, _) = next
-            val data = ChannelApi.send(payload)
-            println("[DEBUG] Sending payload of type: ${payload.type} to $uuid (waiting for ack)")
-            sendToClient(uuid, data)
-            waitingForAck[uuid] = true
+            if (payload.type == "handshake") {
+                val data = ChannelApi.send(payload)
+                val wrapped = wrapWithVarIntLength(data)
+                val payloadJson = String(data, Charsets.UTF_8)
+                println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson")
+                sendToClient(uuid, wrapped)
+                println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes)")
+                waitingForAck[uuid] = true
+            } else {
+                Timer().schedule(5000) {
+                    val data = ChannelApi.send(payload)
+                    val wrapped = wrapWithVarIntLength(data)
+                    val payloadJson = String(data, Charsets.UTF_8)
+                    println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson (delayed 5s after handshake)")
+                    sendToClient(uuid, wrapped)
+                    println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes, delayed 5s after handshake)")
+                    waitingForAck[uuid] = true
+                }
+            }
         }
     }
 
