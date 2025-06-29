@@ -2,8 +2,11 @@ package gg.norisk.paper
 
 import NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
+import gg.norisk.core.payloads.Dimension
 import gg.norisk.core.payloads.Payloads
+import gg.norisk.core.payloads.RGBColor
 import gg.norisk.core.payloads.ToastType
+import gg.norisk.core.payloads.XYZ
 import gg.norisk.paper.api.NrcChannelRegistrar
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -14,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.plugin.messaging.PluginMessageListener
 
 class Paper : JavaPlugin(), Listener, PluginMessageListener {
+    val api = NoRiskServerApi()
 
     override fun onEnable() {
         logger.info("NoRiskClient-Server-API Paper module is starting...")
@@ -28,15 +32,12 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
         Payloads.sendHandshake(player.uniqueId) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
-        val toast = NoRiskServerApi.createToastPayload(
-            progressBar = true,
-            header = "Willkommen!",
-            content = "Du bist jetzt verbunden.",
-            playerHead = false,
-            playerUUID = player.uniqueId,
-            toastType = ToastType.INFO
+        val beaconPayload = api.createBeaconBeamPayload(
+            xyz = XYZ(100.0, 100.0, 100.0),
+            dimension = Dimension.OVERWORLD,
+            color = RGBColor(128, 0, 128)
         )
-        Payloads.send(player.uniqueId, toast) { uuid, data ->
+        Payloads.send(player.uniqueId, beaconPayload) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
     }

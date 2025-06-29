@@ -1,9 +1,13 @@
 package gg.norisk.core
 
+import gg.norisk.core.payloads.AbstractBeaconBeamPayload
 import gg.norisk.core.payloads.AbstractModuleDeactivatePayload
 import gg.norisk.core.payloads.AbstractToastPayload
+import gg.norisk.core.payloads.Dimension
 import gg.norisk.core.payloads.Modules
+import gg.norisk.core.payloads.RGBColor
 import gg.norisk.core.payloads.ToastType
+import gg.norisk.core.payloads.XYZ
 import java.util.UUID
 
 object Core {
@@ -28,5 +32,13 @@ object Core {
         module: Modules
     ): AbstractModuleDeactivatePayload {
         return object : AbstractModuleDeactivatePayload(module) {}
+    }
+
+    fun createBeaconBeamPayload(
+        xyz: XYZ,
+        dimension: Dimension,
+        color: RGBColor
+    ): AbstractBeaconBeamPayload {
+        return object : AbstractBeaconBeamPayload(xyz, dimension, color) {}
     }
 }
