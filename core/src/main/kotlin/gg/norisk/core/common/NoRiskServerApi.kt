@@ -2,8 +2,10 @@ package gg.norisk.core.common
 
 import gg.norisk.core.Core
 import gg.norisk.core.payloads.AbstractBeaconBeamPayload
+import gg.norisk.core.payloads.AbstractGamemodePayload
 import gg.norisk.core.payloads.AbstractModuleDeactivatePayload
 import gg.norisk.core.payloads.AbstractToastPayload
+import gg.norisk.core.payloads.AbstractWheelPayload
 import gg.norisk.core.payloads.Dimension
 import gg.norisk.core.payloads.Modules
 import gg.norisk.core.payloads.RGBColor
@@ -35,5 +37,18 @@ class NoRiskServerApi {
         color: RGBColor
     ): AbstractBeaconBeamPayload {
         return Core.createBeaconBeamPayload(xyz, dimension, color)
+    }
+
+    fun createGamemodePayload(
+        gamemode: String,
+    ): AbstractGamemodePayload {
+        return Core.createGamemodePayload(gamemode)
+    }
+
+    fun createWheelPayload(
+        name: String,
+        command: String,
+    ): AbstractWheelPayload {
+        return Core.createWheelPayload(name, command)
     }
 }

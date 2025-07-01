@@ -10,7 +10,10 @@ object PayloadManager {
     private val registeredPayloads = ConcurrentHashMap<String, Class<out AbstractPayload>>()
     private val payloadSendAllowedAt = ConcurrentHashMap<UUID, Long>()
 
+    private val payloadTimeouts = ConcurrentHashMap<Pair<UUID, String>, java.util.Timer>()
+
     private const val PAYLOAD_DELAY_MS = 5000L
+    private const val PAYLOAD_TIMEOUT_MS = 2000L
 
     private var sendToClientCallback: ((UUID, ByteArray) -> Unit)? = null
 
@@ -38,6 +41,21 @@ object PayloadManager {
         }
         val data = ChannelApi.send(payload)
         sendToClient(uuid, data)
+        val key = uuid to payload.type
+        payloadTimeouts[key]?.cancel()
+        val timer = java.util.Timer()
+        timer.schedule(object : java.util.TimerTask() {
+            override fun run() {
+                System.err.println("[PayloadManager] Timeout: Payload '${payload.type}' an $uuid wurde nicht innerhalb von 1 Sekunde bestätigt.")
+                payloadTimeouts.remove(key)
+            }
+        }, PAYLOAD_TIMEOUT_MS)
+        payloadTimeouts[key] = timer
+    }
+
+    fun onPayloadAck(uuid: UUID, payloadType: String) {
+        val key = uuid to payloadType
+        payloadTimeouts.remove(key)?.cancel()
     }
 
     fun sendQueuedPayloads(uuid: UUID, sendToClient: (UUID, ByteArray) -> Unit) {
@@ -76,6 +94,12 @@ object PayloadManager {
                     System.err.println("[PayloadManager] sendToClientCallback is not set!")
                 }
             }.start()
+        }
+    }
+
+    fun onPlayerLeave(uuid: UUID) {
+        payloadTimeouts.keys.filter { it.first == uuid }.forEach {
+            payloadTimeouts.remove(it)?.cancel()
         }
     }
 }

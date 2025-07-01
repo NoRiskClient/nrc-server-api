@@ -32,12 +32,11 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
         Payloads.sendHandshake(player.uniqueId) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
-        val beaconPayload = api.createBeaconBeamPayload(
-            xyz = XYZ(100.0, 100.0, 100.0),
-            dimension = Dimension.OVERWORLD,
-            color = RGBColor(128, 0, 128)
+        val wheelPayload = api.createWheelPayload(
+            name = "Test",
+            command = "/say Hello, ${player.name}!"
         )
-        Payloads.send(player.uniqueId, beaconPayload) { uuid, data ->
+        Payloads.send(player.uniqueId, wheelPayload) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
     }
