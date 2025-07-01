@@ -39,6 +39,13 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
         Payloads.send(player.uniqueId, wheelPayload) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
+        val wheelPayload2 = api.createWheelPayload(
+            name = "Hii Enricoe",
+            command = "/say Hello, ${player.name}!"
+        )
+        Payloads.send(player.uniqueId, wheelPayload2) { uuid, data ->
+            player.sendPluginMessage(this, NRC_CHANNEL, data)
+        }
     }
 
     @EventHandler

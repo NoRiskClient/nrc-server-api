@@ -62,27 +62,29 @@ object Payloads {
     }
 
     private fun trySendNext(uuid: UUID) {
-        if (handshakeDone[uuid] == true && waitingForAck[uuid] != true) {
+        if (handshakeDone[uuid] == true) {
             val queue = queuedPayloads[uuid] ?: return
-            val next = queue.poll() ?: return
-            val (payload, sendToClient, _) = next
-            if (payload.type == "handshake") {
-                val data = ChannelApi.send(payload)
-                val wrapped = wrapWithVarIntLength(data)
-                val payloadJson = String(data, Charsets.UTF_8)
-                println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson")
-                sendToClient(uuid, wrapped)
-                println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes)")
-                waitingForAck[uuid] = true
-            } else {
-                Timer().schedule(5000) {
+
+            while (queue.isNotEmpty()) {
+                val next = queue.poll() ?: break
+                val (payload, sendToClient, _) = next
+
+                if (payload.type == "handshake") {
                     val data = ChannelApi.send(payload)
                     val wrapped = wrapWithVarIntLength(data)
                     val payloadJson = String(data, Charsets.UTF_8)
-                    println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson (delayed 5s after handshake)")
+                    println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson")
                     sendToClient(uuid, wrapped)
-                    println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes, delayed 5s after handshake)")
-                    waitingForAck[uuid] = true
+                    println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes)")
+                } else {
+                    Timer().schedule(5000) {
+                        val data = ChannelApi.send(payload)
+                        val wrapped = wrapWithVarIntLength(data)
+                        val payloadJson = String(data, Charsets.UTF_8)
+                        println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson (delayed 5s after handshake)")
+                        sendToClient(uuid, wrapped)
+                        println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes, delayed 5s after handshake)")
+                    }
                 }
             }
         }
