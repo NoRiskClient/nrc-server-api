@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_06_2025,_18_10_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_25_06_2025__18_10__Changes_1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/spigot/src/main/kotlin/gg/norisk/spigot/api/NrcChannelRegister.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/Core.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/Core.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NoRiskServerApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NoRiskServerApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractModuleDeactivatePayload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractModuleDeactivatePayload.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/manager/InputbarPayloadManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/manager/InputbarPayloadManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/InputbarResponsePayload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/InputbarResponsePayload.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,12 +48,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -153,6 +146,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
+      <recent name="gg.norisk.spigot.api" />
       <recent name="gg.norisk.core.payloads" />
       <recent name="gg.norisk.core.channel.manager" />
       <recent name="gg.norisk.core.channel.internal" />
@@ -333,7 +327,9 @@
       <workItem from="1751458540706" duration="2354000" />
       <workItem from="1751466572732" duration="1071000" />
       <workItem from="1751468451730" duration="579000" />
-      <workItem from="1751472298114" duration="551000" />
+      <workItem from="1751472298114" duration="1053000" />
+      <workItem from="1751476563664" duration="1894000" />
+      <workItem from="1751478649727" duration="861000" />
     </task>
     <servers />
   </component>

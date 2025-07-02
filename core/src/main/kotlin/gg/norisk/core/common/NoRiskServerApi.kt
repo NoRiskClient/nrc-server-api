@@ -65,8 +65,19 @@ class NoRiskServerApi {
     fun requestInput(
         playerUuid: UUID,
         inputbarPayload: AbstractInputbarPayload,
+        sendToClient: (UUID, ByteArray) -> Unit,
         onResponse: (String) -> Unit
     ) {
-        InputbarPayloadManager.registerInputHandler(playerUuid, onResponse)
+        InputbarPayloadManager.registerInputSession(playerUuid, inputbarPayload, sendToClient, onResponse)
+    }
+
+    fun requestInput(
+        playerUuid: UUID,
+        inputbarPayload: AbstractInputbarPayload,
+        sendToClient: (UUID, ByteArray) -> Unit,
+        onResponse: (String) -> Unit,
+        onCancel: () -> Unit
+    ) {
+        InputbarPayloadManager.registerInputSession(playerUuid, inputbarPayload, sendToClient, onResponse, onCancel)
     }
 }

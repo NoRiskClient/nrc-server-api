@@ -2,6 +2,7 @@ package gg.norisk.paper
 
 import NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
+import gg.norisk.core.manager.InputbarPayloadManager
 import gg.norisk.core.payloads.Modules
 import gg.norisk.core.payloads.Payloads
 import gg.norisk.paper.api.NrcChannelRegistrar
@@ -52,16 +53,21 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
 
         api.requestInput(
             playerUuid = player.uniqueId,
-            inputbarPayload = inputbarPayload
-        ) { input ->
-            player.sendMessage("Du hast eingegeben: $input")
-            val message = "Hallo $input! Willkommen auf dem Server!"
-            server.broadcastMessage(message)
-        }
+            inputbarPayload = inputbarPayload,
+            sendToClient = { uuid, data ->
+                player.sendPluginMessage(this, NRC_CHANNEL, data)
+            },
+            onResponse = { input ->
+                player.sendMessage("Du hast eingegeben: $input")
+                val message = "Hallo $input! Willkommen auf dem Server!"
+                server.broadcastMessage(message)
+            },
+            onCancel = {
+                player.sendMessage("§cDu hast die Eingabe abgebrochen!")
+                InputbarPayloadManager.resendInputbar(player.uniqueId)
+            }
+        )
 
-        Payloads.send(player.uniqueId, inputbarPayload) { uuid, data ->
-            player.sendPluginMessage(this, NRC_CHANNEL, data)
-        }
 
         val moduleDisablePayload = api.createModuleDeactivatePayload(
             modules = listOf(
@@ -77,6 +83,7 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
     @EventHandler
     fun onPlayerQuit(event: PlayerQuitEvent) {
         Payloads.onPlayerLeave(event.player.uniqueId)
+        InputbarPayloadManager.unregisterSession(event.player.uniqueId)
     }
 
     override fun onPluginMessageReceived(channel: String, player: Player, message: ByteArray) {

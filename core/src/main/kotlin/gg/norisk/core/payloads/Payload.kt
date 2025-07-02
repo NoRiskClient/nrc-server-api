@@ -76,7 +76,7 @@ object Payloads {
                     val wrapped = wrapWithVarIntLength(data)
                     sendToClient(uuid, wrapped)
                 } else {
-                    Timer().schedule(5000) {
+                    Timer().schedule(1000) {
                         val data = ChannelApi.send(payload)
                         val wrapped = wrapWithVarIntLength(data)
                         sendToClient(uuid, wrapped)
@@ -109,24 +109,23 @@ object Payloads {
 
         val payloadJson = cleanedString.substring(jsonStart)
         try {
-            if (payloadJson.trim().startsWith("{\"type\":") || payloadJson.trim().startsWith("{\"input\":")) {
-                if (payloadJson == "{\"type\":\"handshake\"}") {
-                    println("Player $uuid is a NRC client.")
-                    onHandshakeReceived(uuid)
-                    return
-                } else if (payloadJson == "{\"type\":\"ack\"}") {
-                    trySendNext(uuid)
-                    return
-                } else if (payloadJson.contains("\"type\":\"inputbar_response\"") || payloadJson.contains("\"input\":")) {
-                    try {
-                        val payload = gson.fromJson(payloadJson, InputbarResponsePayload::class.java)
-                        InputbarPayloadManager.handleInputbarResponse(uuid, payload)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-                    return
+            if (payloadJson.contains("inputbar_response")) {
+                try {
+                    val payload = gson.fromJson(payloadJson, InputbarResponsePayload::class.java)
+                    InputbarPayloadManager.handleInputbarResponse(uuid, payload)
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
+                return
+            } else if (payloadJson == "{\"type\":\"handshake\"}") {
+                println("Player $uuid is a NRC client.")
+                onHandshakeReceived(uuid)
+                return
+            } else if (payloadJson == "{\"type\":\"ack\"}") {
+                trySendNext(uuid)
+                return
             }
+
             if (!packetClassName.isNullOrBlank()) {
                 if ((packetClassName.endsWith("HandshakePayload") || packetClassName == "gg.norisk.core.payloads.HandshakePayload") && payloadJson == "{\"type\":\"handshake\"}") {
                     println("Player $uuid is a NRC client.")
