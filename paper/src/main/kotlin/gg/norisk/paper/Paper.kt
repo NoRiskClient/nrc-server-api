@@ -2,11 +2,8 @@ package gg.norisk.paper
 
 import NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
-import gg.norisk.core.payloads.Dimension
+import gg.norisk.core.payloads.Modules
 import gg.norisk.core.payloads.Payloads
-import gg.norisk.core.payloads.RGBColor
-import gg.norisk.core.payloads.ToastType
-import gg.norisk.core.payloads.XYZ
 import gg.norisk.paper.api.NrcChannelRegistrar
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -63,6 +60,16 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
         }
 
         Payloads.send(player.uniqueId, inputbarPayload) { uuid, data ->
+            player.sendPluginMessage(this, NRC_CHANNEL, data)
+        }
+
+        val moduleDisablePayload = api.createModuleDeactivatePayload(
+            modules = listOf(
+                Modules.FullBrightModule,
+                Modules.ZoomModule
+            )
+        )
+        Payloads.send(player.uniqueId, moduleDisablePayload) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
     }

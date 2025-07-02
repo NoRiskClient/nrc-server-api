@@ -28,9 +28,9 @@ class NoRiskServerApi {
     }
 
     fun createModuleDeactivatePayload(
-        module: Modules
+        modules: List<Modules>
     ): AbstractModuleDeactivatePayload {
-        return Core.createModuleDeactivatePayload(module)
+        return Core.createModuleDeactivatePayload(modules)
     }
 
     fun createBeaconBeamPayload(

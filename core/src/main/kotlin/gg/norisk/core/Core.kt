@@ -32,9 +32,9 @@ object Core {
     }
 
     fun createModuleDeactivatePayload(
-        module: Modules
+        modules: List<Modules>
     ): AbstractModuleDeactivatePayload {
-        return object : AbstractModuleDeactivatePayload(module) {}
+        return object : AbstractModuleDeactivatePayload(modules) {}
     }
 
     fun createBeaconBeamPayload(

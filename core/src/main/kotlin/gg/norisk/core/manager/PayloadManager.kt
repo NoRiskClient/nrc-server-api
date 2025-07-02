@@ -46,7 +46,6 @@ object PayloadManager {
         val timer = java.util.Timer()
         timer.schedule(object : java.util.TimerTask() {
             override fun run() {
-                System.err.println("[PayloadManager] Timeout: Payload '${payload.type}' an $uuid wurde nicht innerhalb von 1 Sekunde bestätigt.")
                 payloadTimeouts.remove(key)
             }
         }, PAYLOAD_TIMEOUT_MS)
@@ -91,7 +90,6 @@ object PayloadManager {
                 if (callback != null) {
                     sendQueuedPayloads(uuid, callback)
                 } else {
-                    System.err.println("[PayloadManager] sendToClientCallback is not set!")
                 }
             }.start()
         }

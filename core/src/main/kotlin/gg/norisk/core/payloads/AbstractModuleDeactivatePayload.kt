@@ -17,6 +17,6 @@ enum class Modules {
 }
 
 abstract class AbstractModuleDeactivatePayload(
-    val module: Modules,
+    val modules: List<Modules>,
 ) : AbstractPayload("module_deactivate") {
 }

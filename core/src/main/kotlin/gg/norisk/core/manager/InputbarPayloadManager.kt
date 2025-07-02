@@ -22,7 +22,6 @@ class InputbarPayloadManager {
                 handler(payload.input)
                 unregisterInputHandler(playerUuid)
             } else {
-                println("[DEBUG] No input handler registered for player $playerUuid")
             }
         }
     }

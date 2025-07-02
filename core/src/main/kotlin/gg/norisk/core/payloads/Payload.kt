@@ -74,18 +74,12 @@ object Payloads {
                 if (payload.type == "handshake") {
                     val data = ChannelApi.send(payload)
                     val wrapped = wrapWithVarIntLength(data)
-                    val payloadJson = String(data, Charsets.UTF_8)
-                    println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson")
                     sendToClient(uuid, wrapped)
-                    println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes)")
                 } else {
                     Timer().schedule(5000) {
                         val data = ChannelApi.send(payload)
                         val wrapped = wrapWithVarIntLength(data)
-                        val payloadJson = String(data, Charsets.UTF_8)
-                        println("[DEBUG] Sending payload to $uuid on channel '$NRC_CHANNEL': $payloadJson (delayed 5s after handshake)")
                         sendToClient(uuid, wrapped)
-                        println("[DEBUG] Payload sent to $uuid on channel '$NRC_CHANNEL' (length: ${data.size} bytes, delayed 5s after handshake)")
                     }
                 }
             }
@@ -94,7 +88,6 @@ object Payloads {
 
     fun receive(uuid: UUID, message: ByteArray) {
         val rawString = String(message, Charsets.UTF_8)
-        println("[DEBUG] Payloads.receive: uuid=$uuid, message=$rawString")
 
         val cleanedString = if (rawString.startsWith("+")) {
             rawString.substring(1)
@@ -104,7 +97,6 @@ object Payloads {
 
         val jsonStart = cleanedString.indexOf('{')
         if (jsonStart == -1) {
-            println("[DEBUG] No JSON object found in received message: $cleanedString")
             return
         }
 
@@ -119,21 +111,17 @@ object Payloads {
         try {
             if (payloadJson.trim().startsWith("{\"type\":") || payloadJson.trim().startsWith("{\"input\":")) {
                 if (payloadJson == "{\"type\":\"handshake\"}") {
-                    println("[DEBUG] Handshake payload received for $uuid, queue will be flushed.")
                     println("Player $uuid is a NRC client.")
                     onHandshakeReceived(uuid)
                     return
                 } else if (payloadJson == "{\"type\":\"ack\"}") {
-                    println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
                     trySendNext(uuid)
                     return
                 } else if (payloadJson.contains("\"type\":\"inputbar_response\"") || payloadJson.contains("\"input\":")) {
-                    println("[DEBUG] InputbarResponse payload received from $uuid")
                     try {
                         val payload = gson.fromJson(payloadJson, InputbarResponsePayload::class.java)
                         InputbarPayloadManager.handleInputbarResponse(uuid, payload)
                     } catch (e: Exception) {
-                        println("[DEBUG] Failed to parse InputbarResponse payload: ${e.message}")
                         e.printStackTrace()
                     }
                     return
@@ -141,29 +129,20 @@ object Payloads {
             }
             if (!packetClassName.isNullOrBlank()) {
                 if ((packetClassName.endsWith("HandshakePayload") || packetClassName == "gg.norisk.core.payloads.HandshakePayload") && payloadJson == "{\"type\":\"handshake\"}") {
-                    println("[DEBUG] Handshake payload received for $uuid, queue will be flushed.")
                     println("Player $uuid is a NRC client.")
                     onHandshakeReceived(uuid)
                 } else if ((packetClassName.endsWith("AckPayload") || packetClassName == "gg.norisk.core.payloads.AckPayload") && payloadJson == "{\"type\":\"ack\"}") {
-                    println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
                     trySendNext(uuid)
                 } else if ((packetClassName.endsWith("InputbarResponsePayload") || packetClassName == "gg.norisk.core.payloads.InputbarResponsePayload")) {
-                    println("[DEBUG] InputbarResponse payload received from $uuid")
                     try {
                         val payload = gson.fromJson(payloadJson, InputbarResponsePayload::class.java)
                         InputbarPayloadManager.handleInputbarResponse(uuid, payload)
                     } catch (e: Exception) {
-                        println("[DEBUG] Failed to parse InputbarResponse payload: ${e.message}")
                         e.printStackTrace()
                     }
-                } else {
-                    println("[DEBUG] Unknown payload class name: $packetClassName")
                 }
-            } else {
-                println("[DEBUG] Could not extract class name from payload: $cleanedString")
             }
         } catch (e: Exception) {
-            println("[DEBUG] Failed to parse incoming payload: ${e.message}")
             e.printStackTrace()
         }
     }
