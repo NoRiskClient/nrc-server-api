@@ -1,27 +1,27 @@
 # Toast Payload Documentation
 
-## Übersicht
-Das Toast Payload zeigt Benachrichtigungen im NoRisk Client an. Diese erscheinen als kleine Pop-up-Fenster mit verschiedenen Stilen.
+## Overview
+The Toast Payload displays notifications in the NoRisk Client. These appear as small pop-up windows with various styles.
 
-## Parameter
+## Parameters
 
-| Parameter | Typ | Beschreibung |
-|-----------|-----|--------------|
-| `progressBar` | `Boolean` | Zeigt eine Fortschrittsleiste an |
-| `header` | `String` | Überschrift der Benachrichtigung |
-| `content` | `String` | Haupttext der Benachrichtigung |
-| `playerHead` | `Boolean` | Zeigt den Spieler-Avatar an |
-| `playerUUID` | `UUID?` | UUID des Spielers für den Avatar (optional) |
-| `toastType` | `ToastType` | Art der Benachrichtigung (INFO, SUCCESS, ERROR) |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `progressBar` | `Boolean` | Whether to show a progress bar in the toast |
+| `header` | `String` | Header text of the notification |
+| `content` | `String` | Main content text of the notification |
+| `playerHead` | `Boolean` | Whether to show the player's avatar in the toast |
+| `playerUUID` | `UUID?` | UUID of the player for the avatar (optional) |
+| `toastType` | `ToastType` | Type of notification (INFO, SUCCESS, ERROR) |
 
-## Beispiele
+## Examples
 
-### Einfache Benachrichtigung
+### Simple Notification
 ```kotlin
 val toast = api.createToastPayload(
     progressBar = false,
-    header = "Willkommen!",
-    content = "Du bist auf unserem Server!",
+    header = "Welcome!",
+    content = "You are on our server!",
     playerHead = false,
     toastType = ToastType.INFO
 )
@@ -31,12 +31,12 @@ Payloads.send(player.uniqueId, toast) { uuid, data ->
 }
 ```
 
-### Erfolgs-Benachrichtigung mit Spieler-Avatar
+### Success Notification with Player Avatar
 ```kotlin
 val successToast = api.createToastPayload(
     progressBar = false,
-    header = "Mission erfolgreich!",
-    content = "Du hast 100 Coins erhalten!",
+    header = "Mission Complete!",
+    content = "You received 100 coins!",
     playerHead = true,
     playerUUID = player.uniqueId,
     toastType = ToastType.SUCCESS
@@ -47,12 +47,12 @@ Payloads.send(player.uniqueId, successToast) { uuid, data ->
 }
 ```
 
-### Fehler-Benachrichtigung mit Fortschrittsleiste
+### Error Notification with Progress Bar
 ```kotlin
 val errorToast = api.createToastPayload(
     progressBar = true,
-    header = "Fehler!",
-    content = "Nicht genügend Berechtigung!",
+    header = "Error!",
+    content = "Insufficient permissions!",
     playerHead = false,
     toastType = ToastType.ERROR
 )
@@ -64,11 +64,11 @@ Payloads.send(player.uniqueId, errorToast) { uuid, data ->
 
 ## ToastType Enum
 
-- `INFO` - Normale Informationsbenachrichtigung (blau)
-- `SUCCESS` - Erfolgsbenachrichtigung (grün)
-- `ERROR` - Fehlerbenachrichtigung (rot)
+- `INFO` - Normal information notification (blue)
+- `SUCCESS` - Success notification (green)
+- `ERROR` - Error notification (red)
 
-## Verwendung in verschiedenen Plattformen
+## Usage in Different Platforms
 
 ### Paper/Spigot
 ```kotlin
@@ -113,3 +113,67 @@ class MyMod : DedicatedServerModInitializer {
     }
 }
 ```
+
+## Practical Applications
+
+### Welcome System
+```kotlin
+@EventHandler
+fun onPlayerJoin(event: PlayerJoinEvent) {
+    val player = event.player
+    
+    val welcomeToast = api.createToastPayload(
+        progressBar = false,
+        header = "Welcome ${player.name}!",
+        content = "Thanks for joining our server!",
+        playerHead = true,
+        playerUUID = player.uniqueId,
+        toastType = ToastType.SUCCESS
+    )
+    
+    Payloads.send(player.uniqueId, welcomeToast) { uuid, data ->
+        player.sendPluginMessage(this, NRC_CHANNEL, data)
+    }
+}
+```
+
+### Achievement System
+```kotlin
+fun grantAchievement(player: Player, achievementName: String) {
+    val achievementToast = api.createToastPayload(
+        progressBar = true,
+        header = "Achievement Unlocked!",
+        content = achievementName,
+        playerHead = true,
+        playerUUID = player.uniqueId,
+        toastType = ToastType.SUCCESS
+    )
+    
+    Payloads.send(player.uniqueId, achievementToast) { uuid, data ->
+        player.sendPluginMessage(this, NRC_CHANNEL, data)
+    }
+}
+```
+
+### Error Handling
+```kotlin
+fun showError(player: Player, errorMessage: String) {
+    val errorToast = api.createToastPayload(
+        progressBar = false,
+        header = "Error",
+        content = errorMessage,
+        playerHead = false,
+        toastType = ToastType.ERROR
+    )
+    
+    Payloads.send(player.uniqueId, errorToast) { uuid, data ->
+        player.sendPluginMessage(this, NRC_CHANNEL, data)
+    }
+}
+```
+
+## Notes
+- Toast notifications automatically disappear after a few seconds
+- Progress bars can be used to indicate ongoing processes
+- Player avatars add a personal touch to notifications
+- Different toast types use different color schemes for visual distinction
