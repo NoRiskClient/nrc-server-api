@@ -16,6 +16,11 @@ enum class Modules {
     TimeChanger
 }
 
+/**
+ * Abstract payload for deactivating specific NoRisk Client modules
+ *
+ * @param modules List of modules to deactivate on the client
+ */
 abstract class AbstractModuleDeactivatePayload(
     val modules: List<Modules>,
 ) : AbstractPayload("module_deactivate") {

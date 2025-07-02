@@ -3,7 +3,6 @@ package gg.norisk.spigot
 import NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
 import gg.norisk.core.manager.InputbarPayloadManager
-import gg.norisk.core.payloads.Modules
 import gg.norisk.core.payloads.Payloads
 import gg.norisk.spigot.api.NrcChannelRegistrar
 import org.bukkit.entity.Player
@@ -30,54 +29,6 @@ class Spigot : JavaPlugin(), Listener, PluginMessageListener {
         Payloads.sendHandshake(player.uniqueId) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
-        val wheelPayload = api.createWheelPayload(
-            name = "Test",
-            command = "/say Hello, ${player.name}!"
-        )
-        Payloads.send(player.uniqueId, wheelPayload) { uuid, data ->
-            player.sendPluginMessage(this, NRC_CHANNEL, data)
-        }
-        val wheelPayload2 = api.createWheelPayload(
-            name = "Hii Enricoe",
-            command = "/say Hello, ${player.name}!"
-        )
-        Payloads.send(player.uniqueId, wheelPayload2) { uuid, data ->
-            player.sendPluginMessage(this, NRC_CHANNEL, data)
-        }
-
-        val inputbarPayload = api.createInputbarPayload(
-            input = "Gib deinen Namen ein:",
-            placeholder = "Dein Name...",
-            maxLength = 50
-        )
-
-        api.requestInput(
-            playerUuid = player.uniqueId,
-            inputbarPayload = inputbarPayload,
-            sendToClient = { uuid, data ->
-                player.sendPluginMessage(this, NRC_CHANNEL, data)
-            },
-            onResponse = { input ->
-                player.sendMessage("Du hast eingegeben: $input")
-                val message = "Hallo $input! Willkommen auf dem Server!"
-                server.broadcastMessage(message)
-            },
-            onCancel = {
-                player.sendMessage("§cDu hast die Eingabe abgebrochen!")
-                InputbarPayloadManager.resendInputbar(player.uniqueId)
-            }
-        )
-
-
-        val moduleDisablePayload = api.createModuleDeactivatePayload(
-            modules = listOf(
-                Modules.FullBrightModule,
-                Modules.ZoomModule
-            )
-        )
-        Payloads.send(player.uniqueId, moduleDisablePayload) { uuid, data ->
-            player.sendPluginMessage(this, NRC_CHANNEL, data)
-        }
     }
 
     @EventHandler
@@ -87,7 +38,6 @@ class Spigot : JavaPlugin(), Listener, PluginMessageListener {
     }
 
     override fun onPluginMessageReceived(channel: String, player: Player, message: ByteArray) {
-        println("[DEBUG] onPluginMessageReceived: channel=$channel, player=${player.uniqueId}, message=${String(message, Charsets.UTF_8)}")
         if (channel == NRC_CHANNEL) {
             Payloads.receive(player.uniqueId, message)
         }

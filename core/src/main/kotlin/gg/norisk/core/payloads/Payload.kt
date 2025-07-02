@@ -1,6 +1,5 @@
 package gg.norisk.core.payloads
 
-import NRC_CHANNEL
 import com.google.gson.Gson
 import gg.norisk.core.manager.InputbarPayloadManager
 import java.util.UUID
