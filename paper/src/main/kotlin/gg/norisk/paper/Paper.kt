@@ -46,6 +46,25 @@ class Paper : JavaPlugin(), Listener, PluginMessageListener {
         Payloads.send(player.uniqueId, wheelPayload2) { uuid, data ->
             player.sendPluginMessage(this, NRC_CHANNEL, data)
         }
+
+        val inputbarPayload = api.createInputbarPayload(
+            input = "Gib deinen Namen ein:",
+            placeholder = "Dein Name...",
+            maxLength = 50
+        )
+
+        api.requestInput(
+            playerUuid = player.uniqueId,
+            inputbarPayload = inputbarPayload
+        ) { input ->
+            player.sendMessage("Du hast eingegeben: $input")
+            val message = "Hallo $input! Willkommen auf dem Server!"
+            server.broadcastMessage(message)
+        }
+
+        Payloads.send(player.uniqueId, inputbarPayload) { uuid, data ->
+            player.sendPluginMessage(this, NRC_CHANNEL, data)
+        }
     }
 
     @EventHandler

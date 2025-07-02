@@ -1,8 +1,10 @@
 package gg.norisk.core.common
 
 import gg.norisk.core.Core
+import gg.norisk.core.manager.InputbarPayloadManager
 import gg.norisk.core.payloads.AbstractBeaconBeamPayload
 import gg.norisk.core.payloads.AbstractGamemodePayload
+import gg.norisk.core.payloads.AbstractInputbarPayload
 import gg.norisk.core.payloads.AbstractModuleDeactivatePayload
 import gg.norisk.core.payloads.AbstractToastPayload
 import gg.norisk.core.payloads.AbstractWheelPayload
@@ -50,5 +52,21 @@ class NoRiskServerApi {
         command: String,
     ): AbstractWheelPayload {
         return Core.createWheelPayload(name, command)
+    }
+
+    fun createInputbarPayload(
+        input: String,
+        placeholder: String,
+        maxLength: Int
+    ): AbstractInputbarPayload {
+        return Core.createInputbarPayload(input, placeholder, maxLength)
+    }
+
+    fun requestInput(
+        playerUuid: UUID,
+        inputbarPayload: AbstractInputbarPayload,
+        onResponse: (String) -> Unit
+    ) {
+        InputbarPayloadManager.registerInputHandler(playerUuid, onResponse)
     }
 }

@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractGamemodePayload.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractWheelPayload.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/manager/InputbarPayloadManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/AbstractInputbarPayload.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/InputbarResponsePayload.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/Core.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/Core.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NoRiskServerApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NoRiskServerApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/manager/PayloadManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/manager/PayloadManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/Payload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/payloads/Payload.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/kotlin/gg/norisk/paper/Paper.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,17 +45,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
@@ -124,32 +114,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [publish].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api:paper [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api:paper [clean].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [publishToMavenLocal].executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.noriskclient-server-api [build].executor": "Run",
+    "Gradle.noriskclient-server-api [clean].executor": "Run",
+    "Gradle.noriskclient-server-api [publishToMavenLocal].executor": "Run",
+    "Gradle.noriskclient-server-api [publish].executor": "Run",
+    "Gradle.noriskclient-server-api:fabric [build].executor": "Run",
+    "Gradle.noriskclient-server-api:paper [build].executor": "Run",
+    "Gradle.noriskclient-server-api:paper [clean].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "git-widget-placeholder": "dev",
+    "go.import.settings.migrated": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="gg.norisk.core.payloads" />
@@ -158,7 +149,7 @@
       <recent name="gg.norisk.core.common" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.noriskclient-server-api [publishToMavenLocal]">
+  <component name="RunManager" selected="Gradle.noriskclient-server-api:paper [build]">
     <configuration name="/Users/musa/Desktop/norisk/noriskclient-server-api/core [publishToMavenLocal]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -271,8 +262,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.noriskclient-server-api [publishToMavenLocal]" />
         <item itemvalue="Gradle.noriskclient-server-api:paper [build]" />
+        <item itemvalue="Gradle.noriskclient-server-api [publishToMavenLocal]" />
         <item itemvalue="Gradle.noriskclient-server-api [build]" />
         <item itemvalue="Gradle.noriskclient-server-api:fabric [build]" />
         <item itemvalue="Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [publishToMavenLocal]" />
@@ -327,6 +318,8 @@
       <workItem from="1751391065209" duration="2688000" />
       <workItem from="1751402493555" duration="94000" />
       <workItem from="1751404299642" duration="2126000" />
+      <workItem from="1751410614425" duration="716000" />
+      <workItem from="1751453160834" duration="2796000" />
     </task>
     <servers />
   </component>

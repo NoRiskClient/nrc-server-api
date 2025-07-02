@@ -2,6 +2,7 @@ package gg.norisk.core.payloads
 
 import NRC_CHANNEL
 import com.google.gson.Gson
+import gg.norisk.core.manager.InputbarPayloadManager
 import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -26,6 +27,7 @@ object Payloads {
     fun registerDefaults() {
         register("toast", AbstractToastPayload::class.java)
         register("module_deactivate", AbstractModuleDeactivatePayload::class.java)
+        register("inputbar_response", InputbarResponsePayload::class.java)
     }
 
     private fun encodeVarInt(value: Int): ByteArray {
@@ -93,20 +95,29 @@ object Payloads {
     fun receive(uuid: UUID, message: ByteArray) {
         val rawString = String(message, Charsets.UTF_8)
         println("[DEBUG] Payloads.receive: uuid=$uuid, message=$rawString")
-        val jsonStart = rawString.indexOf('{')
+
+        val cleanedString = if (rawString.startsWith("+")) {
+            rawString.substring(1)
+        } else {
+            rawString
+        }
+
+        val jsonStart = cleanedString.indexOf('{')
         if (jsonStart == -1) {
-            println("[DEBUG] No JSON object found in received message: $rawString")
+            println("[DEBUG] No JSON object found in received message: $cleanedString")
             return
         }
-        val classNameStart = rawString.indexOf('(')
-        val classNameEnd = rawString.indexOf('{')
+
+        val classNameStart = cleanedString.indexOf('(')
+        val classNameEnd = cleanedString.indexOf('{')
         var packetClassName: String? = null
         if (classNameStart != -1 && classNameEnd != -1 && classNameEnd > classNameStart + 1) {
-            packetClassName = rawString.substring(classNameStart + 1, classNameEnd).trim()
+            packetClassName = cleanedString.substring(classNameStart + 1, classNameEnd).trim()
         }
-        val payloadJson = rawString.substring(jsonStart)
+
+        val payloadJson = cleanedString.substring(jsonStart)
         try {
-            if (payloadJson.trim().startsWith("{\"type\":")) {
+            if (payloadJson.trim().startsWith("{\"type\":") || payloadJson.trim().startsWith("{\"input\":")) {
                 if (payloadJson == "{\"type\":\"handshake\"}") {
                     println("[DEBUG] Handshake payload received for $uuid, queue will be flushed.")
                     println("Player $uuid is a NRC client.")
@@ -115,6 +126,16 @@ object Payloads {
                 } else if (payloadJson == "{\"type\":\"ack\"}") {
                     println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
                     trySendNext(uuid)
+                    return
+                } else if (payloadJson.contains("\"type\":\"inputbar_response\"") || payloadJson.contains("\"input\":")) {
+                    println("[DEBUG] InputbarResponse payload received from $uuid")
+                    try {
+                        val payload = gson.fromJson(payloadJson, InputbarResponsePayload::class.java)
+                        InputbarPayloadManager.handleInputbarResponse(uuid, payload)
+                    } catch (e: Exception) {
+                        println("[DEBUG] Failed to parse InputbarResponse payload: ${e.message}")
+                        e.printStackTrace()
+                    }
                     return
                 }
             }
@@ -126,14 +147,24 @@ object Payloads {
                 } else if ((packetClassName.endsWith("AckPayload") || packetClassName == "gg.norisk.core.payloads.AckPayload") && payloadJson == "{\"type\":\"ack\"}") {
                     println("[DEBUG] AckPayload received from $uuid, sending next payload if available.")
                     trySendNext(uuid)
+                } else if ((packetClassName.endsWith("InputbarResponsePayload") || packetClassName == "gg.norisk.core.payloads.InputbarResponsePayload")) {
+                    println("[DEBUG] InputbarResponse payload received from $uuid")
+                    try {
+                        val payload = gson.fromJson(payloadJson, InputbarResponsePayload::class.java)
+                        InputbarPayloadManager.handleInputbarResponse(uuid, payload)
+                    } catch (e: Exception) {
+                        println("[DEBUG] Failed to parse InputbarResponse payload: ${e.message}")
+                        e.printStackTrace()
+                    }
                 } else {
                     println("[DEBUG] Unknown payload class name: $packetClassName")
                 }
             } else {
-                println("[DEBUG] Could not extract class name from payload: $rawString")
+                println("[DEBUG] Could not extract class name from payload: $cleanedString")
             }
         } catch (e: Exception) {
             println("[DEBUG] Failed to parse incoming payload: ${e.message}")
+            e.printStackTrace()
         }
     }
 

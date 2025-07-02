@@ -2,6 +2,7 @@ package gg.norisk.core
 
 import gg.norisk.core.payloads.AbstractBeaconBeamPayload
 import gg.norisk.core.payloads.AbstractGamemodePayload
+import gg.norisk.core.payloads.AbstractInputbarPayload
 import gg.norisk.core.payloads.AbstractModuleDeactivatePayload
 import gg.norisk.core.payloads.AbstractToastPayload
 import gg.norisk.core.payloads.AbstractWheelPayload
@@ -55,5 +56,13 @@ object Core {
         command: String,
     ): AbstractWheelPayload {
         return object : AbstractWheelPayload(name, command) {}
+    }
+
+    fun createInputbarPayload(
+        input: String,
+        placeholder: String,
+        maxLength: Int,
+    ): AbstractInputbarPayload {
+        return object : AbstractInputbarPayload(input, placeholder, maxLength) {}
     }
 }
