@@ -10,7 +10,8 @@
   "environment": "server",
   "entrypoints": {
     "server": [
-      "gg.norisk.fabric.Fabric"
+      "gg.norisk.fabric.Fabric",
+      "gg.norisk.fabric.FabricServer"
     ]
   },
   "depends": {
