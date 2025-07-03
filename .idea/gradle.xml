@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/fabric" />
             <option value="$PROJECT_DIR$/paper" />
             <option value="$PROJECT_DIR$/spigot" />
+            <option value="$PROJECT_DIR$/velocity" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="true" />

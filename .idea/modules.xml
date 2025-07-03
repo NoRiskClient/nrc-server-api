@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.test.iml" filepath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.main.iml" filepath="$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.test.iml" filepath="$PROJECT_DIR$/.idea/modules/spigot/noriskclient-server-api.spigot.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/velocity/noriskclient-server-api.velocity.main.iml" filepath="$PROJECT_DIR$/.idea/modules/velocity/noriskclient-server-api.velocity.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/velocity/noriskclient-server-api.velocity.test.iml" filepath="$PROJECT_DIR$/.idea/modules/velocity/noriskclient-server-api.velocity.test.iml" />
     </modules>
   </component>
 </project>

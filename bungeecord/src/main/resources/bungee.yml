@@ -1,0 +1,6 @@
+name: NoRiskClientServerAPI
+version: "${version}"
+main: gg.norisk.bungeecord.BungeeCord
+author: S42
+description: API to interact with the NoRisk Client.
+
