@@ -1,4 +1,5 @@
 plugins {
+    kotlin("kapt")
     kotlin("jvm")
     id("java-library")
     alias(libs.plugins.shadow)
@@ -9,24 +10,20 @@ repositories {
 }
 
 dependencies {
-    implementation(libs.velocity)
+    compileOnly(libs.velocity)
     implementation(project(":core"))
     implementation(libs.stdlib)
     implementation(libs.gson)
-    annotationProcessor(libs.velocity)
+    kapt(libs.velocity)
 }
 
 tasks {
-    processResources {
-        filesMatching("velocity-plugin.json") {
-            expand("version" to project.version)
-        }
-    }
     jar { enabled = false }
     shadowJar {
+        val projectVersion = project.version
         dependsOn(jar)
         archiveBaseName.set("${rootProject.name}-velocity")
-        archiveVersion.set(project.version.toString())
+        archiveVersion.set(projectVersion.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
     }

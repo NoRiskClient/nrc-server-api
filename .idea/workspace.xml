@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/velocity/src/main/kotlin/gg/norisk/velocity/Velocity.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/velocity/src/main/kotlin/gg/norisk/velocity/api/NrcChannelRegister.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/bungeecord/noriskclient-server-api.bungeecord.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/noriskclient-server-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/velocity/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/velocity/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +134,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "dev",
     "go.import.settings.migrated": "true",
     "junie.onboarding.icon.badge.shown": "true",
@@ -329,6 +334,7 @@
       <workItem from="1751476563664" duration="1894000" />
       <workItem from="1751478649727" duration="861000" />
       <workItem from="1751544235278" duration="876000" />
+      <workItem from="1751553541877" duration="851000" />
     </task>
     <servers />
   </component>

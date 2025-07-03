@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/bungeecord.iml" filepath="$PROJECT_DIR$/bungeecord.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/noriskclient-server-api.iml" filepath="$PROJECT_DIR$/.idea/noriskclient-server-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/bungeecord/noriskclient-server-api.bungeecord.main.iml" filepath="$PROJECT_DIR$/.idea/modules/bungeecord/noriskclient-server-api.bungeecord.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.main.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml" filepath="$PROJECT_DIR$/.idea/modules/fabric/noriskclient-server-api.fabric.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.main.iml" filepath="$PROJECT_DIR$/.idea/modules/paper/noriskclient-server-api.paper.main.iml" />
