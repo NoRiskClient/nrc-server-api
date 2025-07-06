@@ -1,8 +1,11 @@
 package gg.norisk.core.payloads;
 
+import lombok.Getter;
+
 /**
  * Abstract payload for adding entries to the NoRisk Client action wheel
  */
+@Getter
 public abstract class AbstractWheelPayload extends AbstractPayload {
     private final String name;
     private final String command;
@@ -17,12 +20,5 @@ public abstract class AbstractWheelPayload extends AbstractPayload {
         this.name = name;
         this.command = command;
     }
-    
-    public String getName() {
-        return name;
-    }
-    
-    public String getCommand() {
-        return command;
-    }
+
 } 

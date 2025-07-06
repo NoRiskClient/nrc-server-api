@@ -9,11 +9,6 @@ dependencies {
 }
 
 tasks {
-    processResources {
-        filesMatching("plugin.yml") {
-            expand("version" to version)
-        }
-    }
     jar { enabled = false }
     shadowJar {
         dependsOn(jar)

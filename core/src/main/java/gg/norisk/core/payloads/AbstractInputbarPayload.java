@@ -1,8 +1,11 @@
 package gg.norisk.core.payloads;
 
+import lombok.Getter;
+
 /**
  * Abstract payload for showing input prompts in the NoRisk Client
  */
+@Getter
 public abstract class AbstractInputbarPayload extends AbstractPayload {
     private final String header;
     private final String placeholder;
@@ -20,16 +23,5 @@ public abstract class AbstractInputbarPayload extends AbstractPayload {
         this.placeholder = placeholder;
         this.maxLength = maxLength;
     }
-    
-    public String getHeader() {
-        return header;
-    }
-    
-    public String getPlaceholder() {
-        return placeholder;
-    }
-    
-    public int getMaxLength() {
-        return maxLength;
-    }
+
 } 

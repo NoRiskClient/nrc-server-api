@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "noriskclientserverapi",
-  "version": "0.1.0",
+  "version": "${version}",
   "name": "NoRiskClientServerAPI",
   "description": "API to interact with the NoRisk Client.",
   "authors": ["S42"],

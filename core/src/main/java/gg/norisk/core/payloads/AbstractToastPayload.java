@@ -1,10 +1,13 @@
 package gg.norisk.core.payloads;
 
+import lombok.Getter;
+
 import java.util.UUID;
 
 /**
  * Abstract payload for displaying toast notifications in the NoRisk Client
  */
+@Getter
 public abstract class AbstractToastPayload extends AbstractPayload {
     private final boolean progressBar;
     private final String header;
@@ -32,28 +35,5 @@ public abstract class AbstractToastPayload extends AbstractPayload {
         this.playerUUID = playerUUID;
         this.toastType = toastType;
     }
-    
-    public boolean isProgressBar() {
-        return progressBar;
-    }
-    
-    public String getHeader() {
-        return header;
-    }
-    
-    public String getContent() {
-        return content;
-    }
-    
-    public boolean isPlayerHead() {
-        return playerHead;
-    }
-    
-    public UUID getPlayerUUID() {
-        return playerUUID;
-    }
-    
-    public ToastType getToastType() {
-        return toastType;
-    }
+
 } 

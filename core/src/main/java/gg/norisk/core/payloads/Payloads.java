@@ -23,29 +23,10 @@ public class Payloads {
     private static final ConcurrentHashMap<UUID, ConcurrentLinkedQueue<PayloadQueueItem>> queuedPayloads = new ConcurrentHashMap<>();
     private static final Gson gson = new Gson();
     private static final ConcurrentHashMap<UUID, Boolean> waitingForAck = new ConcurrentHashMap<>();
-    
-    private static class PayloadQueueItem {
-        private final AbstractPayload payload;
-        private final BiConsumer<UUID, byte[]> sendToClient;
-        private final boolean requiresAck;
-        
-        public PayloadQueueItem(AbstractPayload payload, BiConsumer<UUID, byte[]> sendToClient, boolean requiresAck) {
-            this.payload = payload;
-            this.sendToClient = sendToClient;
-            this.requiresAck = requiresAck;
-        }
-        
-        public AbstractPayload getPayload() {
-            return payload;
-        }
-        
-        public BiConsumer<UUID, byte[]> getSendToClient() {
-            return sendToClient;
-        }
-        
-        public boolean requiresAck() {
-            return requiresAck;
-        }
+
+    private record PayloadQueueItem(AbstractPayload payload,
+                                    BiConsumer<UUID, byte[]> sendToClient,
+                                    boolean requiresAck) {
     }
     
     public static void register(String type, Class<? extends AbstractPayload> clazz) {
@@ -115,18 +96,18 @@ public class Payloads {
                 PayloadQueueItem next = queue.poll();
                 if (next == null) break;
                 
-                if ("handshake".equals(next.getPayload().getType())) {
-                    byte[] data = ChannelApi.send(next.getPayload());
+                if ("handshake".equals(next.payload().getType())) {
+                    byte[] data = ChannelApi.send(next.payload());
                     byte[] wrapped = wrapWithVarIntLength(data);
-                    next.getSendToClient().accept(uuid, wrapped);
+                    next.sendToClient().accept(uuid, wrapped);
                 } else {
                     Timer timer = new Timer();
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            byte[] data = ChannelApi.send(next.getPayload());
+                            byte[] data = ChannelApi.send(next.payload());
                             byte[] wrapped = wrapWithVarIntLength(data);
-                            next.getSendToClient().accept(uuid, wrapped);
+                            next.sendToClient().accept(uuid, wrapped);
                         }
                     }, 1000);
                 }

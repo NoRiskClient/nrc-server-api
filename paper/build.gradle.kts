@@ -4,16 +4,11 @@ plugins {
 }
 
 dependencies {
-    compileOnly(libs.spigot)
+    compileOnly(libs.paper)
     implementation(project(":core"))
 }
 
 tasks {
-    processResources {
-        filesMatching("paper-plugin.yml") {
-            expand("version" to version.toString())
-        }
-    }
     jar { enabled = false }
     shadowJar {
         dependsOn(":jar")

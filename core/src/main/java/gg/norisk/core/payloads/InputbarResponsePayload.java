@@ -1,9 +1,12 @@
 package gg.norisk.core.payloads;
 
+import lombok.Getter;
+
 /**
  * Payload class for handling user input responses from the NoRisk Client
  * This payload is sent by the client when a user responds to an input prompt
  */
+@Getter
 public class InputbarResponsePayload extends AbstractPayload {
     private final String input;
     private final boolean canceled;
@@ -27,12 +30,5 @@ public class InputbarResponsePayload extends AbstractPayload {
         this.input = null;
         this.canceled = false;
     }
-    
-    public String getInput() {
-        return input;
-    }
-    
-    public boolean isCanceled() {
-        return canceled;
-    }
+
 } 

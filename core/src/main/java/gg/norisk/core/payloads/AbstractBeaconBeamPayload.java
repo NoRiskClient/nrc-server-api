@@ -1,8 +1,11 @@
 package gg.norisk.core.payloads;
 
+import lombok.Getter;
+
 /**
  * Abstract payload for creating beacon beams at specific coordinates
  */
+@Getter
 public abstract class AbstractBeaconBeamPayload extends AbstractPayload {
     private final XYZ xyz;
     private final Dimension dimension;
@@ -20,16 +23,5 @@ public abstract class AbstractBeaconBeamPayload extends AbstractPayload {
         this.dimension = dimension;
         this.color = color;
     }
-    
-    public XYZ getXyz() {
-        return xyz;
-    }
-    
-    public Dimension getDimension() {
-        return dimension;
-    }
-    
-    public RGBColor getColor() {
-        return color;
-    }
+
 } 

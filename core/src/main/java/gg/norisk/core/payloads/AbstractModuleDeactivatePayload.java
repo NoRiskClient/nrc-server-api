@@ -1,10 +1,13 @@
 package gg.norisk.core.payloads;
 
+import lombok.Getter;
+
 import java.util.List;
 
 /**
  * Abstract payload for deactivating specific NoRisk Client modules
  */
+@Getter
 public abstract class AbstractModuleDeactivatePayload extends AbstractPayload {
     private final List<Modules> modules;
     
@@ -16,8 +19,5 @@ public abstract class AbstractModuleDeactivatePayload extends AbstractPayload {
         super("module_deactivate");
         this.modules = modules;
     }
-    
-    public List<Modules> getModules() {
-        return modules;
-    }
+
 } 

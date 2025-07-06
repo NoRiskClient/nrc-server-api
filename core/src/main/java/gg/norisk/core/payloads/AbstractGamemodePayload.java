@@ -1,8 +1,11 @@
 package gg.norisk.core.payloads;
 
+import lombok.Getter;
+
 /**
  * Abstract payload for overriding the gamemode display in the NoRisk Client
  */
+@Getter
 public abstract class AbstractGamemodePayload extends AbstractPayload {
     private final String gamemode;
     
@@ -14,8 +17,5 @@ public abstract class AbstractGamemodePayload extends AbstractPayload {
         super("gamemode");
         this.gamemode = gamemode;
     }
-    
-    public String getGamemode() {
-        return gamemode;
-    }
+
 } 
