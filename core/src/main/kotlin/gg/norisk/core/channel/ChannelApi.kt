@@ -3,8 +3,6 @@ import gg.norisk.core.payloads.HandshakePayload
 import gg.norisk.core.payloads.AbstractPayload
 import java.util.*
 
-const val NRC_CHANNEL = "norisk:main"
-
  interface PacketListener<T> {
     fun onMessage(sender: UUID, packet: T)
 }

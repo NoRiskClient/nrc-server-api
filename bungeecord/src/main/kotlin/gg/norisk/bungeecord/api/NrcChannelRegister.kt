@@ -1,6 +1,6 @@
 package gg.norisk.bungeecord.api
 
-import NRC_CHANNEL
+import gg.norisk.core.common.Constants.Companion.NRC_CHANNEL
 import net.md_5.bungee.api.plugin.Plugin
 
 object NrcChannelRegister {

@@ -1,4 +1,4 @@
-package gg.norisk.client.network.serverapi.payload
+package gg.norisk.fabric.api
 
 import gg.norisk.core.payloads.AbstractPayload
 import com.google.gson.Gson

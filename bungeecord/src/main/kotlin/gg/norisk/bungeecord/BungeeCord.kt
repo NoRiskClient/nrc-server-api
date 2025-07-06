@@ -1,10 +1,10 @@
 package gg.norisk.bungeecord
 
-import NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
 import gg.norisk.core.manager.InputbarPayloadManager
 import gg.norisk.core.payloads.Payloads
 import gg.norisk.bungeecord.api.NrcChannelRegister
+import gg.norisk.core.common.Constants.Companion.NRC_CHANNEL
 import net.md_5.bungee.api.connection.ProxiedPlayer
 import net.md_5.bungee.api.event.PlayerDisconnectEvent
 import net.md_5.bungee.api.event.PostLoginEvent

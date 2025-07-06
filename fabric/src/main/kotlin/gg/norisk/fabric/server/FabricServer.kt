@@ -1,10 +1,9 @@
-package gg.norisk.fabric
+package gg.norisk.fabric.server
 
-import NRC_CHANNEL
-import gg.norisk.client.network.serverapi.payload.NrcCustomPayload
 import gg.norisk.core.common.NoRiskServerApi
 import gg.norisk.core.manager.InputbarPayloadManager
 import gg.norisk.core.payloads.Payloads
+import gg.norisk.fabric.api.NrcCustomPayload
 import net.fabricmc.api.DedicatedServerModInitializer
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking

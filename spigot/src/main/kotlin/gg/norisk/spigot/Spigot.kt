@@ -1,6 +1,6 @@
 package gg.norisk.spigot
 
-import NRC_CHANNEL
+import gg.norisk.core.common.Constants.Companion.NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
 import gg.norisk.core.manager.InputbarPayloadManager
 import gg.norisk.core.payloads.Payloads

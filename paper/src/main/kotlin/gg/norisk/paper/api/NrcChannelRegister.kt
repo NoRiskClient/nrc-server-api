@@ -1,6 +1,6 @@
 package gg.norisk.paper.api
 
-import NRC_CHANNEL
+import gg.norisk.core.common.Constants.Companion.NRC_CHANNEL
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.plugin.messaging.PluginMessageListener
 

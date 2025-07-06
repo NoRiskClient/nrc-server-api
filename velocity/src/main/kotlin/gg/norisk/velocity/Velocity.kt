@@ -1,6 +1,5 @@
 package gg.norisk.velocity
 
-import NRC_CHANNEL
 import com.google.inject.Inject
 import com.velocitypowered.api.event.Subscribe
 import com.velocitypowered.api.event.connection.DisconnectEvent
@@ -10,6 +9,7 @@ import com.velocitypowered.api.plugin.Plugin
 import com.velocitypowered.api.plugin.annotation.DataDirectory
 import com.velocitypowered.api.proxy.ProxyServer
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier
+import gg.norisk.core.common.Constants.Companion.NRC_CHANNEL
 import gg.norisk.core.common.NoRiskServerApi
 import gg.norisk.core.manager.InputbarPayloadManager
 import gg.norisk.core.payloads.Payloads
@@ -30,6 +30,7 @@ class Velocity @Inject constructor(
     @DataDirectory private val dataDirectory: Path
 ) {
     val api = NoRiskServerApi()
+    val channelIdentifier = MinecraftChannelIdentifier.from(NRC_CHANNEL)
 
     @Subscribe
     fun onProxyInitialization(event: com.velocitypowered.api.event.proxy.ProxyInitializeEvent) {

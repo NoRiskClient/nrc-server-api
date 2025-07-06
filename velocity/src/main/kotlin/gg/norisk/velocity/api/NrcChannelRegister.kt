@@ -1,8 +1,8 @@
 package gg.norisk.velocity.api
 
-import NRC_CHANNEL
 import com.velocitypowered.api.proxy.ProxyServer
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier
+import gg.norisk.core.common.Constants.Companion.NRC_CHANNEL
 import org.slf4j.Logger
 
 object NrcChannelRegister {

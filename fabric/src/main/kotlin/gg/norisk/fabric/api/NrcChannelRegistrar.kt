@@ -1,7 +1,6 @@
 package gg.norisk.fabric.api
 
-import NRC_CHANNEL
-import gg.norisk.client.network.serverapi.payload.NrcCustomPayload
+import gg.norisk.core.common.Constants.Companion.NRC_CHANNEL
 import gg.norisk.core.payloads.Payloads
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.util.Identifier
