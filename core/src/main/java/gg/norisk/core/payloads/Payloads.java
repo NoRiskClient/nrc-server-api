@@ -18,36 +18,43 @@ import gg.norisk.core.channel.ChannelApi;
 import gg.norisk.core.manager.InputbarPayloadManager;
 
 public class Payloads {
-    private static final Map<String, Class<? extends AbstractPayload>> payloadTypes = new HashMap<>();
-    private static final ConcurrentHashMap<UUID, Boolean> handshakeDone = new ConcurrentHashMap<>();
-    private static final ConcurrentHashMap<UUID, ConcurrentLinkedQueue<PayloadQueueItem>> queuedPayloads = new ConcurrentHashMap<>();
-    private static final Gson gson = new Gson();
-    private static final ConcurrentHashMap<UUID, Boolean> waitingForAck = new ConcurrentHashMap<>();
+    private final Gson gson = new Gson();
+    private final Map<String, Class<? extends AbstractPayload>> payloadTypes = new HashMap<>();
+    private final ConcurrentHashMap<UUID, Boolean> handshakeDone = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<UUID, ConcurrentLinkedQueue<PayloadQueueItem>> queuedPayloads = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<UUID, Boolean> waitingForAck = new ConcurrentHashMap<>();
+    private final InputbarPayloadManager inputbarPayloadManager;
+    private final ChannelApi channelApi;
+
+    public Payloads() {
+        this.inputbarPayloadManager = new InputbarPayloadManager();
+        this.channelApi = new ChannelApi();
+    }
 
     private record PayloadQueueItem(AbstractPayload payload,
                                     BiConsumer<UUID, byte[]> sendToClient,
                                     boolean requiresAck) {
     }
     
-    public static void register(String type, Class<? extends AbstractPayload> clazz) {
+    public void register(String type, Class<? extends AbstractPayload> clazz) {
         payloadTypes.put(type, clazz);
     }
     
-    public static Class<? extends AbstractPayload> get(String type) {
+    public Class<? extends AbstractPayload> get(String type) {
         return payloadTypes.get(type);
     }
     
-    public static Map<String, Class<? extends AbstractPayload>> all() {
+    public Map<String, Class<? extends AbstractPayload>> all() {
         return new HashMap<>(payloadTypes);
     }
     
-    public static void registerDefaults() {
+    public void registerDefaults() {
         register("toast", AbstractToastPayload.class);
         register("module_deactivate", AbstractModuleDeactivatePayload.class);
         register("inputbar_response", InputbarResponsePayload.class);
     }
     
-    private static byte[] encodeVarInt(int value) {
+    private byte[] encodeVarInt(int value) {
         List<Byte> out = new ArrayList<>();
         int v = value;
         while (true) {
@@ -66,7 +73,7 @@ public class Payloads {
         return result;
     }
     
-    private static byte[] wrapWithVarIntLength(byte[] data) {
+    private byte[] wrapWithVarIntLength(byte[] data) {
         byte[] lengthPrefix = encodeVarInt(data.length);
         byte[] result = new byte[lengthPrefix.length + data.length];
         System.arraycopy(lengthPrefix, 0, result, 0, lengthPrefix.length);
@@ -74,20 +81,20 @@ public class Payloads {
         return result;
     }
     
-    public static void sendHandshake(UUID uuid, BiConsumer<UUID, byte[]> sendToClient) {
+    public void sendHandshake(UUID uuid, BiConsumer<UUID, byte[]> sendToClient) {
         HandshakePayload handshake = new HandshakePayload();
-        byte[] data = ChannelApi.send(handshake);
+        byte[] data = channelApi.send(handshake);
         byte[] wrapped = wrapWithVarIntLength(data);
         sendToClient.accept(uuid, wrapped);
     }
     
-    public static void send(UUID uuid, AbstractPayload payload, BiConsumer<UUID, byte[]> sendToClient) {
+    public void send(UUID uuid, AbstractPayload payload, BiConsumer<UUID, byte[]> sendToClient) {
         queuedPayloads.computeIfAbsent(uuid, k -> new ConcurrentLinkedQueue<>())
                 .add(new PayloadQueueItem(payload, sendToClient, false));
         trySendNext(uuid);
     }
     
-    private static void trySendNext(UUID uuid) {
+    private void trySendNext(UUID uuid) {
         if (Boolean.TRUE.equals(handshakeDone.get(uuid))) {
             ConcurrentLinkedQueue<PayloadQueueItem> queue = queuedPayloads.get(uuid);
             if (queue == null) return;
@@ -97,7 +104,7 @@ public class Payloads {
                 if (next == null) break;
                 
                 if ("handshake".equals(next.payload().getType())) {
-                    byte[] data = ChannelApi.send(next.payload());
+                    byte[] data = channelApi.send(next.payload());
                     byte[] wrapped = wrapWithVarIntLength(data);
                     next.sendToClient().accept(uuid, wrapped);
                 } else {
@@ -105,7 +112,7 @@ public class Payloads {
                     timer.schedule(new TimerTask() {
                         @Override
                         public void run() {
-                            byte[] data = ChannelApi.send(next.payload());
+                            byte[] data = channelApi.send(next.payload());
                             byte[] wrapped = wrapWithVarIntLength(data);
                             next.sendToClient().accept(uuid, wrapped);
                         }
@@ -115,7 +122,7 @@ public class Payloads {
         }
     }
     
-    public static void receive(UUID uuid, byte[] message) {
+    public void receive(UUID uuid, byte[] message) {
         String rawString = new String(message, StandardCharsets.UTF_8);
         
         String cleanedString = rawString.startsWith("+") ? rawString.substring(1) : rawString;
@@ -137,7 +144,7 @@ public class Payloads {
             if (payloadJson.contains("inputbar_response")) {
                 try {
                     InputbarResponsePayload payload = gson.fromJson(payloadJson, InputbarResponsePayload.class);
-                    InputbarPayloadManager.handleInputbarResponse(uuid, payload);
+                    inputbarPayloadManager.handleInputbarResponse(uuid, payload);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -165,7 +172,7 @@ public class Payloads {
                           "gg.norisk.core.payloads.InputbarResponsePayload".equals(packetClassName)) {
                     try {
                         InputbarResponsePayload payload = gson.fromJson(payloadJson, InputbarResponsePayload.class);
-                        InputbarPayloadManager.handleInputbarResponse(uuid, payload);
+                        inputbarPayloadManager.handleInputbarResponse(uuid, payload);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -176,13 +183,13 @@ public class Payloads {
         }
     }
     
-    private static void onHandshakeReceived(UUID uuid) {
+    private void onHandshakeReceived(UUID uuid) {
         handshakeDone.put(uuid, true);
         waitingForAck.put(uuid, false);
         trySendNext(uuid);
     }
     
-    public static void onPlayerLeave(UUID uuid) {
+    public void onPlayerLeave(UUID uuid) {
         handshakeDone.remove(uuid);
         queuedPayloads.remove(uuid);
         waitingForAck.remove(uuid);

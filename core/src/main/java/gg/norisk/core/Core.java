@@ -16,12 +16,6 @@ import gg.norisk.core.payloads.ToastType;
 import gg.norisk.core.payloads.XYZ;
 
 public class Core {
-    
-    public static void main(String[] args) {
-        System.out.println("Initializing NoRiskClient-Server-API Core");
-        throw new RuntimeException("Failed to initialize NoRiskClient-Server-API Core");
-    }
-    
     /**
      * Creates a toast notification payload to display messages in the NoRisk Client
      *
@@ -33,7 +27,7 @@ public class Core {
      * @param toastType The type of toast (INFO, SUCCESS, ERROR) which determines the color scheme
      * @return AbstractToastPayload The created toast payload
      */
-    public static AbstractToastPayload createToastPayload(
+    public AbstractToastPayload createToastPayload(
             boolean progressBar,
             String header,
             String content,
@@ -50,7 +44,7 @@ public class Core {
      * @param modules List of modules to deactivate on the client
      * @return AbstractModuleDeactivatePayload The created module deactivate payload
      */
-    public static AbstractModuleDeactivatePayload createModuleDeactivatePayload(
+    public AbstractModuleDeactivatePayload createModuleDeactivatePayload(
             List<Modules> modules
     ) {
         return new AbstractModuleDeactivatePayload(modules) {};
@@ -64,7 +58,7 @@ public class Core {
      * @param color The RGB color of the beacon beam
      * @return AbstractBeaconBeamPayload The created beacon beam payload
      */
-    public static AbstractBeaconBeamPayload createBeaconBeamPayload(
+    public AbstractBeaconBeamPayload createBeaconBeamPayload(
             XYZ xyz,
             Dimension dimension,
             RGBColor color
@@ -78,7 +72,7 @@ public class Core {
      * @param gamemode The custom gamemode name to display
      * @return AbstractGamemodePayload The created gamemode payload
      */
-    public static AbstractGamemodePayload createGamemodePayload(
+    public AbstractGamemodePayload createGamemodePayload(
             String gamemode
     ) {
         return new AbstractGamemodePayload(gamemode) {};
@@ -91,7 +85,7 @@ public class Core {
      * @param command The command to execute when the entry is selected
      * @return AbstractWheelPayload The created wheel payload
      */
-    public static AbstractWheelPayload createWheelPayload(
+    public AbstractWheelPayload createWheelPayload(
             String name,
             String command
     ) {
@@ -106,7 +100,7 @@ public class Core {
      * @param maxLength The maximum number of characters allowed in the input
      * @return AbstractInputbarPayload The created inputbar payload
      */
-    public static AbstractInputbarPayload createInputbarPayload(
+    public AbstractInputbarPayload createInputbarPayload(
             String input,
             String placeholder,
             int maxLength

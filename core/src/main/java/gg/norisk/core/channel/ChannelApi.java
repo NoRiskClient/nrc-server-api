@@ -14,27 +14,27 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class ChannelApi {
-    private static final Gson gson = new Gson();
-    private static final Map<Class<?>, List<PacketListener<?>>> listeners = new HashMap<>();
-    private static final Map<String, Class<?>> allowedPacketClasses = new HashMap<>();
+    private final Gson gson = new Gson();
+    private final Map<Class<?>, List<PacketListener<?>>> listeners = new HashMap<>();
+    private final Map<String, Class<?>> allowedPacketClasses = new HashMap<>();
     
-    static {
+    {
         allowedPacketClasses.put("HandshakePayload", HandshakePayload.class);
     }
     
-    public static <T> void registerListener(Class<T> packetType, PacketListener<T> listener) {
+    public <T> void registerListener(Class<T> packetType, PacketListener<T> listener) {
         log.info("Registering listener for packet type {}", packetType.getSimpleName());
         listeners.computeIfAbsent(packetType, k -> new ArrayList<>()).add(listener);
     }
     
-    public static byte[] send(Object packet) {
+    public byte[] send(Object packet) {
         String payloadJson = gson.toJson(packet);
         PacketWrapper wrapper = new PacketWrapper(packet.getClass().getName(), payloadJson);
         String wrapperJson = gson.toJson(wrapper);
         return wrapperJson.getBytes(StandardCharsets.UTF_8);
     }
     
-    public static void receive(UUID sender, byte[] message) {
+    public void receive(UUID sender, byte[] message) {
         String rawString = new String(message, StandardCharsets.UTF_8);
         int jsonStart = rawString.indexOf('{');
         if (jsonStart == -1) {
