@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.fabric.loom)
-    alias(libs.plugins.kotlin.jvm)
     id("java-library")
 }
 
@@ -9,9 +8,7 @@ dependencies {
     mappings(libs.fabric.yarn)
     modImplementation(libs.fabric.loader)
     modImplementation(libs.fabric.api)
-    modImplementation(libs.fabric.language.kotlin)
     implementation(project(":core"))
-    implementation(libs.stdlib)
 }
 
 tasks {

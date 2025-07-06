@@ -1,13 +1,11 @@
 plugins {
-    kotlin("jvm")
     id("java-library")
     alias(libs.plugins.shadow)
 }
 
 dependencies {
-    implementation(libs.bungeecord)
+    compileOnly(libs.bungeecord)
     implementation(project(":core"))
-    implementation(libs.stdlib)
 }
 
 tasks {

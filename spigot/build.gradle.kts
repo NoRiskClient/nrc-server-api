@@ -1,26 +1,24 @@
 plugins {
-    kotlin("jvm")
     id("java-library")
     alias(libs.plugins.shadow)
 }
 
 dependencies {
-    implementation(libs.spigot)
+    compileOnly(libs.spigot)
     implementation(project(":core"))
-    implementation(libs.stdlib)
 }
 
 tasks {
     processResources {
         filesMatching("plugin.yml") {
-            expand("version" to project.version)
+            expand("version" to version)
         }
     }
     jar { enabled = false }
     shadowJar {
         dependsOn(jar)
         archiveBaseName.set("${rootProject.name}-spigot")
-        archiveVersion.set(project.version.toString())
+        archiveVersion.set(version.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
     }

@@ -1,14 +1,12 @@
 plugins {
-    kotlin("jvm")
     id("java-library")
     alias(libs.plugins.shadow)
     id("xyz.jpenilla.run-velocity") version "2.3.1"
 }
 
 dependencies {
-    implementation(libs.velocity)
+    compileOnly(libs.velocity)
     implementation(project(":core"))
-    implementation(libs.stdlib)
     annotationProcessor(libs.velocity)
 }
 

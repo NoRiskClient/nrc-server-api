@@ -2,7 +2,6 @@ import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaLibraryPlugin
 
 plugins {
-    kotlin("jvm") version libs.versions.kotlinPlugin.get()
     id("java")
     id("maven-publish")
 }
@@ -16,15 +15,12 @@ repositories {
     mavenCentral()
 }
 
-val stdlib: String = libs.stdlib.get().toString()
-
 tasks.jar {
     enabled = false
 }
 
 subprojects {
     version = rootProject.version
-    apply(plugin = "org.jetbrains.kotlin.jvm")
     apply<JavaPlugin>()
     apply<JavaLibraryPlugin>()
 
@@ -34,8 +30,10 @@ subprojects {
         mavenCentral()
     }
 
-    kotlin {
-        jvmToolchain(21)
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
     }
 
     tasks {
@@ -45,14 +43,10 @@ subprojects {
             archiveVersion.set(project.version.toString())
             archiveClassifier.set("")
             destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
-            manifest {
-                attributes("Main-Class" to "gg.norisk.core.NRCServerApi")
-            }
         }
     }
 
     dependencies {
-        implementation(stdlib)
         if (project.name != "core") {
             implementation(project(":core"))
         }
