@@ -6,3 +6,9 @@ build
 .kotlin
 
 .DS_STORE
+
+.idea
+target
+*.iml
+*.log
+*.class
