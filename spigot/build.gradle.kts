@@ -19,7 +19,7 @@ tasks {
     jar { enabled = false }
     shadowJar {
         dependsOn(jar)
-        archiveBaseName.set("${rootProject.name}-spigot")
+        archiveBaseName.set("${rootProject.name}-paper")
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))

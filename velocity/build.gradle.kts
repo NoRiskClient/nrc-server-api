@@ -1,29 +1,23 @@
 plugins {
-    kotlin("kapt")
     kotlin("jvm")
     id("java-library")
     alias(libs.plugins.shadow)
-}
-
-repositories {
-    maven("https://nexus.velocitypowered.com/repository/maven-public/")
+    id("xyz.jpenilla.run-velocity") version "2.3.1"
 }
 
 dependencies {
-    compileOnly(libs.velocity)
+    implementation(libs.velocity)
     implementation(project(":core"))
     implementation(libs.stdlib)
-    implementation(libs.gson)
-    kapt(libs.velocity)
+    annotationProcessor(libs.velocity)
 }
 
 tasks {
     jar { enabled = false }
     shadowJar {
-        val projectVersion = project.version
-        dependsOn(jar)
+        dependsOn(":jar") // Explizite Abhängigkeit hinzufügen
         archiveBaseName.set("${rootProject.name}-velocity")
-        archiveVersion.set(projectVersion.toString())
+        archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
     }

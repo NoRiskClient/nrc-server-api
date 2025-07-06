@@ -12,13 +12,13 @@ dependencies {
 
 tasks {
     processResources {
-        filesMatching("plugin.yml") {
-            expand("version" to project.version)
+        filesMatching("paper-plugin.yml") {
+            expand("version" to project.version.toString())
         }
     }
     jar { enabled = false }
     shadowJar {
-        dependsOn(jar)
+        dependsOn(":jar")
         archiveBaseName.set("${rootProject.name}-paper")
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")

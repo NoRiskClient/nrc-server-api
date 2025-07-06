@@ -4,7 +4,6 @@ import org.gradle.api.plugins.JavaLibraryPlugin
 plugins {
     kotlin("jvm") version libs.versions.kotlinPlugin.get()
     id("java")
-    id("org.gradle.wrapper")
     id("maven-publish")
 }
 
@@ -18,6 +17,10 @@ repositories {
 }
 
 val stdlib: String = libs.stdlib.get().toString()
+
+tasks.jar {
+    enabled = false
+}
 
 subprojects {
     version = rootProject.version
@@ -46,11 +49,6 @@ subprojects {
                 attributes("Main-Class" to "gg.norisk.core.NRCServerApi")
             }
         }
-    }
-
-    tasks.withType<Wrapper> {
-        gradleVersion = "8.12.1"
-        distributionType = Wrapper.DistributionType.ALL
     }
 
     dependencies {
