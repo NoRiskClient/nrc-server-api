@@ -30,6 +30,9 @@ public class Paper extends JavaPlugin implements Listener, PluginMessageListener
         getServer().getPluginManager().registerEvents(new JoinListener(api, coreApi), this);
         getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
 
+        getServer().getMessenger().registerOutgoingPluginChannel(this, coreApi.getPluginChannel());
+        getServer().getMessenger().registerIncomingPluginChannel(this, coreApi.getPluginChannel(), this);
+
         getLogger().info("NoRiskClient-Server-API Paper module is ready!");
     }
 
