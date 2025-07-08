@@ -1,52 +1,53 @@
 package gg.norisk.paper;
 
+import gg.norisk.core.common.CoreAPI;
+import gg.norisk.core.common.impl.CoreAPIImpl;
+import gg.norisk.core.manager.models.PacketWrapper;
+import gg.norisk.core.payloads.InPayload;
+import gg.norisk.paper.api.ServerAPI;
+import gg.norisk.paper.listener.JoinListener;
+import gg.norisk.paper.listener.QuitListener;
+import lombok.Getter;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
-
-import gg.norisk.core.common.Constants;
-import gg.norisk.core.common.NoRiskServerApi;
-import gg.norisk.core.manager.InputbarPayloadManager;
-import gg.norisk.core.payloads.Payloads;
-import gg.norisk.paper.api.NrcChannelRegistrar;
+import org.jetbrains.annotations.NotNull;
 
 public class Paper extends JavaPlugin implements Listener, PluginMessageListener {
-    private final NoRiskServerApi api = new NoRiskServerApi();
-    
+    @Getter
+    private static ServerAPI api;
+
+    private CoreAPI coreApi;
+
     @Override
     public void onEnable() {
         getLogger().info("NoRiskClient-Server-API Paper module is starting...");
-        NrcChannelRegistrar.register(this);
-        getServer().getPluginManager().registerEvents(this, this);
+
+        coreApi = new CoreAPIImpl();
+        Paper.api = new ServerAPI(coreApi, this);
+
+        getServer().getPluginManager().registerEvents(new JoinListener(api, coreApi), this);
+        getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
+
         getLogger().info("NoRiskClient-Server-API Paper module is ready!");
     }
-    
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        Payloads.sendHandshake(player.getUniqueId(), (uuid, data) -> {
-            player.sendPluginMessage(this, Constants.NRC_CHANNEL, data);
-        });
-    }
-    
-    @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
-        Payloads.onPlayerLeave(event.getPlayer().getUniqueId());
-        InputbarPayloadManager.unregisterSession(event.getPlayer().getUniqueId());
-    }
-    
+
     @Override
-    public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-        if (Constants.NRC_CHANNEL.equals(channel)) {
-            Payloads.receive(player.getUniqueId(), message);
+    public void onPluginMessageReceived(String channel, @NotNull Player player, byte @NotNull [] message) {
+        if (!channel.equals(coreApi.getPluginChannel())) return;
+
+        try {
+            PacketWrapper packet = coreApi.serializePacketWrapper(message);
+            InPayload responsePacket = coreApi.deserialize(packet.getPayloadJson());
+
+            if (coreApi.getCallbackManager().waitingFor(packet.getPacketId())) {
+                coreApi.getCallbackManager().completeCallback(packet.getPacketId(), responsePacket);
+            } else {
+                coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
+            }
+        } catch (Exception e) {
+            getLogger().severe("Unable to deserialize packet: " + e.getMessage());
         }
     }
-    
-    public NoRiskServerApi getApi() {
-        return api;
-    }
-} 
+}

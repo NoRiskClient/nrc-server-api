@@ -9,13 +9,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
 import gg.norisk.core.common.Constants;
-import gg.norisk.core.common.NoRiskServerApi;
+import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.manager.InputbarPayloadManager;
 import gg.norisk.core.payloads.Payloads;
 import gg.norisk.spigot.api.NrcChannelRegistrar;
 
 public class Spigot extends JavaPlugin implements Listener, PluginMessageListener {
-    private final NoRiskServerApi api = new NoRiskServerApi();
+    private final CoreAPI api = new CoreAPI();
     
     @Override
     public void onEnable() {
@@ -46,7 +46,7 @@ public class Spigot extends JavaPlugin implements Listener, PluginMessageListene
         }
     }
     
-    public NoRiskServerApi getApi() {
+    public CoreAPI getApi() {
         return api;
     }
 } 

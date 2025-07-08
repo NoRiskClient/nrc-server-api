@@ -1,6 +1,6 @@
 package gg.norisk.fabric.server;
 
-import gg.norisk.core.common.NoRiskServerApi;
+import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.manager.InputbarPayloadManager;
 import gg.norisk.core.payloads.Payloads;
 import gg.norisk.fabric.api.NrcCustomPayload;
@@ -10,7 +10,7 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class FabricServer implements DedicatedServerModInitializer {
-    private final NoRiskServerApi api = new NoRiskServerApi();
+    private final CoreAPI api = new CoreAPI();
     
     @Override
     public void onInitializeServer() {
@@ -38,7 +38,7 @@ public class FabricServer implements DedicatedServerModInitializer {
         InputbarPayloadManager.unregisterSession(player.getUuid());
     }
     
-    public NoRiskServerApi getApi() {
+    public CoreAPI getApi() {
         return api;
     }
 } 

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
 
-import gg.norisk.core.payloads.AbstractPayload;
+import gg.norisk.core.payloads.Payload;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.packet.CustomPayload;
@@ -41,7 +41,7 @@ public class NrcCustomPayload implements CustomPayload {
     );
     
     private final byte[] payloadBytes;
-    private final AbstractPayload payloadObj;
+    private final Payload payloadObj;
     private final String json;
     
     public NrcCustomPayload(byte[] payloadBytes) {
@@ -50,7 +50,7 @@ public class NrcCustomPayload implements CustomPayload {
         this.json = null;
     }
     
-    public NrcCustomPayload(AbstractPayload payloadObj) {
+    public NrcCustomPayload(Payload payloadObj) {
         this.payloadObj = payloadObj;
         this.payloadBytes = null;
         this.json = gson.toJson(payloadObj);
@@ -80,7 +80,7 @@ public class NrcCustomPayload implements CustomPayload {
         return payloadBytes;
     }
     
-    public AbstractPayload getPayloadObj() {
+    public Payload getPayloadObj() {
         return payloadObj;
     }
     

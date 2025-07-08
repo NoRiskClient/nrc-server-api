@@ -16,7 +16,7 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
 import gg.norisk.core.common.Constants;
-import gg.norisk.core.common.NoRiskServerApi;
+import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.manager.InputbarPayloadManager;
 import gg.norisk.core.payloads.Payloads;
 import gg.norisk.velocity.api.NrcChannelRegister;
@@ -32,7 +32,7 @@ public class Velocity {
     private final ProxyServer server;
     private final Logger logger;
     private final Path dataDirectory;
-    private final NoRiskServerApi api = new NoRiskServerApi();
+    private final CoreAPI api = new CoreAPI();
     private final MinecraftChannelIdentifier channelIdentifier = MinecraftChannelIdentifier.from(Constants.NRC_CHANNEL);
     
     @Inject
@@ -76,7 +76,7 @@ public class Velocity {
         }
     }
     
-    public NoRiskServerApi getApi() {
+    public CoreAPI getApi() {
         return api;
     }
     

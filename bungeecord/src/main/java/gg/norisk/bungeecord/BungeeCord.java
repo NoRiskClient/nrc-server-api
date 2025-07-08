@@ -2,7 +2,7 @@ package gg.norisk.bungeecord;
 
 import gg.norisk.bungeecord.api.NrcChannelRegister;
 import gg.norisk.core.common.Constants;
-import gg.norisk.core.common.NoRiskServerApi;
+import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.manager.InputbarPayloadManager;
 import gg.norisk.core.payloads.Payloads;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -14,7 +14,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
 public class BungeeCord extends Plugin implements Listener {
-    private final NoRiskServerApi api = new NoRiskServerApi();
+    private final CoreAPI api = new CoreAPI();
     
     @Override
     public void onEnable() {
@@ -51,7 +51,7 @@ public class BungeeCord extends Plugin implements Listener {
         }
     }
     
-    public NoRiskServerApi getApi() {
+    public CoreAPI getApi() {
         return api;
     }
 } 
