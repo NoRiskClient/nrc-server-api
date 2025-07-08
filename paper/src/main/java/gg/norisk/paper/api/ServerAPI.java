@@ -3,6 +3,7 @@ package gg.norisk.paper.api;
 import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.common.NoRiskServerAPI;
 import gg.norisk.core.common.PacketListener;
+import gg.norisk.core.exceptions.NoNrcPlayer;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
 import gg.norisk.paper.Paper;
@@ -39,23 +40,16 @@ public class ServerAPI implements NoRiskServerAPI {
         Player player = paper.getServer().getPlayer(uuid);
 
         if (player == null) {
+            paper.getLogger().warning("Player " + uuid + " is not online!");
             return;
         }
 
-        if (!coreAPI.isNrcPlayer(uuid)) {
-            return;
+        try {
+            String json = coreAPI.prepareRequest(uuid, request, callback);
+            player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
+        } catch (NoNrcPlayer e) {
+            paper.getLogger().warning("Player " + uuid + " is not registered as a NoRisk Client user!");
         }
-
-        UUID requestId = UUID.randomUUID();
-
-        coreAPI.getCallbackManager().addCallback(requestId, response -> {
-            if (callback.getClass().isInstance(response)) {
-                callback.accept((R) response);
-            }
-        });
-
-        String json = coreAPI.serializePacket(request);
-        player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
     }
 
 

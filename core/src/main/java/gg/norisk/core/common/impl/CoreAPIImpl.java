@@ -1,8 +1,11 @@
 package gg.norisk.core.common.impl;
 
 import java.util.UUID;
+import java.util.function.Consumer;
+import java.util.logging.Logger;
 
 import gg.norisk.core.common.CoreAPI;
+import gg.norisk.core.exceptions.NoNrcPlayer;
 import gg.norisk.core.manager.CallbackManager;
 import gg.norisk.core.manager.PacketEventManager;
 import gg.norisk.core.manager.PacketManager;
@@ -68,5 +71,27 @@ public class CoreAPIImpl implements CoreAPI {
     @Override
     public void unregisterPlayer(UUID uniqueId) {
         this.playerManager.removePlayer(uniqueId);
+    }
+
+    @Override
+    public <R extends InPayload> String prepareRequest(UUID uuid, OutPayload request, Consumer<R> callback) throws NoNrcPlayer, ClassCastException {
+        if (!isNrcPlayer(uuid)) {
+            throw new NoNrcPlayer();
+        }
+
+        UUID requestId = UUID.randomUUID();
+
+        getCallbackManager().addCallback(requestId, response -> {
+            try {
+                // Cast the response to the expected type
+                @SuppressWarnings("unchecked")
+                R typedResponse = (R) response;
+                callback.accept(typedResponse);
+            } catch (ClassCastException e) {
+                throw e;
+            }
+        });
+
+        return serializePacket(request);
     }
 }

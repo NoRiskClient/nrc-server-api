@@ -2,6 +2,7 @@ package gg.norisk.paper.listener;
 
 import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.common.NoRiskServerAPI;
+import gg.norisk.core.payloads.in.AckPayload;
 import gg.norisk.core.payloads.out.HandshakePayload;
 import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
@@ -19,7 +20,7 @@ public class JoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        api.sendRequest(player.getUniqueId(), new HandshakePayload(), packetResponse -> {
+        api.<AckPayload>sendRequest(player.getUniqueId(), new HandshakePayload(), packetResponse -> {
             Bukkit.broadcastMessage(player.getName() + " joined the game");
             coreAPI.registerPlayer(player.getUniqueId());
         });
