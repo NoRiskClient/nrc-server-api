@@ -45,7 +45,7 @@ public class Paper extends JavaPlugin implements Listener, PluginMessageListener
             PacketWrapper packet = coreApi.serializePacketWrapper(message);
             InPayload responsePacket = coreApi.deserialize(packet.payloadJson());
 
-            if (coreApi.getCallbackManager().waitingFor(packet.packetId())) {
+            if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
                 coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
             } else {
                 coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
