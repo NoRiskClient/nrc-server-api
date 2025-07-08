@@ -27,8 +27,9 @@ public class Paper extends JavaPlugin implements Listener, PluginMessageListener
         coreApi = new CoreAPIImpl();
         Paper.api = new ServerAPI(coreApi, this);
 
-        getServer().getPluginManager().registerEvents(new JoinListener(api, coreApi), this);
         getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
+
+        api.registerListener(new JoinListener(coreApi));
 
         getServer().getMessenger().registerOutgoingPluginChannel(this, coreApi.getPluginChannel());
         getServer().getMessenger().registerIncomingPluginChannel(this, coreApi.getPluginChannel(), this);
