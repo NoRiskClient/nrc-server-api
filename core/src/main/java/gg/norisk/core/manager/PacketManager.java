@@ -7,6 +7,7 @@ import gg.norisk.core.manager.models.PacketWrapper;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
 import gg.norisk.core.payloads.in.AckPayload;
+import gg.norisk.core.payloads.in.HandshakePayload;
 import gg.norisk.core.payloads.in.InputbarResponsePayload;
 
 import java.nio.charset.StandardCharsets;
@@ -24,6 +25,7 @@ public class PacketManager {
         // Register all InPayload types
         registerInPayload("ack", AckPayload.class);
         registerInPayload("inputbar_response", InputbarResponsePayload.class);
+        registerInPayload("handshake", HandshakePayload.class);
     }
 
     private static void registerInPayload(String type, Class<? extends InPayload> clazz) {

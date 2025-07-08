@@ -41,13 +41,20 @@ public class Paper extends JavaPlugin implements Listener, PluginMessageListener
     public void onPluginMessageReceived(String channel, @NotNull Player player, byte @NotNull [] message) {
         if (!channel.equals(coreApi.getPluginChannel())) return;
 
+        getLogger().info("Received packet from " + player.getName());
+
         try {
             PacketWrapper packet = coreApi.serializePacketWrapper(message);
+            getLogger().info("Packet: " + packet.payloadJson());
             InPayload responsePacket = coreApi.deserialize(packet.payloadJson());
+            getLogger().info("Response packet: " + responsePacket);
+            getLogger().info("Packet ID: " + packet.packetId());
 
             if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
+                getLogger().info("Received response for packet ID " + packet.packetId());
                 coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
             } else {
+                getLogger().info("Received response for unknown packet ID " + packet.packetId());
                 coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
             }
         } catch (Exception e) {
