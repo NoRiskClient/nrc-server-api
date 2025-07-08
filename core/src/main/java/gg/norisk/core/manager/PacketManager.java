@@ -21,8 +21,7 @@ public class PacketManager {
     private static final Map<String, Class<? extends InPayload>> inPayloadRegistry = new HashMap<>();
 
     static {
-        //TODO: Replace this with the annotations
-        // Register all InPayload types
+        //TODO Auto register mit annotations
         registerInPayload("ack", AckPayload.class);
         registerInPayload("inputbar_response", InputbarResponsePayload.class);
         registerInPayload("handshake", HandshakePayload.class);
@@ -48,6 +47,10 @@ public class PacketManager {
     }
 
     public InPayload deserializeInPayload(String json) {
+        return deserializeInPayload(json, null);
+    }
+
+    public InPayload deserializeInPayload(String json, String type) {
         if (json == null || json.trim().isEmpty()) {
             throw new IllegalArgumentException("JSON string cannot be null or empty");
         }
@@ -55,11 +58,13 @@ public class PacketManager {
         try {
             JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
 
-            if (!jsonObject.has("type")) {
-                throw new IllegalArgumentException("JSON must contain a 'type' field");
+            if (type == null) {
+                if (!jsonObject.has("type")) {
+                    throw new IllegalArgumentException("JSON must contain a 'type' field or type must be provided as parameter");
+                }
+                type = jsonObject.get("type").getAsString();
             }
 
-            String type = jsonObject.get("type").getAsString();
             Class<? extends InPayload> payloadClass = inPayloadRegistry.get(type);
 
             if (payloadClass == null) {
@@ -68,7 +73,7 @@ public class PacketManager {
 
             return gson.fromJson(json, payloadClass);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to deserialize InPayload from JSON: " + json, e);
+            throw new RuntimeException("Failed to deserialize InPayload from JSON: " + json + " with type: " + type, e);
         }
     }
 
@@ -79,11 +84,21 @@ public class PacketManager {
 
         try {
             String json = new String(bytes, StandardCharsets.UTF_8);
-            return gson.fromJson(json, PacketWrapper.class);
+
+            JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+
+            String type = jsonObject.get("type").getAsString();
+            UUID packetId = UUID.fromString(jsonObject.get("packetId").getAsString());
+            String payloadJson = jsonObject.has("payloadJson") ?
+                    jsonObject.get("payloadJson").toString() : "{}";
+
+            return new PacketWrapper(type, packetId, payloadJson);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to deserialize PacketWrapper from byte array", e);
+            String jsonString = new String(bytes, StandardCharsets.UTF_8);
+            throw new RuntimeException("Failed to deserialize PacketWrapper from byte array. JSON: " + jsonString, e);
         }
     }
+
 
     public String serializePacketWrapper(PacketWrapper wrapper) {
         if (wrapper == null) {

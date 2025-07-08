@@ -46,7 +46,7 @@ public class Paper extends JavaPlugin implements Listener, PluginMessageListener
         try {
             PacketWrapper packet = coreApi.serializePacketWrapper(message);
             getLogger().info("Packet: " + packet.payloadJson());
-            InPayload responsePacket = coreApi.deserialize(packet.payloadJson());
+            InPayload responsePacket = coreApi.deserialize(packet.payloadJson(), packet.type());
             getLogger().info("Response packet: " + responsePacket);
             getLogger().info("Packet ID: " + packet.packetId());
 

@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TODO.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/CoreAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/CoreAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PacketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PacketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/Paper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,18 +51,23 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="velocity" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="velocity" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="velocity" type="2d1252cf:ModuleNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
+                <item name="paper" type="2d1252cf:ModuleNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
                 <item name="build" type="c8890929:TasksNode$1" />
               </path>
@@ -95,9 +104,6 @@
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/core/src/main/kotlin/gg/norisk/core/common/NRCPlayer.kt" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="F0I3GW40" />
   </component>
@@ -112,35 +118,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [publishToMavenLocal].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api [publish].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api:fabric [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api:paper [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api:paper [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.noriskclient-server-api:velocity [build].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle./Users/musa/Desktop/norisk/noriskclient-server-api/core [publishToMavenLocal].executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.noriskclient-server-api [build].executor": "Run",
+    "Gradle.noriskclient-server-api [clean].executor": "Run",
+    "Gradle.noriskclient-server-api [publishToMavenLocal].executor": "Run",
+    "Gradle.noriskclient-server-api [publish].executor": "Run",
+    "Gradle.noriskclient-server-api:fabric [build].executor": "Run",
+    "Gradle.noriskclient-server-api:paper [build].executor": "Run",
+    "Gradle.noriskclient-server-api:paper [clean].executor": "Run",
+    "Gradle.noriskclient-server-api:velocity [build].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "dev",
+    "go.import.settings.migrated": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="K2MoveDeclarationsDialog.RECENT_PACKAGE_KEY">
       <recent name="gg.norisk.spigot.api" />
@@ -150,7 +156,7 @@
       <recent name="gg.norisk.core.common" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.noriskclient-server-api:velocity [build]">
+  <component name="RunManager" selected="Gradle.noriskclient-server-api:paper [build]">
     <configuration name="noriskclient-server-api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -263,9 +269,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.noriskclient-server-api:velocity [build]" />
         <item itemvalue="Gradle.noriskclient-server-api:paper [build]" />
         <item itemvalue="Gradle.noriskclient-server-api [publishToMavenLocal]" />
+        <item itemvalue="Gradle.noriskclient-server-api:velocity [build]" />
         <item itemvalue="Gradle.noriskclient-server-api [build]" />
         <item itemvalue="Gradle.noriskclient-server-api:fabric [build]" />
       </list>
@@ -334,11 +340,24 @@
       <workItem from="1751575907847" duration="194000" />
       <workItem from="1751576115737" duration="17000" />
       <workItem from="1751576320462" duration="10000" />
+      <workItem from="1751994300326" duration="6270000" />
+      <workItem from="1752003417034" duration="8398000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

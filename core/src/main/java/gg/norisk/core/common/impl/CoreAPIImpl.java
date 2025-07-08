@@ -49,8 +49,8 @@ public class CoreAPIImpl implements CoreAPI {
     }
 
     @Override
-    public InPayload deserialize(String json) {
-        return packetManager.deserializeInPayload(json);
+    public InPayload deserialize(String json, String type) {
+        return packetManager.deserializeInPayload(json, type);
     }
 
     @Override
