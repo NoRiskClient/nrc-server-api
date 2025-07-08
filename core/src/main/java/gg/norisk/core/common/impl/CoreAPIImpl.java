@@ -1,15 +1,15 @@
 package gg.norisk.core.common.impl;
 
+import java.util.UUID;
+
 import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.manager.CallbackManager;
 import gg.norisk.core.manager.PacketEventManager;
 import gg.norisk.core.manager.PacketManager;
+import gg.norisk.core.manager.PlayerManager;
 import gg.norisk.core.manager.models.PacketWrapper;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
-import gg.norisk.core.manager.PlayerManager;
-
-import java.util.UUID;
 
 public class CoreAPIImpl implements CoreAPI {
 
@@ -37,7 +37,7 @@ public class CoreAPIImpl implements CoreAPI {
 
     @Override
     public String serializePacket(OutPayload payload) {
-        return "";
+        return packetManager.serializePacketWrapper(packetManager.serializeOutPayload(payload));
     }
 
     @Override
@@ -47,12 +47,12 @@ public class CoreAPIImpl implements CoreAPI {
 
     @Override
     public InPayload deserialize(String json) {
-        return null;
+        return packetManager.deserializeInPayload(json);
     }
 
     @Override
     public PacketWrapper serializePacketWrapper(byte[] bytes) {
-        return null;
+        return packetManager.deserializePacketWrapper(bytes);
     }
 
     @Override

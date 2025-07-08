@@ -21,7 +21,7 @@ public class PacketEventManager {
     public void registerListener(PacketListener listener) {
         for (Method method : listener.getClass().getDeclaredMethods()) {
             if (method.isAnnotationPresent(PacketHandler.class) && method.getParameterCount() == 2) {
-                // Die Methode muss genau zwei Parameter haben: Player und Packet
+                // Die Methode muss genau zwei Parameter haben: UUID und Packet
                 Class<?> packetType = method.getParameterTypes()[1];
                 if (InPayload.class.isAssignableFrom(packetType)) {
                     @SuppressWarnings("unchecked")
