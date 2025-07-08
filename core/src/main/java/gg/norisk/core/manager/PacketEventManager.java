@@ -15,9 +15,6 @@ public class PacketEventManager {
 
     private final Map<Class<? extends InPayload>, List<ListenerMethod>> listenerMethods = new ConcurrentHashMap<>();
 
-    /**
-     * Registriert alle @PacketHandler Methoden in einem Listener-Objekt.
-     */
     public void registerListener(PacketListener listener) {
         for (Method method : listener.getClass().getDeclaredMethods()) {
             if (method.isAnnotationPresent(PacketHandler.class) && method.getParameterCount() == 2) {
@@ -33,9 +30,6 @@ public class PacketEventManager {
         }
     }
 
-    /**
-     * Ruft alle relevanten Listener für ein ankommendes Packet auf.
-     */
     public void callEvent(UUID sender, InPayload packet) {
         List<ListenerMethod> methods = listenerMethods.get(packet.getClass());
         if (methods != null) {
