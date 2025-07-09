@@ -8,7 +8,9 @@ import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
 import gg.norisk.paper.Paper;
 import lombok.RequiredArgsConstructor;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
@@ -31,8 +33,14 @@ public class ServerAPI implements NoRiskServerAPI {
             return;
         }
 
-        String json = coreAPI.serializePacket(packet);
-        player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                String json = coreAPI.serializePacket(packet);
+                player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
+                Bukkit.getLogger().info("[NoRiskClientServerAPI] Payload (" + packet.getClass().getSimpleName() + ") erfolgreich an " + uuid + " gesendet.");
+            }
+        }.runTaskLater(paper, 10L);
     }
 
     @Override
@@ -44,12 +52,19 @@ public class ServerAPI implements NoRiskServerAPI {
             return;
         }
 
-        try {
-            String json = coreAPI.prepareRequest(uuid, request, callback);
-            player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
-        } catch (NoNrcPlayer e) {
-            paper.getLogger().warning("Player " + uuid + " is not registered as a NoRisk Client user!");
-        }
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                String json = null;
+                try {
+                    json = coreAPI.prepareRequest(uuid, request, callback);
+                } catch (NoNrcPlayer e) {
+                    throw new RuntimeException(e);
+                }
+                player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
+                Bukkit.getLogger().info("[NoRiskClientServerAPI] Request (" + request.getClass().getSimpleName() + ") erfolgreich an " + uuid + " gesendet.");
+            }
+        }.runTaskLater(paper, 10L);
     }
 
 
