@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import gg.norisk.core.common.CoreAPI;
+import gg.norisk.core.common.NoRiskServerAPI;
 import gg.norisk.core.exceptions.NoNrcPlayer;
 import gg.norisk.core.manager.CallbackManager;
 import gg.norisk.core.manager.PacketEventManager;
@@ -20,12 +21,17 @@ public class CoreAPIImpl implements CoreAPI {
     private final PacketEventManager packetEventManager;
     private final CallbackManager callbackManager;
     private final PacketManager packetManager;
+    private NoRiskServerAPI serverAPI;
 
     public CoreAPIImpl() {
         this.playerManager = new PlayerManager();
         this.packetEventManager = new PacketEventManager();
         this.callbackManager = new CallbackManager();
         this.packetManager = new PacketManager();
+    }
+
+    public void setServerAPI(NoRiskServerAPI serverAPI) {
+        this.serverAPI = serverAPI;
     }
 
     @Override
@@ -93,5 +99,10 @@ public class CoreAPIImpl implements CoreAPI {
         });
 
         return serializePacket(request);
+    }
+
+    @Override
+    public PlayerManager getPlayerManager() {
+        return this.playerManager;
     }
 }

@@ -3,6 +3,7 @@ package gg.norisk.core.common;
 import gg.norisk.core.exceptions.NoNrcPlayer;
 import gg.norisk.core.manager.CallbackManager;
 import gg.norisk.core.manager.PacketEventManager;
+import gg.norisk.core.manager.PlayerManager;
 import gg.norisk.core.manager.models.PacketWrapper;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
@@ -35,4 +36,6 @@ public interface CoreAPI {
     void unregisterPlayer(UUID uniqueId);
 
     <R extends InPayload> String prepareRequest(UUID uuid, OutPayload request, Consumer<R> callback) throws NoNrcPlayer;
+
+    PlayerManager getPlayerManager();
 }

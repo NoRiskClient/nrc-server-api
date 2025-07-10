@@ -8,9 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/CoreAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/CoreAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PacketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PacketManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/Paper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/api/ServerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/api/ServerAPI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/JoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/JoinListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/QuitListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/QuitListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -345,7 +346,8 @@
       <workItem from="1752094179921" duration="25000" />
       <workItem from="1752102450559" duration="11000" />
       <workItem from="1752152243553" duration="3130000" />
-      <workItem from="1752160179902" duration="4203000" />
+      <workItem from="1752160179902" duration="4965000" />
+      <workItem from="1752174759065" duration="3719000" />
     </task>
     <servers />
   </component>

@@ -11,16 +11,12 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;
-import gg.norisk.core.payloads.out.InputbarPayload;
-import gg.norisk.core.payloads.out.WheelPayload;
-import gg.norisk.core.payloads.out.GamemodePayload;
-import gg.norisk.core.payloads.out.BeaconBeamPayload;
-import gg.norisk.core.payloads.out.ModuleDeactivatePayload;
 import gg.norisk.core.payloads.models.Dimension;
 import gg.norisk.core.payloads.models.RGBColor;
 import gg.norisk.core.payloads.models.XYZ;
 import gg.norisk.core.payloads.models.Modules;
 import gg.norisk.core.payloads.in.InputbarResponsePayload;
+import gg.norisk.core.models.NrcPlayer;
 import java.util.Arrays;
 
 
@@ -38,9 +34,12 @@ public class JoinListener implements PacketListener {
     @PacketHandler
     public void onPlayerJoin(UUID uuid, HandshakePayload payload) {
         Bukkit.broadcastMessage(uuid + " joined the game!");
-        coreAPI.registerPlayer(uuid);
+        coreAPI.getPlayerManager().setNrcPlayer(uuid, true);
 
-        serverAPI.sendPacket(uuid, new ToastPayload(
+        NrcPlayer nrcPlayer = coreAPI.getPlayerManager().getNrcPlayer(uuid);
+        if (nrcPlayer == null) return;
+
+        serverAPI.sendPacket(uuid, nrcPlayer.sendToast(
                 true,
                 "Willkommen!",
                 "Du bist dem Server beigetreten.",
@@ -48,24 +47,24 @@ public class JoinListener implements PacketListener {
                 uuid,
                 ToastType.SUCCESS
         ));
-        serverAPI.sendPacket(uuid, new InputbarPayload(
+        serverAPI.sendPacket(uuid, nrcPlayer.sendInputbar(
                 "Wie heißt du?",
                 "Dein Name...",
                 32
         ));
-        serverAPI.sendPacket(uuid, new WheelPayload(
+        serverAPI.sendPacket(uuid, nrcPlayer.sendWheel(
                 "Test-Eintrag",
                 "/help"
         ));
-        serverAPI.sendPacket(uuid, new GamemodePayload(
+        serverAPI.sendPacket(uuid, nrcPlayer.sendGamemode(
                 "CityBuild"
         ));
-        serverAPI.sendPacket(uuid, new BeaconBeamPayload(
+        serverAPI.sendPacket(uuid, nrcPlayer.sendBeaconBeam(
                 new XYZ(0, 64, 0),
                 Dimension.OVERWORLD,
                 new RGBColor(255, 0, 0)
         ));
-        serverAPI.sendPacket(uuid, new ModuleDeactivatePayload(
+        serverAPI.sendPacket(uuid, nrcPlayer.sendModuleDeactivate(
                 Arrays.asList(Modules.FOV_CHANGER, Modules.FREE_LOOK_MODULE)
         ));
     }

@@ -4,6 +4,7 @@ import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.common.NoRiskServerAPI;
 import gg.norisk.core.common.PacketListener;
 import gg.norisk.core.exceptions.NoNrcPlayer;
+import gg.norisk.core.models.NrcPlayer;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
 import gg.norisk.paper.Paper;
@@ -24,23 +25,25 @@ public class ServerAPI implements NoRiskServerAPI {
     @Override
     public void sendPacket(UUID uuid, OutPayload packet) {
         Player player = paper.getServer().getPlayer(uuid);
-
         if (player == null) {
             return;
         }
-
         if (!coreAPI.isNrcPlayer(uuid)) {
             return;
         }
-
-        new BukkitRunnable() {
+        String json = coreAPI.serializePacket(packet);
+        BukkitRunnable runnable = new BukkitRunnable() {
             @Override
             public void run() {
-                String json = coreAPI.serializePacket(packet);
                 player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
                 Bukkit.getLogger().info("[NoRiskClientServerAPI] Payload (" + packet.getClass().getSimpleName() + ") erfolgreich an " + uuid + " gesendet.");
             }
-        }.runTaskLater(paper, 10L);
+        };
+        if (packet instanceof gg.norisk.core.payloads.in.HandshakePayload) {
+            runnable.runTaskLater(paper, 10L);
+        } else {
+            runnable.runTask(paper);
+        }
     }
 
     @Override
@@ -52,6 +55,10 @@ public class ServerAPI implements NoRiskServerAPI {
             return;
         }
 
+        NrcPlayer nrcPlayer = coreAPI.getPlayerManager().getNrcPlayer(uuid);
+
+        if (nrcPlayer == null) return;
+
         new BukkitRunnable() {
             @Override
             public void run() {
@@ -61,7 +68,7 @@ public class ServerAPI implements NoRiskServerAPI {
                 } catch (NoNrcPlayer e) {
                     throw new RuntimeException(e);
                 }
-                player.sendPluginMessage(paper, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
+                nrcPlayer.sendPayload(coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
                 Bukkit.getLogger().info("[NoRiskClientServerAPI] Request (" + request.getClass().getSimpleName() + ") erfolgreich an " + uuid + " gesendet.");
             }
         }.runTaskLater(paper, 10L);

@@ -13,6 +13,6 @@ public class QuitListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        api.unregisterPlayer(event.getPlayer().getUniqueId());
+        api.getPlayerManager().removePlayer(event.getPlayer().getUniqueId());
     }
 }
