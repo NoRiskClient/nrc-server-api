@@ -24,7 +24,7 @@ public interface CoreAPI {
 
     CallbackManager getCallbackManager();
 
-    InPayload deserialize(String json, String type);
+    InPayload deserialize(PacketWrapper wrapper);
 
     PacketWrapper serializePacketWrapper(byte[] bytes);
 

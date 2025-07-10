@@ -1,6 +1,7 @@
 package gg.norisk.core.manager;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import gg.norisk.core.manager.models.PacketWrapper;
@@ -17,7 +18,7 @@ import java.util.UUID;
 
 public class PacketManager {
 
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder().serializeNulls().create();
     private static final Map<String, Class<? extends InPayload>> inPayloadRegistry = new HashMap<>();
 
     static {
@@ -46,6 +47,10 @@ public class PacketManager {
         return new PacketWrapper(type, packetId, payloadJson);
     }
 
+    public InPayload deserializeInPayload(PacketWrapper wrapper) {
+        return deserializeInPayload(wrapper.payloadJson(), wrapper.type());
+    }
+
     public InPayload deserializeInPayload(String json) {
         return deserializeInPayload(json, null);
     }
@@ -71,7 +76,7 @@ public class PacketManager {
                 throw new IllegalArgumentException("Unknown payload type: " + type);
             }
 
-            return gson.fromJson(json, payloadClass);
+            return gson.fromJson(jsonObject, payloadClass);
         } catch (Exception e) {
             throw new RuntimeException("Failed to deserialize InPayload from JSON: " + json + " with type: " + type, e);
         }
@@ -90,7 +95,7 @@ public class PacketManager {
             String type = jsonObject.get("type").getAsString();
             UUID packetId = UUID.fromString(jsonObject.get("packetId").getAsString());
             String payloadJson = jsonObject.has("payloadJson") ?
-                    jsonObject.get("payloadJson").toString() : "{}";
+                    jsonObject.get("payloadJson").getAsString() : "{}";
 
             return new PacketWrapper(type, packetId, payloadJson);
         } catch (Exception e) {

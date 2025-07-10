@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/api/ServerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/api/ServerAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/CoreAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/CoreAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PacketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PacketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/Paper.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/Paper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/JoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/JoinListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,12 +55,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="noriskclient-server-api" type="f1a62948:ProjectNode" />
                 <item name="paper" type="2d1252cf:ModuleNode" />
               </path>
               <path>
@@ -98,12 +94,12 @@
     &quot;assignee&quot;: &quot;S42yt&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/NoRiskClient/noriskclient-server-api",
-    "accountId": "2e4c785d-9fbb-4777-829d-b67d0b5ff156"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/NoRiskClient/noriskclient-server-api&quot;,
+    &quot;accountId&quot;: &quot;2e4c785d-9fbb-4777-829d-b67d0b5ff156&quot;
   }
-}]]></component>
+}</component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
@@ -159,7 +155,7 @@
       <recent name="gg.norisk.core.common" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.noriskclient-server-api [publishToMavenLocal]">
+  <component name="RunManager" selected="Gradle.noriskclient-server-api:paper [build]">
     <configuration name="noriskclient-server-api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -272,8 +268,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.noriskclient-server-api [publishToMavenLocal]" />
         <item itemvalue="Gradle.noriskclient-server-api:paper [build]" />
+        <item itemvalue="Gradle.noriskclient-server-api [publishToMavenLocal]" />
         <item itemvalue="Gradle.noriskclient-server-api:velocity [build]" />
         <item itemvalue="Gradle.noriskclient-server-api [build]" />
         <item itemvalue="Gradle.noriskclient-server-api:fabric [build]" />
@@ -346,6 +342,10 @@
       <workItem from="1751994300326" duration="6270000" />
       <workItem from="1752003417034" duration="8398000" />
       <workItem from="1752093115981" duration="989000" />
+      <workItem from="1752094179921" duration="25000" />
+      <workItem from="1752102450559" duration="11000" />
+      <workItem from="1752152243553" duration="3130000" />
+      <workItem from="1752160179902" duration="4203000" />
     </task>
     <servers />
   </component>

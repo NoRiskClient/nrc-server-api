@@ -11,6 +11,17 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 
 import java.util.UUID;
+import gg.norisk.core.payloads.out.InputbarPayload;
+import gg.norisk.core.payloads.out.WheelPayload;
+import gg.norisk.core.payloads.out.GamemodePayload;
+import gg.norisk.core.payloads.out.BeaconBeamPayload;
+import gg.norisk.core.payloads.out.ModuleDeactivatePayload;
+import gg.norisk.core.payloads.models.Dimension;
+import gg.norisk.core.payloads.models.RGBColor;
+import gg.norisk.core.payloads.models.XYZ;
+import gg.norisk.core.payloads.models.Modules;
+import gg.norisk.core.payloads.in.InputbarResponsePayload;
+import java.util.Arrays;
 
 
 @RequiredArgsConstructor
@@ -30,14 +41,42 @@ public class JoinListener implements PacketListener {
         coreAPI.registerPlayer(uuid);
 
         serverAPI.sendPacket(uuid, new ToastPayload(
-                false,
+                true,
                 "Willkommen!",
                 "Du bist dem Server beigetreten.",
-                false,
+                true,
                 uuid,
                 ToastType.SUCCESS
         ));
+        serverAPI.sendPacket(uuid, new InputbarPayload(
+                "Wie heißt du?",
+                "Dein Name...",
+                32
+        ));
+        serverAPI.sendPacket(uuid, new WheelPayload(
+                "Test-Eintrag",
+                "/help"
+        ));
+        serverAPI.sendPacket(uuid, new GamemodePayload(
+                "CityBuild"
+        ));
+        serverAPI.sendPacket(uuid, new BeaconBeamPayload(
+                new XYZ(0, 64, 0),
+                Dimension.OVERWORLD,
+                new RGBColor(255, 0, 0)
+        ));
+        serverAPI.sendPacket(uuid, new ModuleDeactivatePayload(
+                Arrays.asList(Modules.FOV_CHANGER, Modules.FREE_LOOK_MODULE)
+        ));
+    }
+
+    @PacketHandler
+    public void onInputbarResponse(UUID uuid, InputbarResponsePayload payload) {
+        if (!payload.isCanceled()) {
+            Bukkit.broadcastMessage(uuid + " hat geantwortet: " + payload.getInput());
+        } else {
+            Bukkit.broadcastMessage(uuid + " hat die Eingabe abgebrochen.");
+        }
     }
 
 }
-
