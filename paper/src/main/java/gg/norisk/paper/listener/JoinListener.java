@@ -29,6 +29,7 @@ public class JoinListener implements PacketListener {
     public JoinListener(CoreAPI coreAPI) {
         this.coreAPI = coreAPI;
         this.serverAPI = gg.norisk.paper.Paper.getApi();
+        this.coreAPI.setServerAPI(this.serverAPI);
     }
 
     @PacketHandler
@@ -39,34 +40,34 @@ public class JoinListener implements PacketListener {
         NrcPlayer nrcPlayer = coreAPI.getPlayerManager().getNrcPlayer(uuid);
         if (nrcPlayer == null) return;
 
-        serverAPI.sendPacket(uuid, nrcPlayer.sendToast(
+        nrcPlayer.sendToast(
                 true,
                 "Willkommen!",
                 "Du bist dem Server beigetreten.",
                 true,
                 uuid,
                 ToastType.SUCCESS
-        ));
-        serverAPI.sendPacket(uuid, nrcPlayer.sendInputbar(
+        );
+        nrcPlayer.sendInputbar(
                 "Wie heißt du?",
                 "Dein Name...",
                 32
-        ));
-        serverAPI.sendPacket(uuid, nrcPlayer.sendWheel(
+        );
+        nrcPlayer.sendWheel(
                 "Test-Eintrag",
                 "/help"
-        ));
-        serverAPI.sendPacket(uuid, nrcPlayer.sendGamemode(
+        );
+        nrcPlayer.sendGamemode(
                 "CityBuild"
-        ));
-        serverAPI.sendPacket(uuid, nrcPlayer.sendBeaconBeam(
+        );
+        nrcPlayer.sendBeaconBeam(
                 new XYZ(0, 64, 0),
                 Dimension.OVERWORLD,
                 new RGBColor(255, 0, 0)
-        ));
-        serverAPI.sendPacket(uuid, nrcPlayer.sendModuleDeactivate(
+        );
+        nrcPlayer.sendModuleDeactivate(
                 Arrays.asList(Modules.FOV_CHANGER, Modules.FREE_LOOK_MODULE)
-        ));
+        );
     }
 
     @PacketHandler

@@ -38,4 +38,6 @@ public interface CoreAPI {
     <R extends InPayload> String prepareRequest(UUID uuid, OutPayload request, Consumer<R> callback) throws NoNrcPlayer;
 
     PlayerManager getPlayerManager();
+
+    void setServerAPI(NoRiskServerAPI serverAPI);
 }

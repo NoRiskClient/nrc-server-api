@@ -14,53 +14,48 @@ import gg.norisk.core.payloads.models.Dimension;
 import gg.norisk.core.payloads.models.RGBColor;
 import gg.norisk.core.payloads.models.XYZ;
 import gg.norisk.core.payloads.models.Modules;
-import lombok.Getter;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-@Getter
-public class NrcPlayer {
-    private final UUID uniqueId;
-
-    public NrcPlayer(UUID uniqueId) {
-        this.uniqueId = uniqueId;
-    }
-
+public record NrcPlayer(UUID uniqueId, gg.norisk.core.common.NoRiskServerAPI serverAPI) {
     public void sendPayload(OutPayload payload) {
+        serverAPI.sendPacket(uniqueId, payload);
     }
 
     public void sendPayload(String channel, byte[] data) {
     }
 
-    public ToastPayload sendToast(boolean show, String header, String description, boolean persistent, UUID uuid, ToastType type) {
-        return new ToastPayload(show, header, description, persistent, uuid, type);
+    public void sendToast(boolean show, String header, String description, boolean persistent, UUID uuid, ToastType type) {
+        serverAPI.sendPacket(uniqueId, new ToastPayload(show, header, description, persistent, uuid, type));
     }
 
-    public InputbarPayload sendInputbar(String header, String placeholder, int maxLength) {
-        return new InputbarPayload(header, placeholder, maxLength);
+    public void sendInputbar(String header, String placeholder, int maxLength) {
+        serverAPI.sendPacket(uniqueId, new InputbarPayload(header, placeholder, maxLength));
     }
 
-    public WheelPayload sendWheel(String entry, String command) {
-        return new WheelPayload(entry, command);
+    public void sendWheel(String entry, String command) {
+        serverAPI.sendPacket(uniqueId, new WheelPayload(entry, command));
     }
 
-    public GamemodePayload sendGamemode(String gamemode) {
-        return new GamemodePayload(gamemode);
+    public void sendGamemode(String gamemode) {
+        serverAPI.sendPacket(uniqueId, new GamemodePayload(gamemode));
     }
 
-    public BeaconBeamPayload sendBeaconBeam(XYZ xyz, Dimension dimension, RGBColor color) {
-        return new BeaconBeamPayload(xyz, dimension, color);
+    public void sendBeaconBeam(XYZ xyz, Dimension dimension, RGBColor color) {
+        serverAPI.sendPacket(uniqueId, new BeaconBeamPayload(xyz, dimension, color));
     }
 
-    public ModuleDeactivatePayload sendModuleDeactivate(List<Modules> modules) {
-        return new ModuleDeactivatePayload(modules);
+    public void sendModuleDeactivate(List<Modules> modules) {
+        serverAPI.sendPacket(uniqueId, new ModuleDeactivatePayload(modules));
     }
 
     public <R extends InPayload> void sendRequest(String channel, OutPayload request, Consumer<R> callback) {
+        serverAPI.sendRequest(uniqueId, request, callback);
     }
 
     public void registerListener(PacketListener listener) {
+        serverAPI.registerListener(listener);
     }
 }

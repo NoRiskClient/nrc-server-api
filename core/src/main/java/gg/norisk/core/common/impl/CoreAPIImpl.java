@@ -23,15 +23,21 @@ public class CoreAPIImpl implements CoreAPI {
     private final PacketManager packetManager;
     private NoRiskServerAPI serverAPI;
 
-    public CoreAPIImpl() {
-        this.playerManager = new PlayerManager();
+    public CoreAPIImpl(NoRiskServerAPI serverAPI) {
+        this.serverAPI = serverAPI;
+        this.playerManager = new PlayerManager(serverAPI);
         this.packetEventManager = new PacketEventManager();
         this.callbackManager = new CallbackManager();
         this.packetManager = new PacketManager();
     }
 
+    public CoreAPIImpl() {
+        this(null);
+    }
+
     public void setServerAPI(NoRiskServerAPI serverAPI) {
         this.serverAPI = serverAPI;
+        this.playerManager.setServerAPI(serverAPI);
     }
 
     @Override
