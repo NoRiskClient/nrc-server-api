@@ -1,4 +1,4 @@
-package gg.norisk.paper.listener;
+package gg.norisk.fabric.listener;
 
 import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.common.PacketHandler;
@@ -17,4 +17,4 @@ public class JoinListener implements PacketListener {
     public void onPlayerJoin(UUID uuid, HandshakePayload payload) {
         coreAPI.getPlayerManager().setNrcPlayer(uuid, true);
     }
-}
+} 

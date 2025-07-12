@@ -8,45 +8,53 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
-import gg.norisk.core.common.Constants;
-import gg.norisk.core.common.CoreAPI;
-import gg.norisk.core.manager.InputbarPayloadManager;
-import gg.norisk.core.payloads.Payloads;
-import gg.norisk.spigot.api.NrcChannelRegistrar;
+import gg.norisk.spigot.api.ServerAPI;
+import gg.norisk.core.common.impl.CoreAPIImpl;
+import gg.norisk.core.common.PacketListener;
+import gg.norisk.spigot.listener.QuitListener;
+import gg.norisk.spigot.listener.JoinListener;
+import gg.norisk.core.manager.models.PacketWrapper;
+import gg.norisk.core.payloads.InPayload;
 
 public class Spigot extends JavaPlugin implements Listener, PluginMessageListener {
-    private final CoreAPI api = new CoreAPI();
-    
+    private static ServerAPI api;
+    private CoreAPIImpl coreApi;
+
     @Override
     public void onEnable() {
         getLogger().info("NoRiskClient-Server-API Spigot module is starting...");
-        NrcChannelRegistrar.register(this);
-        getServer().getPluginManager().registerEvents(this, this);
+        coreApi = new CoreAPIImpl();
+        Spigot.api = new ServerAPI(coreApi, this);
+        getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
+        api.registerListener(new JoinListener(coreApi));
+        getServer().getMessenger().registerOutgoingPluginChannel(this, coreApi.getPluginChannel());
+        getServer().getMessenger().registerIncomingPluginChannel(this, coreApi.getPluginChannel(), this);
         getLogger().info("NoRiskClient-Server-API Spigot module is ready!");
     }
-    
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        Payloads.sendHandshake(player.getUniqueId(), (uuid, data) -> {
-            player.sendPluginMessage(this, Constants.NRC_CHANNEL, data);
-        });
-    }
-    
-    @EventHandler
-    public void onPlayerQuit(PlayerQuitEvent event) {
-        Payloads.onPlayerLeave(event.getPlayer().getUniqueId());
-        InputbarPayloadManager.unregisterSession(event.getPlayer().getUniqueId());
-    }
-    
+
     @Override
     public void onPluginMessageReceived(String channel, Player player, byte[] message) {
-        if (Constants.NRC_CHANNEL.equals(channel)) {
-            Payloads.receive(player.getUniqueId(), message);
+        if (!channel.equals(coreApi.getPluginChannel())) return;
+        getLogger().info("Received packet from " + player.getName());
+        try {
+            PacketWrapper packet = coreApi.serializePacketWrapper(message);
+            getLogger().info("Packet: " + packet.payloadJson());
+            InPayload responsePacket = coreApi.deserialize(packet);
+            getLogger().info("Response packet: " + responsePacket);
+            getLogger().info("Packet ID: " + packet.packetId());
+            if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
+                getLogger().info("Received response for packet ID " + packet.packetId());
+                coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
+            } else {
+                getLogger().info("Received response for unknown packet ID " + packet.packetId());
+                coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
+            }
+        } catch (Exception e) {
+            getLogger().severe("Unable to deserialize packet: " + e.getMessage());
         }
     }
-    
-    public CoreAPI getApi() {
+
+    public static ServerAPI getApi() {
         return api;
     }
 } 

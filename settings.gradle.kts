@@ -13,7 +13,12 @@ plugins {
 }
 
 rootProject.name = "noriskclient-server-api"
-include(":core", ":paper", ":fabric")
-include("spigot")
-include("velocity")
-include("bungeecord")
+
+include(
+    "core",
+    "paper",
+    "spigot", 
+    "bungeecord",
+    "velocity",
+    "fabric"
+)

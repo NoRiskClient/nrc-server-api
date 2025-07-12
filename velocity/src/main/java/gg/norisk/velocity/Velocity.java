@@ -15,11 +15,14 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
-import gg.norisk.core.common.Constants;
-import gg.norisk.core.common.CoreAPI;
-import gg.norisk.core.manager.InputbarPayloadManager;
-import gg.norisk.core.payloads.Payloads;
-import gg.norisk.velocity.api.NrcChannelRegister;
+import gg.norisk.velocity.api.ServerAPI;
+import gg.norisk.core.common.impl.CoreAPIImpl;
+import gg.norisk.core.common.PacketListener;
+import gg.norisk.velocity.listener.QuitListener;
+import gg.norisk.velocity.listener.JoinListener;
+import gg.norisk.core.manager.models.PacketWrapper;
+import gg.norisk.core.payloads.InPayload;
+import com.velocitypowered.api.proxy.Player;
 
 @Plugin(
     id = "noriskclient-server-api",
@@ -32,54 +35,57 @@ public class Velocity {
     private final ProxyServer server;
     private final Logger logger;
     private final Path dataDirectory;
-    private final CoreAPI api = new CoreAPI();
-    private final MinecraftChannelIdentifier channelIdentifier = MinecraftChannelIdentifier.from(Constants.NRC_CHANNEL);
-    
+    private final CoreAPIImpl coreApi = new CoreAPIImpl();
+    private final MinecraftChannelIdentifier channelIdentifier = MinecraftChannelIdentifier.from("norisk:main");
+    private static ServerAPI api;
+
     @Inject
     public Velocity(ProxyServer server, Logger logger, @DataDirectory Path dataDirectory) {
         this.server = server;
         this.logger = logger;
         this.dataDirectory = dataDirectory;
+        Velocity.api = new ServerAPI(coreApi, server, logger, channelIdentifier);
     }
-    
+
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         logger.info("NoRiskClient-Server-API Velocity module is starting...");
-        NrcChannelRegister.register(server, logger);
+        server.getChannelRegistrar().register(channelIdentifier);
+        server.getEventManager().register(this, new QuitListener(coreApi));
+        api.registerListener(new JoinListener(coreApi));
         logger.info("NoRiskClient-Server-API Velocity module is ready!");
     }
-    
-    @Subscribe
-    public void onPlayerJoin(PostLoginEvent event) {
-        var player = event.getPlayer();
-        Payloads.sendHandshake(player.getUniqueId(), (uuid, data) -> {
-            player.getCurrentServer().ifPresent(serverConnection -> {
-                serverConnection.sendPluginMessage(MinecraftChannelIdentifier.from(Constants.NRC_CHANNEL), data);
-            });
-        });
-    }
-    
-    @Subscribe
-    public void onPlayerQuit(DisconnectEvent event) {
-        Payloads.onPlayerLeave(event.getPlayer().getUniqueId());
-        InputbarPayloadManager.unregisterSession(event.getPlayer().getUniqueId());
-    }
-    
+
     @Subscribe
     public void onPluginMessage(PluginMessageEvent event) {
-        if (event.getIdentifier().getId().equals(Constants.NRC_CHANNEL)) {
-            var source = event.getSource();
-            if (source instanceof com.velocitypowered.api.proxy.Player) {
-                com.velocitypowered.api.proxy.Player player = (com.velocitypowered.api.proxy.Player) source;
-                Payloads.receive(player.getUniqueId(), event.getData());
+        if (!channelIdentifier.getId().equals(event.getIdentifier().getId())) return;
+        var source = event.getSource();
+        if (source instanceof Player) {
+            Player player = (Player) source;
+            logger.info("Received packet from " + player.getUsername());
+            try {
+                PacketWrapper packet = coreApi.serializePacketWrapper(event.getData());
+                logger.info("Packet: " + packet.payloadJson());
+                InPayload responsePacket = coreApi.deserialize(packet);
+                logger.info("Response packet: " + responsePacket);
+                logger.info("Packet ID: " + packet.packetId());
+                if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
+                    logger.info("Received response for packet ID " + packet.packetId());
+                    coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
+                } else {
+                    logger.info("Received response for unknown packet ID " + packet.packetId());
+                    coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
+                }
+            } catch (Exception e) {
+                logger.error("Unable to deserialize packet: " + e.getMessage());
             }
         }
     }
-    
-    public CoreAPI getApi() {
+
+    public static ServerAPI getApi() {
         return api;
     }
-    
+
     public MinecraftChannelIdentifier getChannelIdentifier() {
         return channelIdentifier;
     }

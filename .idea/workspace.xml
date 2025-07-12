@@ -5,11 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06fcfc12-105e-4d12-9c9e-7ee391f8e7ad" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/common/impl/CoreAPIImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/manager/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/models/NrcPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/models/NrcPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bungeecord/src/main/java/gg/norisk/bungeecord/BungeeCord.java" beforeDir="false" afterPath="$PROJECT_DIR$/bungeecord/src/main/java/gg/norisk/bungeecord/BungeeCord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bungeecord/src/main/java/gg/norisk/bungeecord/api/NrcChannelRegister.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/payloads/out/InputbarPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/gg/norisk/core/payloads/out/InputbarPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/gg/norisk/fabric/Fabric.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/gg/norisk/fabric/Fabric.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/gg/norisk/fabric/api/NrcChannelRegistrar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/gg/norisk/fabric/api/NrcCustomPayload.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/gg/norisk/fabric/api/NrcCustomPayload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fabric/src/main/java/gg/norisk/fabric/server/FabricServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/fabric/src/main/java/gg/norisk/fabric/server/FabricServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/JoinListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/paper/src/main/java/gg/norisk/paper/listener/JoinListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spigot/src/main/java/gg/norisk/spigot/Spigot.java" beforeDir="false" afterPath="$PROJECT_DIR$/spigot/src/main/java/gg/norisk/spigot/Spigot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spigot/src/main/java/gg/norisk/spigot/api/NrcChannelRegistrar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/velocity/src/main/java/gg/norisk/velocity/Velocity.java" beforeDir="false" afterPath="$PROJECT_DIR$/velocity/src/main/java/gg/norisk/velocity/Velocity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/velocity/src/main/java/gg/norisk/velocity/api/NrcChannelRegister.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
