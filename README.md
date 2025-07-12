@@ -1,3 +1,5 @@
 # NoRisk-Client Server API
 
-Um mit Plugins, mit der NoRisk-Client API zu kommunizieren.
+To communicate easily with the NoRisk Client
+
+Documentation: https://docs.norisk.gg

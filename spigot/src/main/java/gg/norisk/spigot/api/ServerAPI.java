@@ -7,8 +7,10 @@ import gg.norisk.core.exceptions.NoNrcPlayer;
 import gg.norisk.core.models.NrcPlayer;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
+import gg.norisk.spigot.Spigot;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -25,6 +27,34 @@ public class ServerAPI implements NoRiskServerAPI {
         this.plugin = plugin;
     }
 
+    public static ServerAPI create(Plugin plugin) {
+        try {
+            if (Spigot.getInstance() == null) {
+                plugin.getLogger().severe("NoRiskClient-Server-API Spigot module is not loaded! Make sure it's in your plugins folder.");
+                return null;
+            }
+            
+            if (Spigot.getCoreApi() == null) {
+                plugin.getLogger().severe("NoRiskClient-Server-API Spigot module failed to initialize properly.");
+                return null;
+            }
+            
+            plugin.getLogger().info("NoRiskClient-Server-API initialized successfully");
+            return new ServerAPI(Spigot.getCoreApi(), Spigot.getInstance());
+        } catch (Exception e) {
+            plugin.getLogger().severe("Failed to initialize NoRisk API: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static boolean isAvailable() {
+        try {
+            return Spigot.getInstance() != null && Spigot.getCoreApi() != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     @Override
     public void sendPacket(UUID uuid, OutPayload packet) {
         Player player = plugin.getServer().getPlayer(uuid);
@@ -39,7 +69,7 @@ public class ServerAPI implements NoRiskServerAPI {
             @Override
             public void run() {
                 player.sendPluginMessage(plugin, coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
-                Bukkit.getLogger().info("[NoRiskClientServerAPI] Payload (" + packet.getClass().getSimpleName() + ") erfolgreich an " + uuid + " gesendet.");
+                Bukkit.getLogger().info("[NoRiskClientServerAPI] Payload (" + packet.getClass().getSimpleName() + ") successfully sent to " + uuid + ".");
             }
         };
         if (packet instanceof gg.norisk.core.payloads.in.HandshakePayload) {
@@ -68,7 +98,7 @@ public class ServerAPI implements NoRiskServerAPI {
                     throw new RuntimeException(e);
                 }
                 nrcPlayer.sendPayload(coreAPI.getPluginChannel(), json.getBytes(StandardCharsets.UTF_8));
-                Bukkit.getLogger().info("[NoRiskClientServerAPI] Request (" + request.getClass().getSimpleName() + ") erfolgreich an " + uuid + " gesendet.");
+                Bukkit.getLogger().info("[NoRiskClientServerAPI] Request (" + request.getClass().getSimpleName() + ") successfully sent to " + uuid + ".");
             }
         }.runTaskLater(plugin, 10L);
     }

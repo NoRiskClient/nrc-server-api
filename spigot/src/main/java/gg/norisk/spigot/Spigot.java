@@ -15,20 +15,32 @@ import gg.norisk.spigot.listener.QuitListener;
 import gg.norisk.spigot.listener.JoinListener;
 import gg.norisk.core.manager.models.PacketWrapper;
 import gg.norisk.core.payloads.InPayload;
+import lombok.Getter;
 
 public class Spigot extends JavaPlugin implements Listener, PluginMessageListener {
+    @Getter
     private static ServerAPI api;
-    private CoreAPIImpl coreApi;
+    
+    @Getter
+    private static CoreAPIImpl coreApi;
+    
+    @Getter
+    private static Spigot instance;
 
     @Override
     public void onEnable() {
         getLogger().info("NoRiskClient-Server-API Spigot module is starting...");
+        
+        instance = this;
         coreApi = new CoreAPIImpl();
         Spigot.api = new ServerAPI(coreApi, this);
+        
         getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
         api.registerListener(new JoinListener(coreApi));
+        
         getServer().getMessenger().registerOutgoingPluginChannel(this, coreApi.getPluginChannel());
         getServer().getMessenger().registerIncomingPluginChannel(this, coreApi.getPluginChannel(), this);
+        
         getLogger().info("NoRiskClient-Server-API Spigot module is ready!");
     }
 
@@ -52,9 +64,5 @@ public class Spigot extends JavaPlugin implements Listener, PluginMessageListene
         } catch (Exception e) {
             getLogger().severe("Unable to deserialize packet: " + e.getMessage());
         }
-    }
-
-    public static ServerAPI getApi() {
-        return api;
     }
 } 

@@ -6,23 +6,36 @@ import gg.norisk.core.payloads.InPayload;
 import gg.norisk.fabric.api.ServerAPI;
 import gg.norisk.fabric.listener.JoinListener;
 import gg.norisk.fabric.listener.QuitListener;
+import lombok.Getter;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 public class FabricServer implements DedicatedServerModInitializer {
-    private ServerAPI api;
-    private CoreAPIImpl coreApi;
+    @Getter
+    private static ServerAPI api;
+    
+    @Getter
+    private static CoreAPIImpl coreApi;
+    
+    @Getter
+    private static FabricServer instance;
+    
+    private ServerAPI apiInstance;
+    private CoreAPIImpl coreApiInstance;
 
     @Override
     public void onInitializeServer() {
         System.out.println("Initializing NoRiskClient-Server-API Fabric-Server Module...");
         
-        coreApi = new CoreAPIImpl();
-        this.api = new ServerAPI(coreApi);
+        instance = this;
+        coreApiInstance = new CoreAPIImpl();
+        coreApi = coreApiInstance;
+        this.apiInstance = new ServerAPI(coreApiInstance);
+        api = apiInstance;
         
-        api.registerListener(new JoinListener(coreApi));
+        apiInstance.registerListener(new JoinListener(coreApiInstance));
         
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
             onPlayerJoin(handler.getPlayer());
@@ -40,11 +53,11 @@ public class FabricServer implements DedicatedServerModInitializer {
     }
     
     private void onPlayerJoin(ServerPlayerEntity player) {        
-        coreApi.getPlayerManager().setNrcPlayer(player.getUuid(), true);
+        coreApiInstance.getPlayerManager().setNrcPlayer(player.getUuid(), true);
      }
     
     private void onPlayerLeave(ServerPlayerEntity player) {
-        QuitListener quitListener = new QuitListener(coreApi);
+        QuitListener quitListener = new QuitListener(coreApiInstance);
         quitListener.onPlayerQuit(player);
     }
     
@@ -54,30 +67,22 @@ public class FabricServer implements DedicatedServerModInitializer {
             String json = payload.getJson();
             if (json != null) {
                 byte[] messageBytes = json.getBytes(java.nio.charset.StandardCharsets.UTF_8);
-                PacketWrapper packet = coreApi.serializePacketWrapper(messageBytes);
+                PacketWrapper packet = coreApiInstance.serializePacketWrapper(messageBytes);
                 System.out.println("Packet: " + packet.payloadJson());
-                InPayload responsePacket = coreApi.deserialize(packet);
+                InPayload responsePacket = coreApiInstance.deserialize(packet);
                 System.out.println("Response packet: " + responsePacket);
                 System.out.println("Packet ID: " + packet.packetId());
                 
-                if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
+                if (packet.packetId() != null && coreApiInstance.getCallbackManager().waitingFor(packet.packetId())) {
                     System.out.println("Received response for packet ID " + packet.packetId());
-                    coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
+                    coreApiInstance.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
                 } else {
                     System.out.println("Received response for unknown packet ID " + packet.packetId());
-                    coreApi.getEventManager().callEvent(player.getUuid(), responsePacket);
+                    coreApiInstance.getEventManager().callEvent(player.getUuid(), responsePacket);
                 }
             }
         } catch (Exception e) {
             System.err.println("Unable to deserialize packet: " + e.getMessage());
         }
-    }
-
-    public ServerAPI getApi() {
-        return api;
-    }
-    
-    public CoreAPIImpl getCoreApi() {
-        return coreApi;
     }
 } 

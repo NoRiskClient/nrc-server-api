@@ -23,6 +23,7 @@ import gg.norisk.velocity.listener.JoinListener;
 import gg.norisk.core.manager.models.PacketWrapper;
 import gg.norisk.core.payloads.InPayload;
 import com.velocitypowered.api.proxy.Player;
+import lombok.Getter;
 
 @Plugin(
     id = "noriskclient-server-api",
@@ -37,13 +38,23 @@ public class Velocity {
     private final Path dataDirectory;
     private final CoreAPIImpl coreApi = new CoreAPIImpl();
     private final MinecraftChannelIdentifier channelIdentifier = MinecraftChannelIdentifier.from("norisk:main");
+    
+    @Getter
     private static ServerAPI api;
+    
+    @Getter
+    private static CoreAPIImpl coreApiStatic;
+    
+    @Getter
+    private static Velocity instance;
 
     @Inject
     public Velocity(ProxyServer server, Logger logger, @DataDirectory Path dataDirectory) {
         this.server = server;
         this.logger = logger;
         this.dataDirectory = dataDirectory;
+        instance = this;
+        coreApiStatic = coreApi;
         Velocity.api = new ServerAPI(coreApi, server, logger, channelIdentifier);
     }
 
@@ -82,11 +93,19 @@ public class Velocity {
         }
     }
 
-    public static ServerAPI getApi() {
-        return api;
-    }
-
     public MinecraftChannelIdentifier getChannelIdentifier() {
         return channelIdentifier;
+    }
+    
+    public static CoreAPIImpl getCoreApi() {
+        return coreApiStatic;
+    }
+    
+    public ProxyServer getServer() {
+        return server;
+    }
+    
+    public Logger getLogger() {
+        return logger;
     }
 } 

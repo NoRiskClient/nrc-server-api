@@ -17,13 +17,18 @@ import org.jetbrains.annotations.NotNull;
 public class Paper extends JavaPlugin implements Listener, PluginMessageListener {
     @Getter
     private static ServerAPI api;
-
-    private CoreAPI coreApi;
+    
+    @Getter
+    private static CoreAPI coreApi;
+    
+    @Getter
+    private static Paper instance;
 
     @Override
     public void onEnable() {
         getLogger().info("NoRiskClient-Server-API Paper module is starting...");
-
+        
+        instance = this;
         coreApi = new CoreAPIImpl();
         Paper.api = new ServerAPI(coreApi, this);
 
