@@ -7,10 +7,10 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.38/57f8f5e02e92a30fd21b80cbd426a4172b5f8e29/lombok-1.18.38.jar" />
         </processorPath>
-        <module name="gg.norisk.noriskclient-server-api.paper.main" />
-        <module name="gg.norisk.noriskclient-server-api.bungeecord.main" />
-        <module name="gg.norisk.noriskclient-server-api.core.main" />
-        <module name="gg.norisk.noriskclient-server-api.spigot.main" />
+        <module name="noriskclient-server-api.bungeecord.main" />
+        <module name="noriskclient-server-api.paper.main" />
+        <module name="noriskclient-server-api.spigot.main" />
+        <module name="noriskclient-server-api.core.main" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -67,7 +67,19 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.leangen.geantyref/geantyref/1.3.11/bc9c03b53917314d21fe6276aceb08aa84bf80dd/geantyref-1.3.11.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.kyori/option/1.1.0/593fecb9c42688eebc7d8da5d6ea127f4d4c92a2/option-1.1.0.jar" />
         </processorPath>
-        <module name="gg.norisk.noriskclient-server-api.velocity.main" />
+        <module name="noriskclient-server-api.velocity.main" />
+      </profile>
+      <profile name="Gradle Imported" enabled="true">
+        <outputRelativeToContentRoot value="true" />
+        <option name="defaultObfuscationEnv" value="named:intermediary" />
+        <option name="inMapFileNamedIntermediary" value="C:\Users\enric\.gradle\caches\fabric-loom\1.21.5\net.fabricmc.yarn.1_21_5.1.21.5+build.1\mappings.tiny" />
+        <option name="outMapFileNamedIntermediary" value="C:\Users\enric\Coding\noriskclient-server-api\fabric\build\loom-cache\mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny" />
+        <option name="outRefMapFile" value="C:\Users\enric\Coding\noriskclient-server-api\fabric\build\classes\java\main\fabric-refmap.json" />
+        <option name="quiet" value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.38/57f8f5e02e92a30fd21b80cbd426a4172b5f8e29/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="noriskclient-server-api.fabric.main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -86,12 +98,9 @@
       <module name="gg.norisk.noriskclient-server-api.fabric" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
       <module name="gg.norisk.noriskclient-server-api.fabric.main" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
       <module name="gg.norisk.noriskclient-server-api.fabric.test" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/test/test-fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.test.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
-      <module name="noriskclient-server-api.fabric" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
-      <module name="noriskclient-server-api.fabric.main" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/main/fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
-      <module name="noriskclient-server-api.fabric.test" options="-AoutRefMapFile=$PROJECT_DIR$/fabric/build/classes/java/test/test-fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=$PROJECT_DIR$/fabric/build/loom-cache/mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.test.tiny -AinMapFileNamedIntermediary=$USER_HOME$/.gradle/caches/fabric-loom/1.21.5/net.fabricmc.yarn.1_21_5.1.21.5+build.1/mappings.tiny" />
-      <module name="noriskclient-server-api.velocity" options="-proc:none" />
-      <module name="noriskclient-server-api.velocity.main" options="-proc:none" />
-      <module name="noriskclient-server-api.velocity.test" options="-proc:none" />
+      <module name="noriskclient-server-api.fabric" options="-AoutRefMapFile=C:\Users\enric\Coding\noriskclient-server-api\fabric\build\classes\java\main\fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=C:\Users\enric\Coding\noriskclient-server-api\fabric\build\loom-cache\mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=C:\Users\enric\.gradle\caches\fabric-loom\1.21.5\net.fabricmc.yarn.1_21_5.1.21.5+build.1\mappings.tiny" />
+      <module name="noriskclient-server-api.fabric.main" options="-AoutRefMapFile=C:\Users\enric\Coding\noriskclient-server-api\fabric\build\classes\java\main\fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=C:\Users\enric\Coding\noriskclient-server-api\fabric\build\loom-cache\mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.main.tiny -AinMapFileNamedIntermediary=C:\Users\enric\.gradle\caches\fabric-loom\1.21.5\net.fabricmc.yarn.1_21_5.1.21.5+build.1\mappings.tiny" />
+      <module name="noriskclient-server-api.fabric.test" options="-AoutRefMapFile=C:\Users\enric\Coding\noriskclient-server-api\fabric\build\classes\java\test\test-fabric-refmap.json -AdefaultObfuscationEnv=named:intermediary -Aquiet=true -AoutMapFileNamedIntermediary=C:\Users\enric\Coding\noriskclient-server-api\fabric\build\loom-cache\mixin-map-net.fabricmc.yarn.1_21_5.1.21.5+build.1.test.tiny -AinMapFileNamedIntermediary=C:\Users\enric\.gradle\caches\fabric-loom\1.21.5\net.fabricmc.yarn.1_21_5.1.21.5+build.1\mappings.tiny" />
     </option>
   </component>
 </project>
