@@ -14,5 +14,5 @@ target
 *.iml
 *.log
 *.class
-/.idea/
 /.vscode/
+
