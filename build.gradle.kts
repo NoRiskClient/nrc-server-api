@@ -2,7 +2,6 @@ import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaLibraryPlugin
 
 plugins {
-    id("idea")
     id("java")
     id("maven-publish")
 }
@@ -14,14 +13,6 @@ allprojects {
 
 repositories {
     mavenCentral()
-    maven {
-        name = "NoriskMaven"
-        url = uri("https://maven.norisk.gg/releases")
-        credentials {
-            username = project.findProperty("mavenUsername") as String? ?: System.getenv("MAVEN_USERNAME")
-            password = project.findProperty("mavenPassword") as String? ?: System.getenv("MAVEN_PASSWORD")
-        }
-    }
 }
 
 tasks.jar {
@@ -34,24 +25,10 @@ subprojects {
     apply<JavaLibraryPlugin>()
     apply<MavenPublishPlugin>()
 
-    val mavenUser = project.findProperty("mavenUsername") as String? ?: System.getenv("MAVEN_USERNAME")
-    val mavenPass = project.findProperty("mavenPassword") as String? ?: System.getenv("MAVEN_PASSWORD")
-    if (mavenUser.isNullOrBlank() || mavenPass.isNullOrBlank()) {
-        throw GradleException("Maven Repository Credentials fehlen! Bitte mavenUsername/mavenPassword in gradle.properties oder MAVEN_USERNAME/MAVEN_PASSWORD als Umgebungsvariablen setzen.")
-    }
-
     repositories {
         maven("https://repo.papermc.io/repository/maven-public/")
         maven(uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots"))
         mavenCentral()
-        maven {
-            name = "NoriskMaven"
-            url = uri("https://maven.norisk.gg/releases")
-            credentials {
-                username = mavenUser
-                password = mavenPass
-            }
-        }
     }
 
     java {
@@ -68,7 +45,7 @@ subprojects {
             archiveClassifier.set("")
             destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
         }
-        
+
         processResources {
             val props = mapOf("version" to project.version)
             inputs.properties(props)
@@ -92,40 +69,27 @@ subprojects {
 
     publishing {
         publications {
-            create<MavenPublication>("mavenJava") {
-                from(components["java"])
-                groupId = "gg.norisk"
+            create<MavenPublication>("binaryAndSources") {
+                groupId = project.group.toString()
                 artifactId = "server-api-${project.name}"
-                version = rootProject.version.toString()
-                
-                pom {
-                    name.set("NoRisk Server API ${project.name.capitalize()}")
-                    description.set("${project.name.capitalize()} plugin API for NoRisk server")
-                    url.set("https://github.com/norisk/noriskclient-server-api")
-                    licenses {
-                        license {
-                            name.set("GNU Lesser General Public License v3.0")
-                            url.set("https://www.gnu.org/licenses/lgpl-3.0.html")
-                        }
-                    }
-                    developers {
-                        developer {
-                            id.set("S42")
-                            name.set("S42")
-                        }
-                    }
-                }
+                version = project.version.toString()
             }
         }
+
         repositories {
-            mavenLocal()
+            fun MavenArtifactRepository.applyCredentials() = credentials {
+                username = (System.getenv("NORISK_NEXUS_USERNAME") ?: project.findProperty("noriskMavenUsername")).toString()
+                password = (System.getenv("NORISK_NEXUS_PASSWORD") ?: project.findProperty("noriskMavenPassword")).toString()
+            }
             maven {
-                name = "NoriskMaven"
-                url = uri("https://maven.norisk.gg/releases")
-                credentials {
-                    username = mavenUser
-                    password = mavenPass
-                }
+                name = "production"
+                url = uri("https://maven.norisk.gg/repository/norisk-production/")
+                applyCredentials()
+            }
+            maven {
+                name = "dev"
+                url = uri("https://maven.norisk.gg/repository/maven-releases/")
+                applyCredentials()
             }
         }
     }
