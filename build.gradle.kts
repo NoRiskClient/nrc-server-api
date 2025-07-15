@@ -73,6 +73,11 @@ subprojects {
                 groupId = project.group.toString()
                 artifactId = "nrc-server-api-${project.name}"
                 version = project.version.toString()
+                from(components["java"])
+                val sourcesJar = tasks.findByName("sourcesJar")
+                if (sourcesJar != null) artifact(sourcesJar)
+                val javadocJar = tasks.findByName("javadocJar")
+                if (javadocJar != null) artifact(javadocJar)
             }
         }
 
