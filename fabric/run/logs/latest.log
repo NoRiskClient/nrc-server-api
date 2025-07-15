@@ -1,0 +1,196 @@
+[22:01:23] [main/WARN] (FabricLoader/Knot) Class path entries reference missing files: /Users/musa/Desktop/norisk/noriskclient-server-api/fabric/build/classes/java/main - the game may not load properly!
+[22:01:23] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 1.21.4 with Fabric Loader 0.16.14
+[22:01:23] [main/INFO] (FabricLoader) Loading 44 mods:
+	- fabric-api 0.109.1+1.21.4
+	- fabric-api-base 0.4.51+8ca5486fad
+	- fabric-api-lookup-api-v1 1.6.82+7feeb733ad
+	- fabric-biome-api-v1 15.0.2+f12498d0ad
+	- fabric-block-api-v1 1.0.29+7feeb733ad
+	- fabric-block-view-api-v2 1.0.17+7feeb733ad
+	- fabric-command-api-v1 1.2.59+f71b366fad
+	- fabric-command-api-v2 2.2.38+e496eb15ad
+	- fabric-commands-v0 0.2.76+df3654b3ad
+	- fabric-content-registries-v0 9.1.10+7feeb733ad
+	- fabric-convention-tags-v1 2.1.4+7f945d5bad
+	- fabric-convention-tags-v2 2.9.4+15afce79ad
+	- fabric-crash-report-info-v1 0.3.4+7feeb733ad
+	- fabric-data-attachment-api-v1 1.4.0+9aea556bad
+	- fabric-data-generation-api-v1 22.0.4+5d559cbcad
+	- fabric-dimensions-v1 4.0.8+7feeb733ad
+	- fabric-entity-events-v1 2.0.9+60fccc76ad
+	- fabric-events-interaction-v0 3.0.3+334f9feead
+	- fabric-game-rule-api-v1 1.0.60+7feeb733ad
+	- fabric-gametest-api-v1 2.0.17+7feeb733ad
+	- fabric-item-api-v1 11.1.10+203e6b23ad
+	- fabric-item-group-api-v1 4.1.19+7feeb733ad
+	- fabric-language-kotlin 1.13.3+kotlin.2.1.21
+	- fabric-lifecycle-events-v1 2.5.1+bf2a60ebad
+	- fabric-loot-api-v2 3.0.29+3f89f5a5ad
+	- fabric-loot-api-v3 1.0.17+203e6b23ad
+	- fabric-message-api-v1 6.0.22+7feeb733ad
+	- fabric-networking-api-v1 4.3.6+7feeb733ad
+	- fabric-object-builder-api-v1 18.0.2+77a65688ad
+	- fabric-particles-v1 4.0.11+7feeb733ad
+	- fabric-recipe-api-v1 8.0.1+203e6b23ad
+	- fabric-registry-sync-v0 5.2.5+203e6b23ad
+	- fabric-rendering-data-attachment-v1 0.3.55+73761d2ead
+	- fabric-rendering-fluids-v1 3.1.16+7feeb733ad
+	- fabric-resource-conditions-api-v1 5.0.11+203e6b23ad
+	- fabric-resource-loader-v0 3.0.8+203e6b23ad
+	- fabric-screen-handler-api-v1 1.3.103+7feeb733ad
+	- fabric-transfer-api-v1 5.4.4+7feeb733ad
+	- fabric-transitive-access-wideners-v1 6.2.0+105e1a95ad
+	- fabricloader 0.16.14
+	- java 21
+	- minecraft 1.21.4
+	- mixinextras 0.4.1
+	- noriskclientserverapi 0.1.0
+[22:01:23] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/Users/musa/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.5+mixin.0.8.7/22f9eb729e216a091673a574a5906dc1b9027fb3/sponge-mixin-0.15.5+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[22:01:23] [main/INFO] (FabricLoader/Mixin) Loaded Fabric development mappings for mixin remapper!
+[22:01:23] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_21
+[22:01:23] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.4.1).
+[22:01:27] [main/ERROR] (FabricLoader/Mixin) Mixin apply for mod fabric-transfer-api-v1 failed fabric-transfer-api-v1.mixins.json:AbstractFurnaceBlockEntityMixin from mod fabric-transfer-api-v1 -> net.minecraft.block.entity.AbstractFurnaceBlockEntity: org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException @Shadow field field_11989 was not located in the target class net.minecraft.block.entity.AbstractFurnaceBlockEntity. Using refmap fabric-transfer-api-v1-refmap.json
+org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: @Shadow field field_11989 was not located in the target class net.minecraft.block.entity.AbstractFurnaceBlockEntity. Using refmap fabric-transfer-api-v1-refmap.json
+	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.attachFields(MixinPreProcessorStandard.java:624) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.attach(MixinPreProcessorStandard.java:302) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.createContextFor(MixinPreProcessorStandard.java:277) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinInfo.createContextFor(MixinInfo.java:1292) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.apply(MixinApplicatorStandard.java:203) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.apply(TargetClassContext.java:437) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.applyMixins(TargetClassContext.java:418) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:363) [sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:234) [sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:202) [sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:422) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:323) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) [fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) [?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) [?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) [?:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.defineClassFwd(KnotClassLoader.java:160) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:355) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) [fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) [?:?]
+	at knot/net.minecraft.block.Blocks.<clinit>(Blocks.java:353) [minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.block.FireBlock.registerDefaultFlammables(FireBlock.java:336) [minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.Bootstrap.initialize(Bootstrap.java:55) [minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.server.Main.main(Main.java:110) [minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:480) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86) [dev-launch-injector-0.2.1+build.8.jar:?]
+[22:01:27] [main/ERROR] (FabricLoader) Minecraft has crashed!
+net.fabricmc.loader.impl.FormattedException: java.lang.BootstrapMethodError: java.lang.RuntimeException: Mixin transformation of net.minecraft.block.entity.AbstractFurnaceBlockEntity failed
+	at net.fabricmc.loader.impl.FormattedException.ofLocalized(FormattedException.java:63) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:482) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.Knot.launch(Knot.java:74) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotServer.main(KnotServer.java:23) [fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.devlaunchinjector.Main.main(Main.java:86) [dev-launch-injector-0.2.1+build.8.jar:?]
+Caused by: java.lang.BootstrapMethodError: java.lang.RuntimeException: Mixin transformation of net.minecraft.block.entity.AbstractFurnaceBlockEntity failed
+	at knot/net.minecraft.block.Blocks.<clinit>(Blocks.java:353) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.block.FireBlock.registerDefaultFlammables(FireBlock.java:336) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.Bootstrap.initialize(Bootstrap.java:55) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.server.Main.main(Main.java:110) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:480) ~[fabric-loader-0.16.14.jar:?]
+	... 3 more
+Caused by: java.lang.RuntimeException: Mixin transformation of net.minecraft.block.entity.AbstractFurnaceBlockEntity failed
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:427) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:323) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) ~[?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.defineClassFwd(KnotClassLoader.java:160) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:355) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at knot/net.minecraft.block.Blocks.<clinit>(Blocks.java:353) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.block.FireBlock.registerDefaultFlammables(FireBlock.java:336) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.Bootstrap.initialize(Bootstrap.java:55) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.server.Main.main(Main.java:110) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:480) ~[fabric-loader-0.16.14.jar:?]
+	... 3 more
+Caused by: org.spongepowered.asm.mixin.transformer.throwables.MixinTransformerError: An unexpected critical error was encountered
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:392) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:234) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:202) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:422) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:323) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) ~[?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.defineClassFwd(KnotClassLoader.java:160) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:355) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at knot/net.minecraft.block.Blocks.<clinit>(Blocks.java:353) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.block.FireBlock.registerDefaultFlammables(FireBlock.java:336) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.Bootstrap.initialize(Bootstrap.java:55) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.server.Main.main(Main.java:110) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:480) ~[fabric-loader-0.16.14.jar:?]
+	... 3 more
+Caused by: org.spongepowered.asm.mixin.throwables.MixinApplyError: Mixin [fabric-transfer-api-v1.mixins.json:AbstractFurnaceBlockEntityMixin from mod fabric-transfer-api-v1] from phase [DEFAULT] in config [fabric-transfer-api-v1.mixins.json] FAILED during APPLY
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinError(MixinProcessor.java:638) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.handleMixinApplyError(MixinProcessor.java:589) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:379) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:234) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:202) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:422) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:323) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) ~[?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.defineClassFwd(KnotClassLoader.java:160) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:355) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at knot/net.minecraft.block.Blocks.<clinit>(Blocks.java:353) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.block.FireBlock.registerDefaultFlammables(FireBlock.java:336) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.Bootstrap.initialize(Bootstrap.java:55) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.server.Main.main(Main.java:110) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:480) ~[fabric-loader-0.16.14.jar:?]
+	... 3 more
+Caused by: org.spongepowered.asm.mixin.transformer.throwables.InvalidMixinException: @Shadow field field_11989 was not located in the target class net.minecraft.block.entity.AbstractFurnaceBlockEntity. Using refmap fabric-transfer-api-v1-refmap.json
+	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.attachFields(MixinPreProcessorStandard.java:624) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.attach(MixinPreProcessorStandard.java:302) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinPreProcessorStandard.createContextFor(MixinPreProcessorStandard.java:277) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinInfo.createContextFor(MixinInfo.java:1292) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinApplicatorStandard.apply(MixinApplicatorStandard.java:203) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.apply(TargetClassContext.java:437) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.TargetClassContext.applyMixins(TargetClassContext.java:418) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinProcessor.applyMixins(MixinProcessor.java:363) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClass(MixinTransformer.java:234) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at org.spongepowered.asm.mixin.transformer.MixinTransformer.transformClassBytes(MixinTransformer.java:202) ~[sponge-mixin-0.15.5+mixin.0.8.7.jar:0.15.5+mixin.0.8.7]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.getPostMixinClassByteArray(KnotClassDelegate.java:422) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:323) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method) ~[?:?]
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1027) ~[?:?]
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) ~[?:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.defineClassFwd(KnotClassLoader.java:160) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.tryLoadClass(KnotClassDelegate.java:355) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassDelegate.loadClass(KnotClassDelegate.java:218) ~[fabric-loader-0.16.14.jar:?]
+	at net.fabricmc.loader.impl.launch.knot.KnotClassLoader.loadClass(KnotClassLoader.java:119) ~[fabric-loader-0.16.14.jar:?]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at knot/net.minecraft.block.Blocks.<clinit>(Blocks.java:353) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.block.FireBlock.registerDefaultFlammables(FireBlock.java:336) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.Bootstrap.initialize(Bootstrap.java:55) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at knot/net.minecraft.server.Main.main(Main.java:110) ~[minecraft-merged-c22ab19269-1.21.4-net.fabricmc.yarn.1_21_4.1.21.4+build.1.jar:?]
+	at net.fabricmc.loader.impl.game.minecraft.MinecraftGameProvider.launch(MinecraftGameProvider.java:480) ~[fabric-loader-0.16.14.jar:?]
+	... 3 more

@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.fabric.loom)
-    alias(libs.plugins.kotlin.jvm)
     id("java-library")
 }
 
@@ -9,9 +8,7 @@ dependencies {
     mappings(libs.fabric.yarn)
     modImplementation(libs.fabric.loader)
     modImplementation(libs.fabric.api)
-    modImplementation(libs.fabric.language.kotlin)
     implementation(project(":core"))
-    implementation(libs.stdlib)
 }
 
 tasks {
@@ -28,5 +25,30 @@ tasks {
     remapJar {
         dependsOn(jar)
         input.set(jar.get().archiveFile)
+    }
+}
+
+tasks.register<Jar>("sourcesJar") {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
+tasks.register<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+    from(tasks.javadoc)
+}
+
+publishing {
+    publications {
+        if (!names.contains("binaryAndSources")) {
+            create<MavenPublication>("binaryAndSources") {
+                groupId = project.group.toString()
+                artifactId = "fabric"
+                version = project.version.toString()
+                artifact(tasks["remapJar"])
+                artifact(tasks["sourcesJar"])
+                artifact(tasks["javadocJar"])
+            }
+        }
     }
 }

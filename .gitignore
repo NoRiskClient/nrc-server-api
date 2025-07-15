@@ -3,4 +3,16 @@
 
 # Ignore Gradle build output directory
 build
+bin
 .kotlin
+
+.DS_STORE
+
+.idea/
+.vscode/
+target
+*.iml
+*.log
+*.class
+/.vscode/
+

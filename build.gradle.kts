@@ -2,9 +2,8 @@ import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaLibraryPlugin
 
 plugins {
-    kotlin("jvm") version libs.versions.kotlinPlugin.get()
     id("java")
-    id("org.gradle.wrapper")
+    id("maven-publish")
 }
 
 allprojects {
@@ -16,13 +15,15 @@ repositories {
     mavenCentral()
 }
 
-val stdlib: String = libs.stdlib.get().toString()
+tasks.jar {
+    enabled = false
+}
 
 subprojects {
     version = rootProject.version
-    apply(plugin = "org.jetbrains.kotlin.jvm")
     apply<JavaPlugin>()
     apply<JavaLibraryPlugin>()
+    apply<MavenPublishPlugin>()
 
     repositories {
         maven("https://repo.papermc.io/repository/maven-public/")
@@ -30,8 +31,10 @@ subprojects {
         mavenCentral()
     }
 
-    kotlin {
-        jvmToolchain(21)
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
     }
 
     tasks {
@@ -41,21 +44,53 @@ subprojects {
             archiveVersion.set(project.version.toString())
             archiveClassifier.set("")
             destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
-            manifest {
-                attributes("Main-Class" to "gg.norisk.core.NRCServerApi")
+        }
+
+        processResources {
+            val props = mapOf("version" to project.version)
+            inputs.properties(props)
+            filteringCharset = "UTF-8"
+            filesMatching(listOf("**/*.yml", "**/*.yaml", "**/*.json")) {
+                expand(props)
             }
         }
     }
 
-    tasks.withType<Wrapper> {
-        gradleVersion = "8.12.1"
-        distributionType = Wrapper.DistributionType.ALL
-    }
-
     dependencies {
-        implementation(stdlib)
         if (project.name != "core") {
             implementation(project(":core"))
+        }
+        compileOnly("org.projectlombok:lombok:1.18.38")
+        annotationProcessor("org.projectlombok:lombok:1.18.38")
+        //slf4j
+        implementation("org.slf4j:slf4j-api:2.0.9")
+        implementation("org.slf4j:slf4j-simple:2.0.9")
+    }
+
+    publishing {
+        publications {
+            create<MavenPublication>("binaryAndSources") {
+                groupId = project.group.toString()
+                artifactId = "nrc-server-api-${project.name}"
+                version = project.version.toString()
+            }
+        }
+
+        repositories {
+            fun MavenArtifactRepository.applyCredentials() = credentials {
+                username = (System.getenv("NORISK_NEXUS_USERNAME") ?: project.findProperty("noriskMavenUsername")).toString()
+                password = (System.getenv("NORISK_NEXUS_PASSWORD") ?: project.findProperty("noriskMavenPassword")).toString()
+            }
+            maven {
+                name = "production"
+                url = uri("https://maven.norisk.gg/repository/norisk-production/")
+                applyCredentials()
+            }
+            maven {
+                name = "dev"
+                url = uri("https://maven.norisk.gg/repository/maven-releases/")
+                applyCredentials()
+            }
         }
     }
 }

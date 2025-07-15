@@ -1,30 +1,46 @@
 plugins {
-    kotlin("jvm")
     id("java-library")
+    alias(libs.plugins.shadow)
 }
 
 dependencies {
-    implementation(libs.paper)
+    compileOnly(libs.paper)
     implementation(project(":core"))
 }
 
 tasks {
-    processResources {
-        filesMatching("paper-plugin.yml") {
-            expand("version" to project.version)
-        }
-    }
-}
-
-tasks {
-    jar {
-        enabled = true
+    jar { enabled = false }
+    shadowJar {
+        dependsOn(":jar")
         archiveBaseName.set("${rootProject.name}-paper")
-        archiveVersion.set(project.version.toString())
+        archiveVersion.set(version.toString())
         archiveClassifier.set("")
         destinationDirectory.set(rootProject.layout.buildDirectory.dir("libs"))
-        manifest {
-            attributes("Main-Class" to "gg.norisk.paper.Paper")
+    }
+    build { dependsOn(shadowJar) }
+}
+
+tasks.register<Jar>("sourcesJar") {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
+tasks.register<Jar>("javadocJar") {
+    archiveClassifier.set("javadoc")
+    from(tasks.javadoc)
+}
+
+publishing {
+    publications {
+        if (!names.contains("binaryAndSources")) {
+            create<MavenPublication>("binaryAndSources") {
+                groupId = project.group.toString()
+                artifactId = "paper"
+                version = project.version.toString()
+                artifact(tasks["shadowJar"])
+                artifact(tasks["sourcesJar"])
+                artifact(tasks["javadocJar"])
+            }
         }
     }
 }
