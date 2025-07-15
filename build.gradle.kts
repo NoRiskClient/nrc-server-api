@@ -71,7 +71,7 @@ subprojects {
         publications {
             create<MavenPublication>("binaryAndSources") {
                 groupId = project.group.toString()
-                artifactId = "server-api-${project.name}"
+                artifactId = "nrc-server-api-${project.name}"
                 version = project.version.toString()
             }
         }
