@@ -2,14 +2,11 @@ package gg.norisk.velocity;
 
 import java.nio.file.Path;
 
-import gg.norisk.spigot.Spigot;
 import org.slf4j.Logger;
 
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.Subscribe;
-import com.velocitypowered.api.event.connection.DisconnectEvent;
 import com.velocitypowered.api.event.connection.PluginMessageEvent;
-import com.velocitypowered.api.event.connection.PostLoginEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
@@ -18,7 +15,6 @@ import com.velocitypowered.api.proxy.messages.MinecraftChannelIdentifier;
 
 import gg.norisk.velocity.api.ServerAPI;
 import gg.norisk.core.common.impl.CoreAPIImpl;
-import gg.norisk.core.common.PacketListener;
 import gg.norisk.velocity.listener.QuitListener;
 import gg.norisk.velocity.listener.JoinListener;
 import gg.norisk.core.manager.models.PacketWrapper;

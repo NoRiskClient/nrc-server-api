@@ -1,19 +1,14 @@
 package gg.norisk.bungeecord;
 
 import gg.norisk.bungeecord.api.ServerAPI;
-import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.common.impl.CoreAPIImpl;
-import gg.norisk.core.common.PacketListener;
 import gg.norisk.bungeecord.listener.QuitListener;
 import gg.norisk.bungeecord.listener.JoinListener;
 import gg.norisk.core.manager.models.PacketWrapper;
 import gg.norisk.core.payloads.InPayload;
-import gg.norisk.spigot.Spigot;
 import lombok.Getter;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.event.PlayerDisconnectEvent;
 import net.md_5.bungee.api.event.PluginMessageEvent;
-import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
