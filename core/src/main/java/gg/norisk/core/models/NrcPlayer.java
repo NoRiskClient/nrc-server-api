@@ -3,17 +3,13 @@ package gg.norisk.core.models;
 import gg.norisk.core.common.PacketListener;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
+import gg.norisk.core.payloads.models.*;
 import gg.norisk.core.payloads.out.ToastPayload;
 import gg.norisk.core.payloads.out.InputbarPayload;
 import gg.norisk.core.payloads.out.WheelPayload;
 import gg.norisk.core.payloads.out.GamemodePayload;
 import gg.norisk.core.payloads.out.BeaconBeamPayload;
 import gg.norisk.core.payloads.out.ModuleDeactivatePayload;
-import gg.norisk.core.payloads.models.ToastType;
-import gg.norisk.core.payloads.models.Dimension;
-import gg.norisk.core.payloads.models.RGBColor;
-import gg.norisk.core.payloads.models.XYZ;
-import gg.norisk.core.payloads.models.Modules;
 
 import java.util.List;
 import java.util.UUID;
@@ -27,22 +23,23 @@ public record NrcPlayer(UUID uniqueId, gg.norisk.core.common.NoRiskServerAPI ser
     public void sendPayload(String channel, byte[] data) {
     }
 
-    public void sendToast(String header, String description, String footer) {
-        serverAPI.sendPacket(uniqueId, new ToastPayload(true, header, description, false, null, ToastType.INFO));
+    public void sendToast(Boolean progressBar, String header, String content, Boolean playerHead, UUID playerUUID, ToastType toastType) {
+        serverAPI.sendPacket(uniqueId, new ToastPayload(progressBar, header, content, playerHead, playerUUID, toastType));
     }
 
     public void sendInputbar(String header, String placeholder, int maxLength) {
         serverAPI.sendPacket(uniqueId, new InputbarPayload(header, placeholder, maxLength));
     }
 
-    public void sendWheel(String entry, String command) {
-        serverAPI.sendPacket(uniqueId, new WheelPayload(entry, command));
+    public void sendWheel(String name, String command) {
+        serverAPI.sendPacket(uniqueId, new WheelPayload(name, command));
     }
 
     public void sendGamemode(String gamemode) {
         serverAPI.sendPacket(uniqueId, new GamemodePayload(gamemode));
     }
 
+    @Deprecated
     public void sendBeaconBeam(XYZ xyz, Dimension dimension, RGBColor color) {
         serverAPI.sendPacket(uniqueId, new BeaconBeamPayload(xyz, dimension, color));
     }

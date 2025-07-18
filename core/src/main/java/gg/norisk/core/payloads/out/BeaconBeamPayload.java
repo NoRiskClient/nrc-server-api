@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * Abstract payload for creating beacon beams at specific coordinates
  */
+@Deprecated
 @Getter
 @RequiredArgsConstructor
 @Payload(type = "beacon_beam")
