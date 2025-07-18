@@ -34,6 +34,7 @@ public class Spigot extends JavaPlugin implements Listener, PluginMessageListene
         instance = this;
         coreApi = new CoreAPIImpl();
         Spigot.api = new ServerAPI(coreApi, this);
+        coreApi.setServerAPI(Spigot.api);
         
         getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
         api.registerListener(new JoinListener(coreApi));

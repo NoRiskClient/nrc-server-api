@@ -2,6 +2,7 @@ package gg.norisk.velocity;
 
 import java.nio.file.Path;
 
+import gg.norisk.spigot.Spigot;
 import org.slf4j.Logger;
 
 import com.google.inject.Inject;
@@ -56,6 +57,7 @@ public class Velocity {
         instance = this;
         coreApiStatic = coreApi;
         Velocity.api = new ServerAPI(coreApi, server, logger, channelIdentifier);
+        coreApi.setServerAPI(Velocity.api);
     }
 
     @Subscribe

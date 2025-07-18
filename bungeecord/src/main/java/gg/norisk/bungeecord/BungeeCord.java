@@ -8,6 +8,7 @@ import gg.norisk.bungeecord.listener.QuitListener;
 import gg.norisk.bungeecord.listener.JoinListener;
 import gg.norisk.core.manager.models.PacketWrapper;
 import gg.norisk.core.payloads.InPayload;
+import gg.norisk.spigot.Spigot;
 import lombok.Getter;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -34,7 +35,8 @@ public class BungeeCord extends Plugin implements Listener {
         instance = this;
         coreApi = new CoreAPIImpl();
         BungeeCord.api = new ServerAPI(coreApi, this);
-        
+        coreApi.setServerAPI(BungeeCord.api);
+
         getProxy().registerChannel(coreApi.getPluginChannel());
         getProxy().getPluginManager().registerListener(this, new QuitListener(coreApi));
         api.registerListener(new JoinListener(coreApi));

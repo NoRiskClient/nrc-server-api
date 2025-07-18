@@ -6,6 +6,7 @@ import gg.norisk.core.payloads.InPayload;
 import gg.norisk.fabric.api.ServerAPI;
 import gg.norisk.fabric.listener.JoinListener;
 import gg.norisk.fabric.listener.QuitListener;
+import gg.norisk.spigot.Spigot;
 import lombok.Getter;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -34,7 +35,8 @@ public class FabricServer implements DedicatedServerModInitializer {
         coreApi = coreApiInstance;
         this.apiInstance = new ServerAPI(coreApiInstance);
         api = apiInstance;
-        
+        coreApi.setServerAPI(api);
+
         apiInstance.registerListener(new JoinListener(coreApiInstance));
         
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {

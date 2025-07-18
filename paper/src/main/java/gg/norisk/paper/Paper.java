@@ -31,6 +31,7 @@ public class Paper extends JavaPlugin implements Listener, PluginMessageListener
         instance = this;
         coreApi = new CoreAPIImpl();
         Paper.api = new ServerAPI(coreApi, this);
+        coreApi.setServerAPI(Paper.api);
 
         getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
 
