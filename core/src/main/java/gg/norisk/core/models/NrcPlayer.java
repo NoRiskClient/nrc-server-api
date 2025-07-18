@@ -27,8 +27,8 @@ public record NrcPlayer(UUID uniqueId, gg.norisk.core.common.NoRiskServerAPI ser
     public void sendPayload(String channel, byte[] data) {
     }
 
-    public void sendToast(boolean show, String header, String description, boolean persistent, UUID uuid, ToastType type) {
-        serverAPI.sendPacket(uniqueId, new ToastPayload(show, header, description, persistent, uuid, type));
+    public void sendToast(String header, String description, String footer) {
+        serverAPI.sendPacket(uniqueId, new ToastPayload(true, header, description, false, null, ToastType.INFO));
     }
 
     public void sendInputbar(String header, String placeholder, int maxLength) {
