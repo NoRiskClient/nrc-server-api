@@ -2,10 +2,10 @@ package gg.norisk.core.payloads.models;
 
 public enum Modules {
     FOV_CHANGER("FovChanger"),
-    FULL_BRIGHT_MODULE("FullBrightModule"),
-    ZOOM_MODULE("ZoomModule"),
-    FREE_LOOK_MODULE("FreeLookModule"),
-    NO_FOG_MODULE("NoFogModule"),
+    FULL_BRIGHT("FullBright"),
+    ZOOM("Zoom"),
+    FREE_LOOK("FreeLook"),
+    NO_FOG("NoFog"),
     ARROW_TRAIL("ArrowTrail"),
     PACK_TWEAKS("PackTweaks"),
     ITEM_MODEL("ItemModel"),
