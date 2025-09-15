@@ -39,6 +39,7 @@ publishing {
                 groupId = project.group.toString()
                 artifactId = "velocity"
                 version = project.version.toString()
+                from(components["java"])
                 artifact(tasks["shadowJar"])
                 artifact(tasks["sourcesJar"])
                 artifact(tasks["javadocJar"])
