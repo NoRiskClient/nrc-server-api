@@ -37,6 +37,7 @@ publishing {
                 groupId = project.group.toString()
                 artifactId = "spigot"
                 version = project.version.toString()
+                from(components["java"])
                 artifact(tasks["shadowJar"])
                 artifact(tasks["sourcesJar"])
                 artifact(tasks["javadocJar"])
