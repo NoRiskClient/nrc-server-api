@@ -9,9 +9,9 @@ dependencies {
 }
 
 tasks {
-    jar { enabled = false }
+    jar { enabled = true } // JAR-Task aktivieren
     shadowJar {
-        dependsOn(":jar")
+        dependsOn(jar)
         archiveBaseName.set("${rootProject.name}-paper")
         archiveVersion.set(version.toString())
         archiveClassifier.set("")
@@ -32,15 +32,30 @@ tasks.register<Jar>("javadocJar") {
 
 publishing {
     publications {
-        if (!names.contains("binaryAndSources")) {
-            create<MavenPublication>("binaryAndSources") {
-                groupId = project.group.toString()
-                artifactId = "paper"
-                version = project.version.toString()
-                artifact(tasks["shadowJar"])
-                artifact(tasks["sourcesJar"])
-                artifact(tasks["javadocJar"])
-            }
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = "nrc-server-api-paper"
+            version = project.version.toString()
+            artifact(tasks["shadowJar"])
+            artifact(tasks["sourcesJar"])
+            artifact(tasks["javadocJar"])
+        }
+    }
+
+    repositories {
+        fun MavenArtifactRepository.applyCredentials() = credentials {
+            username = (System.getenv("NORISK_NEXUS_USERNAME") ?: project.findProperty("noriskMavenUsername")).toString()
+            password = (System.getenv("NORISK_NEXUS_PASSWORD") ?: project.findProperty("noriskMavenPassword")).toString()
+        }
+        maven {
+            name = "production"
+            url = uri("https://maven.norisk.gg/repository/norisk-production/")
+            applyCredentials()
+        }
+        maven {
+            name = "dev"
+            url = uri("https://maven.norisk.gg/repository/maven-releases/")
+            applyCredentials()
         }
     }
 }
