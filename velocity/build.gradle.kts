@@ -11,9 +11,9 @@ dependencies {
 }
 
 tasks {
-    jar { enabled = false }
+    jar { enabled = true }
     shadowJar {
-        dependsOn(":jar") // Explizite Abhängigkeit hinzufügen
+        dependsOn(jar)
         archiveBaseName.set("${rootProject.name}-velocity")
         archiveVersion.set(project.version.toString())
         archiveClassifier.set("")
@@ -44,6 +44,30 @@ publishing {
                 artifact(tasks["sourcesJar"])
                 artifact(tasks["javadocJar"])
             }
+        create<MavenPublication>("maven") {
+            groupId = project.group.toString()
+            artifactId = "nrc-server-api-velocity"
+            version = project.version.toString()
+            artifact(tasks["shadowJar"])
+            artifact(tasks["sourcesJar"])
+            artifact(tasks["javadocJar"])
+        }
+    }
+
+    repositories {
+        fun MavenArtifactRepository.applyCredentials() = credentials {
+            username = (System.getenv("NORISK_NEXUS_USERNAME") ?: project.findProperty("noriskMavenUsername")).toString()
+            password = (System.getenv("NORISK_NEXUS_PASSWORD") ?: project.findProperty("noriskMavenPassword")).toString()
+        }
+        maven {
+            name = "production"
+            url = uri("https://maven.norisk.gg/repository/norisk-production/")
+            applyCredentials()
+        }
+        maven {
+            name = "dev"
+            url = uri("https://maven.norisk.gg/repository/maven-releases/")
+            applyCredentials()
         }
     }
 }

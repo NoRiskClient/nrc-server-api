@@ -8,7 +8,7 @@ plugins {
 
 allprojects {
     group = "gg.norisk"
-    version = "0.1.0"
+    version = "0.1.1"
 }
 
 repositories {
@@ -67,34 +67,36 @@ subprojects {
         implementation("org.slf4j:slf4j-simple:2.0.9")
     }
 
-    publishing {
-        publications {
-            create<MavenPublication>("binaryAndSources") {
-                groupId = project.group.toString()
-                artifactId = "nrc-server-api-${project.name}"
-                version = project.version.toString()
-                from(components["java"])
-                val sourcesJar = tasks.findByName("sourcesJar")
-                if (sourcesJar != null) artifact(sourcesJar)
-                val javadocJar = tasks.findByName("javadocJar")
-                if (javadocJar != null) artifact(javadocJar)
+    if (project.name == "core") {
+        publishing {
+            publications {
+                create<MavenPublication>("binaryAndSources") {
+                    groupId = project.group.toString()
+                    artifactId = "nrc-server-api-${project.name}"
+                    version = project.version.toString()
+                    from(components["java"])
+                    val sourcesJar = tasks.findByName("sourcesJar")
+                    if (sourcesJar != null) artifact(sourcesJar)
+                    val javadocJar = tasks.findByName("javadocJar")
+                    if (javadocJar != null) artifact(javadocJar)
+                }
             }
-        }
 
-        repositories {
-            fun MavenArtifactRepository.applyCredentials() = credentials {
-                username = (System.getenv("NORISK_NEXUS_USERNAME") ?: project.findProperty("noriskMavenUsername")).toString()
-                password = (System.getenv("NORISK_NEXUS_PASSWORD") ?: project.findProperty("noriskMavenPassword")).toString()
-            }
-            maven {
-                name = "production"
-                url = uri("https://maven.norisk.gg/repository/norisk-production/")
-                applyCredentials()
-            }
-            maven {
-                name = "dev"
-                url = uri("https://maven.norisk.gg/repository/maven-releases/")
-                applyCredentials()
+            repositories {
+                fun MavenArtifactRepository.applyCredentials() = credentials {
+                    username = (System.getenv("NORISK_NEXUS_USERNAME") ?: project.findProperty("noriskMavenUsername")).toString()
+                    password = (System.getenv("NORISK_NEXUS_PASSWORD") ?: project.findProperty("noriskMavenPassword")).toString()
+                }
+                maven {
+                    name = "production"
+                    url = uri("https://maven.norisk.gg/repository/norisk-production/")
+                    applyCredentials()
+                }
+                maven {
+                    name = "dev"
+                    url = uri("https://maven.norisk.gg/repository/maven-releases/")
+                    applyCredentials()
+                }
             }
         }
     }
