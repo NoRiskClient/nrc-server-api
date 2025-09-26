@@ -6,15 +6,9 @@ import gg.norisk.core.common.PacketListener;
 import gg.norisk.core.payloads.in.HandshakePayload;
 import java.util.UUID;
 
-public class JoinListener implements PacketListener {
-    private final CoreAPI coreAPI;
-
-    public JoinListener(CoreAPI coreAPI) {
-        this.coreAPI = coreAPI;
-    }
-
+public record JoinListener(CoreAPI coreAPI) implements PacketListener {
     @PacketHandler
-    public void onPlayerJoin(UUID uuid, HandshakePayload payload) {
+    public void onJoin(UUID uuid, HandshakePayload payload) {
         coreAPI.getPlayerManager().setNrcPlayer(uuid, true);
     }
 } 

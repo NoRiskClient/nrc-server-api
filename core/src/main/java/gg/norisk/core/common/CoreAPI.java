@@ -1,6 +1,6 @@
 package gg.norisk.core.common;
 
-import gg.norisk.core.exceptions.NoNrcPlayer;
+import gg.norisk.core.exceptions.NrcPlayerNotFoundExeption;
 import gg.norisk.core.manager.CallbackManager;
 import gg.norisk.core.manager.PacketEventManager;
 import gg.norisk.core.manager.PlayerManager;
@@ -35,7 +35,7 @@ public interface CoreAPI {
 
     void unregisterPlayer(UUID uniqueId);
 
-    <R extends InPayload> String prepareRequest(UUID uuid, OutPayload request, Consumer<R> callback) throws NoNrcPlayer;
+    <R extends InPayload> String prepareRequest(UUID uuid, OutPayload request, Consumer<R> callback) throws NrcPlayerNotFoundExeption;
 
     PlayerManager getPlayerManager();
 

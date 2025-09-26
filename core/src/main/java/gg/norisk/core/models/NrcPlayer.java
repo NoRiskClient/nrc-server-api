@@ -27,7 +27,7 @@ public record NrcPlayer(UUID uniqueId, gg.norisk.core.common.NoRiskServerAPI ser
         serverAPI.sendPacket(uniqueId, new ToastPayload(progressBar, header, content, playerHead, playerUUID, toastType));
     }
 
-    public void sendInputbar(String header, String placeholder, int maxLength) {
+    public void sendInputBar(String header, String placeholder, int maxLength) {
         serverAPI.sendPacket(uniqueId, new InputbarPayload(header, placeholder, maxLength));
     }
 
@@ -35,7 +35,7 @@ public record NrcPlayer(UUID uniqueId, gg.norisk.core.common.NoRiskServerAPI ser
         serverAPI.sendPacket(uniqueId, new WheelPayload(name, command));
     }
 
-    public void sendGamemode(String gamemode) {
+    public void sendGameMode(String gamemode) {
         serverAPI.sendPacket(uniqueId, new GamemodePayload(gamemode));
     }
 
