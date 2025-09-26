@@ -8,7 +8,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 public class CallbackManager {
-
     private final Map<UUID, Consumer<InPayload>> pendingRequests = new ConcurrentHashMap<>();
 
     public void addCallback(UUID requestId, Consumer<InPayload> callback) {

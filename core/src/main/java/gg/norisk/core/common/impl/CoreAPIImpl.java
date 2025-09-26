@@ -2,11 +2,10 @@ package gg.norisk.core.common.impl;
 
 import java.util.UUID;
 import java.util.function.Consumer;
-import java.util.logging.Logger;
 
 import gg.norisk.core.common.CoreAPI;
 import gg.norisk.core.common.NoRiskServerAPI;
-import gg.norisk.core.exceptions.NoNrcPlayer;
+import gg.norisk.core.exceptions.NrcPlayerNotFoundExeption;
 import gg.norisk.core.manager.CallbackManager;
 import gg.norisk.core.manager.PacketEventManager;
 import gg.norisk.core.manager.PacketManager;
@@ -16,7 +15,6 @@ import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
 
 public class CoreAPIImpl implements CoreAPI {
-
     private final PlayerManager playerManager;
     private final PacketEventManager packetEventManager;
     private final CallbackManager callbackManager;
@@ -86,9 +84,9 @@ public class CoreAPIImpl implements CoreAPI {
     }
 
     @Override
-    public <R extends InPayload> String prepareRequest(UUID uuid, OutPayload request, Consumer<R> callback) throws NoNrcPlayer, ClassCastException {
+    public <R extends InPayload> String prepareRequest(UUID uuid, OutPayload request, Consumer<R> callback) throws NrcPlayerNotFoundExeption, ClassCastException {
         if (!isNrcPlayer(uuid)) {
-            throw new NoNrcPlayer();
+            throw new NrcPlayerNotFoundExeption();
         }
 
         UUID requestId = UUID.randomUUID();

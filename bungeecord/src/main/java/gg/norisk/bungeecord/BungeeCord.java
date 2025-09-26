@@ -29,11 +29,14 @@ public class BungeeCord extends Plugin implements Listener {
         
         instance = this;
         coreApi = new CoreAPIImpl();
-        BungeeCord.api = new ServerAPI(coreApi, this);
+
+        BungeeCord.api = new ServerAPI(BungeeCord.coreApi, this);
+
         coreApi.setServerAPI(BungeeCord.api);
 
         getProxy().registerChannel(coreApi.getPluginChannel());
         getProxy().getPluginManager().registerListener(this, new QuitListener(coreApi));
+
         api.registerListener(new JoinListener(coreApi));
         
         getLogger().info("NoRiskClient-Server-API BungeeCord module is ready!");
@@ -41,22 +44,19 @@ public class BungeeCord extends Plugin implements Listener {
     
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
-        if (!coreApi.getPluginChannel().equals(event.getTag())) return;
-        var sender = event.getSender();
-        if (sender instanceof ProxiedPlayer) {
-            ProxiedPlayer player = (ProxiedPlayer) sender;
-            getLogger().info("Received packet from " + player.getName());
+
+        if (!coreApi.getPluginChannel().equals(event.getTag())) {
+            return;
+        }
+
+        if (event.getSender() instanceof ProxiedPlayer player) {
             try {
                 PacketWrapper packet = coreApi.serializePacketWrapper(event.getData());
-                getLogger().info("Packet: " + packet.payloadJson());
                 InPayload responsePacket = coreApi.deserialize(packet);
-                getLogger().info("Response packet: " + responsePacket);
-                getLogger().info("Packet ID: " + packet.packetId());
+
                 if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
-                    getLogger().info("Received response for packet ID " + packet.packetId());
                     coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
                 } else {
-                    getLogger().info("Received response for unknown packet ID " + packet.packetId());
                     coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
                 }
             } catch (Exception e) {

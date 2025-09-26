@@ -15,56 +15,56 @@ import org.bukkit.plugin.messaging.PluginMessageListener;
 import org.jetbrains.annotations.NotNull;
 
 public class Paper extends JavaPlugin implements Listener, PluginMessageListener {
-    @Getter
-    private static ServerAPI api;
-    
-    @Getter
-    private static CoreAPI coreApi;
-    
-    @Getter
-    private static Paper instance;
 
-    @Override
-    public void onEnable() {
-        getLogger().info("NoRiskClient-Server-API Paper module is starting...");
-        
-        instance = this;
-        coreApi = new CoreAPIImpl();
-        Paper.api = new ServerAPI(coreApi, this);
-        coreApi.setServerAPI(Paper.api);
+  @Getter
+  private static ServerAPI api;
 
-        getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
+  @Getter
+  private static CoreAPI coreApi;
 
-        api.registerListener(new JoinListener(coreApi));
+  @Getter
+  private static Paper instance;
 
-        getServer().getMessenger().registerOutgoingPluginChannel(this, coreApi.getPluginChannel());
-        getServer().getMessenger().registerIncomingPluginChannel(this, coreApi.getPluginChannel(), this);
+  @Override
+  public void onEnable() {
+    getLogger().info("NoRiskClient-Server-API Paper module is starting...");
 
-        getLogger().info("NoRiskClient-Server-API Paper module is ready!");
+    instance = this;
+    coreApi = new CoreAPIImpl();
+
+    Paper.api = new ServerAPI(coreApi, this);
+    coreApi.setServerAPI(Paper.api);
+
+    getServer().getPluginManager().registerEvents(new QuitListener(coreApi), this);
+
+    api.registerListener(new JoinListener(coreApi));
+
+    getServer().getMessenger().registerOutgoingPluginChannel(this, coreApi.getPluginChannel());
+    getServer().getMessenger()
+        .registerIncomingPluginChannel(this, coreApi.getPluginChannel(), this);
+
+    getLogger().info("NoRiskClient-Server-API Paper module is ready!");
+  }
+
+  @Override
+  public void onPluginMessageReceived(String channel, @NotNull Player player,
+      byte @NotNull [] message) {
+    if (!channel.equals(coreApi.getPluginChannel())) {
+      return;
     }
 
-    @Override
-    public void onPluginMessageReceived(String channel, @NotNull Player player, byte @NotNull [] message) {
-        if (!channel.equals(coreApi.getPluginChannel())) return;
+    try {
+      PacketWrapper packet = coreApi.serializePacketWrapper(message);
+      InPayload responsePacket = coreApi.deserialize(packet);
 
-        getLogger().info("Received packet from " + player.getName());
+      if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
+        coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
+      } else {
+        coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
+      }
 
-        try {
-            PacketWrapper packet = coreApi.serializePacketWrapper(message);
-            getLogger().info("Packet: " + packet.payloadJson());
-            InPayload responsePacket = coreApi.deserialize(packet);
-            getLogger().info("Response packet: " + responsePacket);
-            getLogger().info("Packet ID: " + packet.packetId());
-
-            if (packet.packetId() != null && coreApi.getCallbackManager().waitingFor(packet.packetId())) {
-                getLogger().info("Received response for packet ID " + packet.packetId());
-                coreApi.getCallbackManager().completeCallback(packet.packetId(), responsePacket);
-            } else {
-                getLogger().info("Received response for unknown packet ID " + packet.packetId());
-                coreApi.getEventManager().callEvent(player.getUniqueId(), responsePacket);
-            }
-        } catch (Exception e) {
-            getLogger().severe("Unable to deserialize packet: " + e.getMessage());
-        }
+    } catch (Exception e) {
+      getLogger().severe("Unable to deserialize packet: " + e.getMessage());
     }
+  }
 }
