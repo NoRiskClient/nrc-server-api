@@ -1,4 +1,4 @@
-name: NoRiskClientServerAPI
+name: NRC-Server-API
 version: "${version}"
 main: gg.norisk.paper.Paper
 authors: [ S42 ]

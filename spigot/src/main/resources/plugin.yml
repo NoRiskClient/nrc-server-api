@@ -1,4 +1,4 @@
-name: NoRiskClientServerAPI
+name: NRC-Server-API
 version: "${version}"
 main: gg.norisk.spigot.Spigot
 authors: [ S42 ]

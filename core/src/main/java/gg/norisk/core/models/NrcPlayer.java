@@ -4,12 +4,7 @@ import gg.norisk.core.common.PacketListener;
 import gg.norisk.core.payloads.InPayload;
 import gg.norisk.core.payloads.OutPayload;
 import gg.norisk.core.payloads.models.*;
-import gg.norisk.core.payloads.out.ToastPayload;
-import gg.norisk.core.payloads.out.InputbarPayload;
-import gg.norisk.core.payloads.out.WheelPayload;
-import gg.norisk.core.payloads.out.GamemodePayload;
-import gg.norisk.core.payloads.out.BeaconBeamPayload;
-import gg.norisk.core.payloads.out.ModuleDeactivatePayload;
+import gg.norisk.core.payloads.out.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -46,6 +41,14 @@ public record NrcPlayer(UUID uniqueId, gg.norisk.core.common.NoRiskServerAPI ser
 
     public void sendModuleDeactivate(List<Modules> modules) {
         serverAPI.sendPacket(uniqueId, new ModuleDeactivatePayload(modules));
+    }
+
+    public void sendCosmetic(String cosmetic, UUID npc_uuid) {
+        serverAPI.sendPacket(uniqueId, new CosmeticPayload(npc_uuid, cosmetic));
+    }
+
+    public void sendEmote(String emote, UUID npc_uuid) {
+        serverAPI.sendPacket(uniqueId, new EmotePayload(npc_uuid, emote));
     }
 
     public <R extends InPayload> void sendRequest(String channel, OutPayload request, Consumer<R> callback) {

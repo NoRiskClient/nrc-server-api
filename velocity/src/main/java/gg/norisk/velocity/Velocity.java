@@ -23,9 +23,9 @@ import com.velocitypowered.api.proxy.Player;
 import lombok.Getter;
 
 @Plugin(
-    id = "noriskclient-server-api",
-    name = "NoRiskClient Server API",
-    version = "0.1.0",
+    id = "nrc-server-api",
+    name = "NRC Server API",
+    version = "0.2.0",
     description = "API to interact with the NoRisk Client.",
     authors = {"S42"}
 )
